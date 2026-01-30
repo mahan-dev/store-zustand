@@ -1,0 +1,6 @@
+
+
+@reference "tailwindcss";
+.container {
+  @apply max-w-[1200px] mx-auto min-h-screen my-14 px-4 flex justify-center flex-wrap gap-4;
+}
