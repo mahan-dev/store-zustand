@@ -11,6 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { isInCart } from "@/core/helper/cardHelper";
+import { quantityHandler } from "@/core/helper/quantityHandler";
 import { titleFormatter } from "@/core/helper/titleFormatter";
 import { useShopStore } from "@/core/store/store";
 import { ProductDetail } from "@/core/types/products/types";
@@ -20,9 +22,10 @@ interface CardProps {
   data: ProductDetail;
 }
 const CardPage = ({ data }: CardProps) => {
-  const { title, description, category, image } = data;
+  const { title, description, category, image, id } = data;
 
   const { addItem, store } = useShopStore();
+  const quantity = quantityHandler(store, id);
 
   return (
     <Card className="w-50 py-2">
@@ -44,9 +47,12 @@ const CardPage = ({ data }: CardProps) => {
         {/* <CardAction>CardAction</CardAction> */}
       </CardHeader>
 
-      <Button className="mx-2 cursor-pointer" onClick={() => addItem(data)}>
-        Add to Cart
-      </Button>
+      {!isInCart(store, id) && (
+        <Button className="mx-2 cursor-pointer" onClick={() => addItem(data)}>
+          Add to Cart
+        </Button>
+      )}
+      {quantity === 1 && quantity}
     </Card>
   );
 };
