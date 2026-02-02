@@ -10,7 +10,7 @@ interface ProductDetail {
   };
   title: string;
 
-  quantity?: number;
+  quantity: number;
 }
 
 export type { ProductDetail };

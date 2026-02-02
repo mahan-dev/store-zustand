@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { FaTrashCan } from "react-icons/fa6";
 
 import {
   Card,
-  CardAction,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -24,7 +22,10 @@ interface CardProps {
 const CardPage = ({ data }: CardProps) => {
   const { title, description, category, image, id } = data;
 
-  const { addItem, store } = useShopStore();
+  const { addItem, increment, decrement, remove, getItemsCounter, store } =
+    useShopStore();
+
+  console.log(getItemsCounter());
   const quantity = quantityHandler(store, id);
 
   return (
@@ -44,7 +45,6 @@ const CardPage = ({ data }: CardProps) => {
           {titleFormatter(title)}
         </CardTitle>
         <CardDescription>{category}</CardDescription>
-        {/* <CardAction>CardAction</CardAction> */}
       </CardHeader>
 
       {!isInCart(store, id) && (
@@ -52,7 +52,18 @@ const CardPage = ({ data }: CardProps) => {
           Add to Cart
         </Button>
       )}
-      {quantity === 1 && quantity}
+      <div
+        className={`${quantity >= 1 ? "flex justify-center items-center gap-2 mx-3 " : "hidden"}`}
+      >
+        {quantity === 1 && (
+          <Button onClick={() => remove(data)}>
+            <FaTrashCan />
+          </Button>
+        )}
+        {quantity > 1 && <Button onClick={() => decrement(data)}>-</Button>}
+        {quantity >= 1 && quantity}
+        {quantity >= 1 && <Button onClick={() => increment(data)}>+</Button>}
+      </div>
     </Card>
   );
 };
