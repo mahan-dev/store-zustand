@@ -7,9 +7,7 @@ import styles from "@/modules/styles/header/route.module.css";
 import { Button } from "@/ui/button";
 
 const Header = () => {
-  const { total, totalItems, itemsCounter } = useShopStore();
-  console.log("🛢️ ~ Header.tsx:9 -> itemsCounter: ", itemsCounter);
-  console.log("🤣 ~ Header.tsx:9 -> totalItems: ", totalItems);
+  const { total } = useShopStore();
 
   return (
     <header
