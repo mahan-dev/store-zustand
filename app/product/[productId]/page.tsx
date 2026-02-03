@@ -11,7 +11,7 @@ const ProductPage = async ({ params }: ProductProps) => {
   const fetchedProduct = await productFetcher(productId);
   if (!fetchedProduct) return;
 
-  return <ProductDetail data={fetchedProduct} id={productId} />;
+  return <ProductDetail data={fetchedProduct} />;
 };
 
 export default ProductPage;

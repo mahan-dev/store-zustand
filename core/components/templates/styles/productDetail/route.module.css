@@ -1,0 +1,21 @@
+@reference "tailwindcss";
+
+.card__wrapper {
+    @apply w-fit mx-auto my-20 flex items-start shrink-0 gap-4 ;
+}
+
+.card {
+    @apply w-65 shrink-0  gap-1 p-3;
+}
+
+.card__arrowBack {
+    @apply cursor-pointer;
+}
+
+.card__image-wrapper {
+    @apply relative w-39 h-50 mx-auto my-4
+}
+
+.card__description {
+    @apply flex items-center justify-between mb-3 bg-[#9b45b3]/40 rounded-md px-2 py-0.5;
+}

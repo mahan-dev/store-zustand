@@ -43,13 +43,7 @@ const CardPage = ({ data }: CardProps) => {
       </Button>
       <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
-          <Image
-            src={image}
-            alt={"cardImage"}
-            fill
-            sizes="90vw"
-            priority
-          ></Image>
+          <Image src={image} alt={"cardImage"} fill sizes="90vw" priority />
         </div>
 
         <CardTitle className="mt-3 text-[0.9rem]">
