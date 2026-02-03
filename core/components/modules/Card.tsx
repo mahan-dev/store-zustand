@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { FaTrashCan } from "react-icons/fa6";
+import { FaPlus, FaTrashCan, FaMinus } from "react-icons/fa6";
 
 import {
   Card,
@@ -14,22 +14,21 @@ import { quantityHandler } from "@/core/helper/quantityHandler";
 import { titleFormatter } from "@/core/helper/titleFormatter";
 import { useShopStore } from "@/core/store/store";
 import { ProductDetail } from "@/core/types/products/types";
+import styles from "@/modules/styles/card/route.module.css";
 import { Button } from "@/ui/button";
 
 interface CardProps {
   data: ProductDetail;
 }
 const CardPage = ({ data }: CardProps) => {
-  const { title, description, category, image, id } = data;
+  const { title, category, image, id } = data;
 
-  const { addItem, increment, decrement, remove, getItemsCounter, store } =
-    useShopStore();
+  const { addItem, increment, decrement, remove, store } = useShopStore();
 
-  console.log(getItemsCounter());
   const quantity = quantityHandler(store, id);
 
   return (
-    <Card className="w-50 py-2">
+    <Card className="w-50  py-3">
       <CardHeader>
         <div className="relative w-39 h-50 ">
           <Image
@@ -48,21 +47,27 @@ const CardPage = ({ data }: CardProps) => {
       </CardHeader>
 
       {!isInCart(store, id) && (
-        <Button className="mx-2 cursor-pointer" onClick={() => addItem(data)}>
+        <Button className="mx-3 cursor-pointer" onClick={() => addItem(data)}>
           Add to Cart
         </Button>
       )}
-      <div
-        className={`${quantity >= 1 ? "flex justify-center items-center gap-2 mx-3 " : "hidden"}`}
-      >
+      <div className={`${quantity >= 1 ? `${styles.card__footer}` : "hidden"}`}>
         {quantity === 1 && (
           <Button onClick={() => remove(data)}>
             <FaTrashCan />
           </Button>
         )}
-        {quantity > 1 && <Button onClick={() => decrement(data)}>-</Button>}
-        {quantity >= 1 && quantity}
-        {quantity >= 1 && <Button onClick={() => increment(data)}>+</Button>}
+        {quantity > 1 && (
+          <Button onClick={() => decrement(data)}>
+            <FaMinus />
+          </Button>
+        )}
+        {quantity >= 1 && <span className="text-[#9d44b5]">{quantity}</span>}
+        {quantity >= 1 && (
+          <Button onClick={() => increment(data)}>
+            <FaPlus />
+          </Button>
+        )}
       </div>
     </Card>
   );

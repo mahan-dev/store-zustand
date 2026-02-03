@@ -1,0 +1,9 @@
+@reference "tailwindcss";
+
+.card__footer {
+    @apply w-fit flex justify-center items-center gap-3 mx-auto  ;
+
+    button {
+        @apply cursor-pointer;
+    }
+}
