@@ -1,4 +1,4 @@
-interface ProductDetail {
+interface ProductDetailTypes {
   id: number;
   category: string;
   description: string;
@@ -13,4 +13,4 @@ interface ProductDetail {
   quantity: number;
 }
 
-export type { ProductDetail };
+export type { ProductDetailTypes };

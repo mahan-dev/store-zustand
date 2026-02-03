@@ -1,7 +1,16 @@
 @reference "tailwindcss";
 
+.card__detail-button {
+    @apply w-fit h-8 p-2 text-[2rem] absolute top-1.5 left-1.5 z-10 cursor-pointer rounded-lg;
+}
+
+
+.card__description {
+    @apply flex gap-2 items-center justify-between px-2 py-0.5 text-[#565656] text-[0.8rem] bg-[#9b45b3]/40 rounded-sm;
+}
+
 .card__footer {
-    @apply w-fit flex justify-center items-center gap-3 mx-auto  ;
+    @apply w-fit flex justify-center items-center gap-3 mx-auto;
 
     button {
         @apply cursor-pointer;

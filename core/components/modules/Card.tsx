@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
-import { FaPlus, FaTrashCan, FaMinus } from "react-icons/fa6";
+import { FaPlus, FaTrashCan, FaMinus, FaTags } from "react-icons/fa6";
+import { TbListDetails } from "react-icons/tb";
 
 import {
   Card,
@@ -13,12 +15,12 @@ import { isInCart } from "@/core/helper/cardHelper";
 import { quantityHandler } from "@/core/helper/quantityHandler";
 import { titleFormatter } from "@/core/helper/titleFormatter";
 import { useShopStore } from "@/core/store/store";
-import { ProductDetail } from "@/core/types/products/types";
+import { ProductDetailTypes } from "@/core/types/products/types";
 import styles from "@/modules/styles/card/route.module.css";
 import { Button } from "@/ui/button";
 
 interface CardProps {
-  data: ProductDetail;
+  data: ProductDetailTypes;
 }
 const CardPage = ({ data }: CardProps) => {
   const { title, category, image, id } = data;
@@ -27,9 +29,19 @@ const CardPage = ({ data }: CardProps) => {
 
   const quantity = quantityHandler(store, id);
 
+  const router = useRouter();
+
   return (
-    <Card className="w-50  py-3">
-      <CardHeader>
+    <Card className="w-50 relative  py-3">
+      <Button
+        size={"icon"}
+        variant={"outline"}
+        className={styles["card__detail-button"]}
+        onClick={() => router.push(`/product/${id}`)}
+      >
+        <TbListDetails />
+      </Button>
+      <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
           <Image
             src={image}
@@ -43,11 +55,17 @@ const CardPage = ({ data }: CardProps) => {
         <CardTitle className="mt-3 text-[0.9rem]">
           {titleFormatter(title)}
         </CardTitle>
-        <CardDescription>{category}</CardDescription>
+        <CardDescription className={styles.card__description}>
+          {category}
+          <FaTags />
+        </CardDescription>
       </CardHeader>
 
       {!isInCart(store, id) && (
-        <Button className="mx-3 cursor-pointer" onClick={() => addItem(data)}>
+        <Button
+          className="mx-3 cursor-pointer rounded-lg"
+          onClick={() => addItem(data)}
+        >
           Add to Cart
         </Button>
       )}
