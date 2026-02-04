@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -14,9 +15,11 @@ const Header = () => {
       <Button variant={"secondary"}>Sign in</Button>
 
       <div className="relative">
-        <Button>
-          <FaShoppingCart />
-        </Button>
+        <Link href={"/cart"}>
+          <Button>
+            <FaShoppingCart />
+          </Button>
+        </Link>
         <span className="absolute top-5 left-0">
           {total > 10 ? "10+" : total}
         </span>

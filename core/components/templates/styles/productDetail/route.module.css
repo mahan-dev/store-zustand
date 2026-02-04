@@ -17,5 +17,5 @@
 }
 
 .card__description {
-    @apply flex items-center justify-between mb-3 bg-[#9b45b3]/40 rounded-md px-2 py-0.5;
+    @apply flex items-center justify-between mb-3  bg-[#9b45b3]/40 rounded-md px-2 py-0.5;
 }

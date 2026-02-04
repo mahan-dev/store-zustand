@@ -1,0 +1,10 @@
+@reference "tailwindcss";
+
+.container {
+    @apply mt-12 px-6
+}
+
+
+.container__aside {
+    @apply w-62.5
+}

@@ -7,7 +7,9 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { titleFormatter } from "@/core/helper/titleFormatter";
 import { ProductDetailTypes } from "@/core/types/products/types";
 import styles from "@/templates/styles/productDetail/route.module.css";
+import { Button } from "@/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/ui/card";
+
 interface ProductPros {
   data: ProductDetailTypes;
 }
@@ -19,7 +21,9 @@ const ProductDetailPage = ({ data }: ProductPros) => {
   return (
     <div className={styles.card__wrapper}>
       <div className={styles.card__arrowBack} onClick={() => router.push("/")}>
-        <FaArrowLeftLong className="text-2xl" />
+        <Button className="shadow-sm" variant={"outline"} size={"sm"}>
+          <FaArrowLeftLong className="text-2xl" />
+        </Button>
       </div>
       <Card className={styles.card}>
         <CardHeader className="p-0">
@@ -29,7 +33,7 @@ const ProductDetailPage = ({ data }: ProductPros) => {
             <Image src={image} fill sizes="90vw" priority alt="imageCard" />
           </div>
         </CardHeader>
-        <CardDescription>
+        <CardDescription className="wrap-break-word">
           <div className={styles.card__description}>
             {category}
             <FaTags />
