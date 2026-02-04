@@ -9,6 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
+
       {children}
       <Toaster />
     </>
