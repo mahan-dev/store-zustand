@@ -1,10 +1,10 @@
 @reference "tailwindcss";
 
 .container {
-    @apply mt-12 px-6
+    @apply flex gap-12 justify-between mt-12 px-6
 }
 
 
 .container__aside {
-    @apply w-62.5
+    @apply  w-62.5 shrink-0
 }

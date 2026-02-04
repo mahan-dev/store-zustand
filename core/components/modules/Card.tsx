@@ -2,28 +2,35 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { FaPlus, FaTrashCan, FaMinus, FaTags } from "react-icons/fa6";
+import {
+  FaPlus,
+  FaTrashCan,
+  FaMinus,
+  FaTags,
+  FaHandHoldingDollar,
+} from "react-icons/fa6";
 import { TbListDetails } from "react-icons/tb";
 
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { isInCart } from "@/core/helper/cardHelper";
-import { quantityHandler } from "@/core/helper/quantityHandler";
-import { titleFormatter } from "@/core/helper/titleFormatter";
-import { useShopStore } from "@/core/store/store";
 import { ProductDetailTypes } from "@/core/types/products/types";
+import { isInCart } from "@/helper/cardHelper";
+import { quantityHandler } from "@/helper/quantityHandler";
+import { titleFormatter } from "@/helper/titleFormatter";
 import styles from "@/modules/styles/card/route.module.css";
+import { useShopStore } from "@/store/store";
 import { Button } from "@/ui/button";
 
 interface CardProps {
   data: ProductDetailTypes;
 }
 const CardPage = ({ data }: CardProps) => {
-  const { title, category, image, id } = data;
+  const { title, category, image, id, price } = data;
 
   const { addItem, increment, decrement, remove, store } = useShopStore();
 
@@ -54,6 +61,10 @@ const CardPage = ({ data }: CardProps) => {
           <FaTags />
         </CardDescription>
       </CardHeader>
+      <CardContent className={styles.card__content}>
+        <div>{price}$</div>
+        <FaHandHoldingDollar />
+      </CardContent>
 
       {!isInCart(store, id) && (
         <Button

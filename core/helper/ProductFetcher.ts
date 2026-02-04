@@ -1,9 +1,9 @@
 import { BASE_URL } from "@/api/api";
-import { ProductDetail } from "@/types/products/types";
+import { ProductDetailTypes } from "@/types/products/types";
 
-export const dataFetcher = async (): Promise<ProductDetail[]> => {
+export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res: ProductDetail[] = await fetch(`${BASE_URL}/products`, {
+    const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
       cache: "no-store",
     }).then((res) => res.json());
     return res;

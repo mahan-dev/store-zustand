@@ -4,6 +4,9 @@
     @apply w-fit h-8 p-2 text-[2rem] absolute top-1.5 left-1.5 z-10 cursor-pointer rounded-lg;
 }
 
+.card__content {
+    @apply flex justify-between text-[#9d44b5]
+}
 
 .card__description {
     @apply flex gap-2 items-center justify-between px-2 py-0.5 text-[#565656] text-[0.8rem] bg-[#9b45b3]/40 rounded-sm;

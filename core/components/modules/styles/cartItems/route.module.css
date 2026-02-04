@@ -1,0 +1,18 @@
+@reference "tailwindcss";
+
+
+
+.list__items {
+    @apply flex items-center py-4 gap-4 border-b last-of-type:border-b-0;
+}
+
+.image__wrapper {
+    @apply shrink-0 relative w-12 h-12;
+}
+
+.items__action {
+    @apply flex gap-4 ml-auto;
+    button {
+        @apply cursor-pointer
+    }
+}

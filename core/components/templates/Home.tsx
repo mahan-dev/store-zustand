@@ -1,9 +1,9 @@
-import { ProductDetail } from "@/core/types/products/types";
+import { ProductDetailTypes } from "@/core/types/products/types";
 import CardPage from "@/modules/Card";
 import styles from "@/styles/home/route.module.css";
 
 interface HomeProps {
-  data: ProductDetail[];
+  data: ProductDetailTypes[];
 }
 const Home = ({ data }: HomeProps) => {
   return (

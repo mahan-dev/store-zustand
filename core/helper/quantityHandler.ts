@@ -1,6 +1,6 @@
-import { ProductDetail } from "@/types/products/types";
+import { ProductDetailTypes } from "@/types/products/types";
 
-const quantityHandler = (state: ProductDetail[], id: number): number => {
+const quantityHandler = (state: ProductDetailTypes[], id: number): number => {
   const product = state.findIndex((item) => item.id === id);
 
   if (product === -1) return 0;

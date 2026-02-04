@@ -7,12 +7,10 @@ import { ShopStore } from "@/types/store/type";
 
 const useShopStore = create<ShopStore>()(
   persist(
-    immer((set, get) => ({
+    immer((set) => ({
       store: [],
       items: 0,
       total: 0,
-      getItemsCounter: () => itemsCounter(get().store),
-      getTotalItems: () => totalItems(get().store),
       addItem: (product) =>
         set((state) => {
           const store = state.store;
@@ -21,8 +19,8 @@ const useShopStore = create<ShopStore>()(
           if (!isExists) {
             state.store.push({ ...product, quantity: 1 });
           }
-          // state.itemsCounter =
-          state.total = totalItems(store);
+          state.items = itemsCounter(state.store);
+          state.total = totalItems(state.store);
         }),
 
       increment: (product) =>
@@ -49,9 +47,8 @@ const useShopStore = create<ShopStore>()(
           const filteredProduct = state.store.filter(
             (item) => item.id !== product.id,
           );
-          // const index = state.store.find((item) => item.id === product.id);
           state.store = filteredProduct;
-          state.items = 0;
+          state.items = itemsCounter(state.store);
           state.total = totalItems(state.store);
         }),
     })),

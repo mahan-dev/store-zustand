@@ -1,15 +1,13 @@
-import { ProductDetail } from "@/types/products/types";
+import { ProductDetailTypes } from "@/types/products/types";
 
 interface ShopStore {
-  store: ProductDetail[];
+  store: ProductDetailTypes[];
   total: number;
   items: number;
-  addItem: (state: ProductDetail) => void;
-  increment: (state: ProductDetail) => void;
-  decrement: (state: ProductDetail) => void;
-  remove: (state: ProductDetail) => void;
-  getTotalItems: ( ) => void;
-  getItemsCounter: () => void;
+  addItem: (state: ProductDetailTypes) => void;
+  increment: (state: ProductDetailTypes) => void;
+  decrement: (state: ProductDetailTypes) => void;
+  remove: (state: ProductDetailTypes) => void;
 }
 
 export type { ShopStore };
