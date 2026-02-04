@@ -9,7 +9,7 @@
 }
 
 .card__description {
-    @apply flex gap-2 items-center justify-between px-2 py-0.5 text-[#565656] text-[0.8rem] bg-[#9b45b3]/40 rounded-sm;
+    @apply flex gap-2 items-center justify-between  text-[0.8rem] text-[#9d44b5];
 }
 
 .card__footer {

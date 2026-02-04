@@ -1,6 +1,8 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FaBasketShopping } from "react-icons/fa6";
+import { TbShoppingCartX } from "react-icons/tb";
 
 import CartItems from "@/modules/CartItems";
 import { useShopStore } from "@/store/store";
@@ -17,7 +19,22 @@ import {
 const ProductCart = () => {
   const { store, total, items } = useShopStore();
 
-  if (!store.length) return <h2>nothing found</h2>;
+  const router = useRouter();
+  if (!store.length)
+    return (
+      <div className="flex flex-col justify-center items-center">
+        <h2 className="flex gap-3 mt-12 text-red-400">
+          No item has found <TbShoppingCartX className="text-[1.3rem] " />{" "}
+        </h2>
+        <Button
+          className="mt-4"
+          variant={"outline"}
+          onClick={() => router.push("/")}
+        >
+          Back shopping
+        </Button>
+      </div>
+    );
 
   return (
     <section className={styles.container}>
@@ -34,7 +51,9 @@ const ProductCart = () => {
               Total: {`${items}$`}
             </div>
 
-            <Button className="w-full" variant={"default"}>Pay</Button>
+            <Button className="w-full" variant={"default"}>
+              Pay
+            </Button>
           </CardFooter>
         </Card>
       </aside>
