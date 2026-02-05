@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 
-import { ProductDetailTypes } from "@/core/types/products/types";
+import { SearchParamsHandler } from "@/helper/searchParamsHandler";
+import { ProductDetailTypes } from "@/types/products/types";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
@@ -11,6 +12,12 @@ const PriceSlider = ({ data }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
   const [tempPrice, setTempPrice] = useState([0, 1000]);
   console.log(price);
+
+  const { SetParam } = SearchParamsHandler();
+  const ChangeHandler = (value: number[]) => {
+    setPrice(value);
+    SetParam(tempPrice);
+  };
 
   return (
     <div className="space-y-4 px-4">
@@ -22,11 +29,13 @@ const PriceSlider = ({ data }: PriceProps) => {
         step={5}
         defaultValue={[0, 1000]}
         value={tempPrice}
-        onValueChange={(value) => setTempPrice(value)}
-        minStepsBetweenThumbs={1}
-        onValueCommit={(value) => {
-          setPrice(value);
+        onValueChange={(value) => {
+          const [min, max] = value;
+          if (min >= max) return;
+          setTempPrice(value);
         }}
+        minStepsBetweenThumbs={1}
+        onValueCommit={ChangeHandler}
       />
       <div className="flex justify-between text-muted-foreground">
         <span>${price[0]}</span>
