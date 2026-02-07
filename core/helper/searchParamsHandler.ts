@@ -1,7 +1,7 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export const SearchParamsHandler = () => {
+export const useSearchParamsMinMax = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 

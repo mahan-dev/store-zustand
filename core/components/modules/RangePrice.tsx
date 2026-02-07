@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import { SearchParamsHandler } from "@/helper/searchParamsHandler";
+import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
@@ -14,12 +14,7 @@ const PriceSlider = ({ setRange }: PriceProps) => {
 
   const searchParams = useSearchParams();
 
-  const minPrice = Number(searchParams.get("price-min")) || 0;
-  const maxPrice = Number(searchParams.get("price-max")) || 1000;
-  const paramsPrice = [minPrice, maxPrice];
-  console.log("⌨️ ~ RangePrice.tsx:18 -> maxPrice: ", maxPrice);
-
-  const { SetParam } = SearchParamsHandler();
+  const { SetParam } = useSearchParamsMinMax();
 
   const valueChangeHandler = (value: number[]) => {
     setTempPrice(value);

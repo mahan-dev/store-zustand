@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { filterCards } from "@/helper/filterCards";
 import CardPage from "@/modules/Card";
 import PriceSlider from "@/modules/RangePrice";
 import styles from "@/templates/styles/home/route.module.css";
@@ -13,13 +14,8 @@ interface HomeProps {
 }
 const Home = ({ data }: HomeProps) => {
   const [range, setRange] = useState<number[]>([0, 1000]);
-  console.log(range);
 
-  const filteredData =
-    range[0] > 0 || range[1] < 1000
-      ? data.filter((item) => item.price >= range[0] && item.price <= range[1])
-      : data;
-  console.log(filteredData);
+  const filteredData = filterCards(range, data);
 
   return (
     <div className={styles.container}>
