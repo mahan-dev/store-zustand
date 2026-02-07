@@ -1,23 +1,44 @@
 "use client";
-import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { SearchParamsHandler } from "@/helper/searchParamsHandler";
-import { ProductDetailTypes } from "@/types/products/types";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
-  data: ProductDetailTypes[];
+  setRange: Dispatch<SetStateAction<number[]>>;
 }
-const PriceSlider = ({ data }: PriceProps) => {
+const PriceSlider = ({ setRange }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
   const [tempPrice, setTempPrice] = useState([0, 1000]);
-  console.log(price);
+
+  const searchParams = useSearchParams();
+
+  const minPrice = Number(searchParams.get("price-min")) || 0;
+  const maxPrice = Number(searchParams.get("price-max")) || 1000;
+  const paramsPrice = [minPrice, maxPrice];
+  console.log("⌨️ ~ RangePrice.tsx:18 -> maxPrice: ", maxPrice);
 
   const { SetParam } = SearchParamsHandler();
-  const ChangeHandler = (value: number[]) => {
+
+  const valueChangeHandler = (value: number[]) => {
+    setTempPrice(value);
+    setPrice(value);
+  };
+
+  const valueCommitHandler = (value: number[]) => {
+    setRange(value);
     setPrice(value);
     SetParam(tempPrice);
   };
+
+  useEffect(() => {
+    const minPrice = Number(searchParams.get("price-min")) || 0;
+    const maxPrice = Number(searchParams.get("price-max")) || 1000;
+
+    setTempPrice([minPrice, maxPrice]);
+    setPrice([minPrice, maxPrice]);
+  }, [searchParams]);
 
   return (
     <div className="space-y-4 px-4">
@@ -29,13 +50,8 @@ const PriceSlider = ({ data }: PriceProps) => {
         step={5}
         defaultValue={[0, 1000]}
         value={tempPrice}
-        onValueChange={(value) => {
-          const [min, max] = value;
-          if (min >= max) return;
-          setTempPrice(value);
-        }}
-        minStepsBetweenThumbs={1}
-        onValueCommit={ChangeHandler}
+        onValueChange={valueChangeHandler}
+        onValueCommit={valueCommitHandler}
       />
       <div className="flex justify-between text-muted-foreground">
         <span>${price[0]}</span>

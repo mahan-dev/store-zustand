@@ -11,13 +11,6 @@ import {
 } from "react-icons/fa6";
 import { TbListDetails } from "react-icons/tb";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { ProductDetailTypes } from "@/core/types/products/types";
 import { isInCart } from "@/helper/cardHelper";
 import { quantityHandler } from "@/helper/quantityHandler";
@@ -25,6 +18,13 @@ import { titleFormatter } from "@/helper/titleFormatter";
 import styles from "@/modules/styles/card/route.module.css";
 import { useShopStore } from "@/store/store";
 import { Button } from "@/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/ui/card";
 
 interface CardProps {
   data: ProductDetailTypes;
@@ -39,7 +39,7 @@ const CardPage = ({ data }: CardProps) => {
   const router = useRouter();
 
   return (
-    <Card className="w-50 relative  py-3">
+    <Card className="w-50 relative h-fit  py-3">
       <Button
         size={"icon"}
         variant={"outline"}
