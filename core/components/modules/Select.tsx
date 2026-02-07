@@ -1,0 +1,43 @@
+import React, { Dispatch } from "react";
+
+import { filterCards } from "@/helper/filterCards";
+import { ProductDetailTypes } from "@/types/products/types";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/ui/select";
+
+interface SelectCategoryProps {
+  data?: ProductDetailTypes[];
+  setCategory: Dispatch<React.SetStateAction<string>>;
+}
+const SelectCategory = ({ data, setCategory }: SelectCategoryProps) => {
+  const changeHandler = (value: string) => {
+    setCategory(value);
+    filterCards({ category: value, data });
+  };
+
+  return (
+    <div className="px-2">
+      <Select onValueChange={changeHandler}>
+        <SelectTrigger className="w-45">
+          <SelectValue placeholder="Category" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="men">men's clothing</SelectItem>
+            <SelectItem value="women">women's clothing</SelectItem>
+            <SelectItem value="electronics">electronics</SelectItem>
+            <SelectItem value="jewelery">jewelery</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+};
+
+export default SelectCategory;
