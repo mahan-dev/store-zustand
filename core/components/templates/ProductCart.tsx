@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { FaBasketShopping } from "react-icons/fa6";
 import { TbShoppingCartX } from "react-icons/tb";
+import { toast } from "sonner";
 
 import CartItems from "@/modules/CartItems";
 import { useShopStore } from "@/store/store";
@@ -17,7 +18,7 @@ import {
 } from "@/ui/card";
 
 const ProductCart = () => {
-  const { store, total, items } = useShopStore();
+  const { store, total, items, resetStore } = useShopStore();
 
   const router = useRouter();
   if (!store.length)
@@ -36,6 +37,12 @@ const ProductCart = () => {
       </div>
     );
 
+  const payHandler = () => {
+    toast.success("Payment successful");
+    resetStore();
+    router.push("/");
+  };
+
   return (
     <section className={styles.container}>
       <aside className={styles.container__aside}>
@@ -51,7 +58,7 @@ const ProductCart = () => {
               Total: {`${items}$`}
             </div>
 
-            <Button className="w-full" variant={"default"}>
+            <Button className="w-full" variant={"default"} onClick={payHandler}>
               Pay
             </Button>
           </CardFooter>

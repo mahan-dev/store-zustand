@@ -5,12 +5,16 @@ import { immer } from "zustand/middleware/immer";
 import { itemsCounter, totalItems } from "@/helper/cardHelper";
 import { ShopStore } from "@/types/store/type";
 
+const initialState = {
+  store: [],
+  items: 0,
+  total: 0,
+};
+
 const useShopStore = create<ShopStore>()(
   persist(
     immer((set) => ({
-      store: [],
-      items: 0,
-      total: 0,
+      ...initialState,
       addItem: (product) =>
         set((state) => {
           const store = state.store;
@@ -51,6 +55,11 @@ const useShopStore = create<ShopStore>()(
           state.items = itemsCounter(state.store);
           state.total = totalItems(state.store);
         }),
+
+      resetStore: () => {
+        set(() => ({ store: [], items: 0, total: 0 }));
+        useShopStore.persist.clearStorage();
+      },
     })),
     {
       name: "shop-store",

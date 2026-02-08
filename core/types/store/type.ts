@@ -8,6 +8,7 @@ interface ShopStore {
   increment: (state: ProductDetailTypes) => void;
   decrement: (state: ProductDetailTypes) => void;
   remove: (state: ProductDetailTypes) => void;
+  resetStore: () => void;
 }
 
 export type { ShopStore };

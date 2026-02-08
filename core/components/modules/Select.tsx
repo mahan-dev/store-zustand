@@ -27,7 +27,8 @@ const SelectCategory = ({ data, setCategory }: SelectCategoryProps) => {
         <SelectTrigger className="w-45 cursor-pointer">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
-        <SelectContent>
+       <SelectContent className="shadow-lg shadow-purple-200">
+
           <SelectGroup className="**:[[role=option]]:cursor-pointer">
             <SelectItem value="men's clothing">men&apos;s clothing</SelectItem>
             <SelectItem value="women's clothing">
