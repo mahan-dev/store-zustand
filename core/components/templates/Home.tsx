@@ -15,7 +15,7 @@ const Home = ({ data }: HomeProps) => {
   const [range, setRange] = useState<number[]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
 
-  const filteredData = filterCards({ range, data, category });
+  const filteredData = filterCards({ range, data, category }) || [];
 
   return (
     <div className={styles.container}>

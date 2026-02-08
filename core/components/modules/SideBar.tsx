@@ -7,7 +7,7 @@ import { Card, CardHeader } from "@/ui/card";
 
 interface SidebarProps {
   setRange: Dispatch<SetStateAction<number[]>>;
-  setCategory?: Dispatch<SetStateAction<string>>;
+  setCategory: Dispatch<SetStateAction<string>>;
   data: ProductDetailTypes[];
 }
 
