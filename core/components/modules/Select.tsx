@@ -24,13 +24,15 @@ const SelectCategory = ({ data, setCategory }: SelectCategoryProps) => {
   return (
     <div className="px-2">
       <Select onValueChange={changeHandler}>
-        <SelectTrigger className="w-45">
+        <SelectTrigger className="w-45 cursor-pointer">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
         <SelectContent>
-          <SelectGroup>
-            <SelectItem value="men">men's clothing</SelectItem>
-            <SelectItem value="women">women's clothing</SelectItem>
+          <SelectGroup className="**:[[role=option]]:cursor-pointer">
+            <SelectItem value="men's clothing">men&apos;s clothing</SelectItem>
+            <SelectItem value="women's clothing">
+              women&apos;s clothing
+            </SelectItem>
             <SelectItem value="electronics">electronics</SelectItem>
             <SelectItem value="jewelery">jewelery</SelectItem>
           </SelectGroup>
