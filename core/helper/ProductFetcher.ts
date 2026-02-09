@@ -4,7 +4,7 @@ import { ProductDetailTypes } from "@/types/products/types";
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
     const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
-      cache: "no-store",
+      next: { revalidate: 1 * 60 * 60 * 24 * 30 },
     }).then((res) => res.json());
     return res;
   } catch (error) {
