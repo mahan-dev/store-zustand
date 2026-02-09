@@ -18,10 +18,8 @@ export const useSearchParamsMinMax = () => {
     }
 
     if (category === "") {
-      params.set("category", "all");
-    } else if (category && category !== "all") {
-      console.log(category);
-
+      params.set("category", "");
+    } else if (category && category !== "") {
       params.set("category", category);
     }
     router.push(`/?${params.toString()}`);

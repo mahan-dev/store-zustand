@@ -14,9 +14,9 @@ export const useFilterSearchParams = ({
 }: useFilterSearchParamsProps) => {
   const searchParams = useSearchParams();
 
-  const category = searchParams.get("category") || "all";
+  const category = searchParams.get("category") || "";
 
-  const categoryParam = searchParams.get("category") === "all" ? "" : category;
+  const categoryParam = searchParams.get("category") === "" ? "" : category;
   const minParam = Number(searchParams.get("price-min")) || 0;
   const maxParam = Number(searchParams.get("price-max")) || 1000;
 

@@ -29,6 +29,7 @@
       "@/helper/*": ["./core/helper/*"],
       "@/lib/*": ["./core/lib/*"],
       "@/types/*": ["./core/types/*"],
+      "@/hooks/*": ["./core/hooks/*"],
       "@/styles/*": ["./core/styles/*"],
       "@/store/*": ["./core/store/*"],
       "@/api/*": ["./core/api/*"]

@@ -2,9 +2,9 @@
 
 import React, { Dispatch, SetStateAction } from "react";
 
-import { filterCards } from "@/core/helper/filterCards";
-import { useSearchParamsMinMax } from "@/core/helper/searchParamsHandler";
-import { useFilterSearchParams } from "@/core/hooks/useFilterSearchParams";
+import { filterCards } from "@/helper/filterCards";
+import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
+import { useFilterSearchParams } from "@/hooks/useFilterSearchParams";
 import PriceSlider from "@/modules/RangePrice";
 import SelectCategory from "@/modules/Select";
 import { ProductDetailTypes } from "@/types/products/types";
@@ -31,12 +31,13 @@ const SideBar = ({
   const resetHandler = () => {
     setCategory("");
     setRange([0, 1000]);
-    console.log("working");
-    filterCards({ range, category });
+    filterCards({ range, data, category });
     SetParam({ category: "", price: [0, 1000] });
   };
 
   useFilterSearchParams({ setCategory, setRange });
+
+  const isDisabled = category === "" && range[0] === 0 && range[1] === 1000;
 
   return (
     <aside className="flex flex-col shrink-0 w-50">
@@ -51,7 +52,7 @@ const SideBar = ({
         <Button
           className="mx-2 cursor-pointer"
           onClick={resetHandler}
-          disabled={category === "" && range[0] === 0 && range[1] === 1000}
+          disabled={isDisabled}
         >
           Reset
         </Button>

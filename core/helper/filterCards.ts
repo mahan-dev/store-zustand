@@ -18,7 +18,7 @@ export const filterCards = ({ range, data, category }: FilterCardsProps) => {
     }
   }
 
-  if (category !== "all") {
+  if (category) {
     finalData = finalData.filter((items) => items.category === category);
   }
 
