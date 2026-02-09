@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useEffect } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 import { filterCards } from "@/core/helper/filterCards";
 import { useSearchParamsMinMax } from "@/core/helper/searchParamsHandler";

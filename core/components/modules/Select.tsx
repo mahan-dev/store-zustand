@@ -1,5 +1,4 @@
-import { useSearchParams } from "next/navigation";
-import { Dispatch, useEffect } from "react";
+import { Dispatch } from "react";
 
 import { filterCards } from "@/helper/filterCards";
 import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
@@ -30,8 +29,6 @@ const SelectCategory = ({
     SetParam({ category: value });
     filterCards({ category: value, data });
   };
-
-
 
   return (
     <div className="px-2">
