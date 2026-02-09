@@ -13,9 +13,10 @@ import {
 
 interface SelectCategoryProps {
   data?: ProductDetailTypes[];
+  category: string;
   setCategory: Dispatch<React.SetStateAction<string>>;
 }
-const SelectCategory = ({ data, setCategory }: SelectCategoryProps) => {
+const SelectCategory = ({ data, category, setCategory }: SelectCategoryProps) => {
   const changeHandler = (value: string) => {
     setCategory(value);
     filterCards({ category: value, data });
@@ -23,7 +24,7 @@ const SelectCategory = ({ data, setCategory }: SelectCategoryProps) => {
 
   return (
     <div className="px-2">
-      <Select onValueChange={changeHandler}>
+      <Select onValueChange={changeHandler} value={category}>
         <SelectTrigger className="w-45 cursor-pointer">
           <SelectValue placeholder="Category" />
         </SelectTrigger>

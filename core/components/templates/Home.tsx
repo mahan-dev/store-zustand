@@ -19,7 +19,13 @@ const Home = ({ data }: HomeProps) => {
 
   return (
     <div className={styles.container}>
-      <SideBar setRange={setRange} setCategory={setCategory} data={data} />
+      <SideBar
+        range={range}
+        setRange={setRange}
+        category={category}
+        setCategory={setCategory}
+        data={data}
+      />
       <div className="flex w-full justify-center flex-wrap gap-4">
         {!!filteredData.length ? (
           filteredData.map((item, index) => (

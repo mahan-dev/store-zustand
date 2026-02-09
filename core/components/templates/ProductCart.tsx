@@ -17,25 +17,29 @@ import {
   CardFooter,
 } from "@/ui/card";
 
+export const CartNotFound = () => {
+  const router = useRouter();
+  return (
+    <div className={styles.notfound}>
+      <h2 className={styles.notfound__title}>
+        No item has found <TbShoppingCartX className="text-[1.3rem] " />
+      </h2>
+      <Button
+        className="mt-4 cursor-pointer"
+        variant={"outline"}
+        onClick={() => router.push("/")}
+      >
+        Back shopping
+      </Button>
+    </div>
+  );
+};
+
 const ProductCart = () => {
   const { store, total, items, resetStore } = useShopStore();
-
   const router = useRouter();
-  if (!store.length)
-    return (
-      <div className="flex flex-col justify-center items-center">
-        <h2 className="flex gap-3 mt-12 text-red-400">
-          No item has found <TbShoppingCartX className="text-[1.3rem] " />{" "}
-        </h2>
-        <Button
-          className="mt-4"
-          variant={"outline"}
-          onClick={() => router.push("/")}
-        >
-          Back shopping
-        </Button>
-      </div>
-    );
+
+  if (!store.length) return <CartNotFound />;
 
   const payHandler = () => {
     toast.success("Payment successful");
@@ -47,18 +51,22 @@ const ProductCart = () => {
     <section className={styles.container}>
       <aside className={styles.container__aside}>
         <Card>
-          <CardHeader className="flex justify-between border-b ">
+          <CardHeader className={styles.aside__header}>
             <CardTitle>Cart</CardTitle>
             <FaBasketShopping />
           </CardHeader>
           {total > 0 && <CardContent>Total items x {total}</CardContent>}
 
-          <CardFooter className="flex flex-col items-start gap-4">
+          <CardFooter className={styles.aside__footer}>
             <div className="text-[0.9rem] text-[#363636]">
               Total: {`${items}$`}
             </div>
 
-            <Button className="w-full" variant={"default"} onClick={payHandler}>
+            <Button
+              className="w-full cursor-pointer"
+              variant={"default"}
+              onClick={payHandler}
+            >
               Pay
             </Button>
           </CardFooter>

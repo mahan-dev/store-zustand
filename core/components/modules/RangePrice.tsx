@@ -6,9 +6,9 @@ import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
-  setRange: Dispatch<SetStateAction<number[]>>;
+  range: number[];
 }
-const PriceSlider = ({ setRange }: PriceProps) => {
+const PriceSlider = ({range }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
   const [tempPrice, setTempPrice] = useState([0, 1000]);
 
@@ -22,7 +22,6 @@ const PriceSlider = ({ setRange }: PriceProps) => {
   };
 
   const valueCommitHandler = (value: number[]) => {
-    setRange(value);
     setPrice(value);
     SetParam(tempPrice);
   };
@@ -33,7 +32,7 @@ const PriceSlider = ({ setRange }: PriceProps) => {
 
     setTempPrice([minPrice, maxPrice]);
     setPrice([minPrice, maxPrice]);
-  }, [searchParams]);
+  }, [range, searchParams]);
 
   return (
     <div className="space-y-4 px-4">
