@@ -19,6 +19,7 @@ interface SidebarProps {
 
 const SideBar = ({
   range,
+  setRange,
   category,
   setCategory,
   data,
@@ -35,7 +36,7 @@ const SideBar = ({
     <aside className="flex flex-col shrink-0 w-50">
       <Card>
         <CardHeader className="border-b ">Filter</CardHeader>
-        <PriceSlider range={range} />
+        <PriceSlider setRange={setRange} />
         <SelectCategory
           data={data}
           category={category}

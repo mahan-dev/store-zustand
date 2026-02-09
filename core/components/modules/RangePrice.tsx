@@ -1,14 +1,14 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
-  range: number[];
+  setRange: Dispatch<SetStateAction<number[]>>;
 }
-const PriceSlider = ({range }: PriceProps) => {
+const PriceSlider = ({ setRange }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
   const [tempPrice, setTempPrice] = useState([0, 1000]);
 
@@ -23,6 +23,7 @@ const PriceSlider = ({range }: PriceProps) => {
 
   const valueCommitHandler = (value: number[]) => {
     setPrice(value);
+    setRange(value);
     SetParam(tempPrice);
   };
 
@@ -32,7 +33,7 @@ const PriceSlider = ({range }: PriceProps) => {
 
     setTempPrice([minPrice, maxPrice]);
     setPrice([minPrice, maxPrice]);
-  }, [range, searchParams]);
+  }, [searchParams]);
 
   return (
     <div className="space-y-4 px-4">
