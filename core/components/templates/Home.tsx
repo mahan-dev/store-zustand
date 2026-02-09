@@ -27,8 +27,8 @@ const Home = ({ data }: HomeProps) => {
         data={data}
       />
       <div className="flex w-full justify-center flex-wrap gap-4">
-        {!!filteredData.length ? (
-          filteredData.map((item, index) => (
+        {!!data.length ? (
+          data.map((item, index) => (
             <CardPage key={index} data={item} />
           ))
         ) : (
