@@ -6,7 +6,7 @@ import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { Slider } from "@/ui/slider";
 
 interface PriceProps {
-  setRange: Dispatch<SetStateAction<number[]>>;
+  setRange: Dispatch<SetStateAction<[number, number]>>;
 }
 const PriceSlider = ({ setRange }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
@@ -16,15 +16,15 @@ const PriceSlider = ({ setRange }: PriceProps) => {
 
   const { SetParam } = useSearchParamsMinMax();
 
-  const valueChangeHandler = (value: number[]) => {
+  const valueChangeHandler = (value: [number, number]) => {
     setTempPrice(value);
     setPrice(value);
   };
 
-  const valueCommitHandler = (value: number[]) => {
+  const valueCommitHandler = (value: [number, number]) => {
     setPrice(value);
     setRange(value);
-    SetParam(tempPrice);
+    SetParam({ price: value });
   };
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const PriceSlider = ({ setRange }: PriceProps) => {
         min={0}
         max={1000}
         step={5}
-        defaultValue={[0, 1000]}
         value={tempPrice}
         onValueChange={valueChangeHandler}
         onValueCommit={valueCommitHandler}

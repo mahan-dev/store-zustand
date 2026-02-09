@@ -1,6 +1,8 @@
-import React, { Dispatch } from "react";
+import { useSearchParams } from "next/navigation";
+import { Dispatch, useEffect } from "react";
 
 import { filterCards } from "@/helper/filterCards";
+import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { ProductDetailTypes } from "@/types/products/types";
 import {
   Select,
@@ -16,20 +18,28 @@ interface SelectCategoryProps {
   category: string;
   setCategory: Dispatch<React.SetStateAction<string>>;
 }
-const SelectCategory = ({ data, category, setCategory }: SelectCategoryProps) => {
-  const changeHandler = (value: string) => {
+const SelectCategory = ({
+  data,
+  category,
+  setCategory,
+}: SelectCategoryProps) => {
+  const { SetParam } = useSearchParamsMinMax();
+
+  const ChangeHandler = (value: string) => {
     setCategory(value);
+    SetParam({ category: value });
     filterCards({ category: value, data });
   };
 
+
+
   return (
     <div className="px-2">
-      <Select onValueChange={changeHandler} value={category}>
+      <Select onValueChange={ChangeHandler} value={category}>
         <SelectTrigger className="w-45 cursor-pointer">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
-       <SelectContent className="shadow-lg shadow-purple-200">
-
+        <SelectContent className="shadow-lg shadow-purple-200">
           <SelectGroup className="**:[[role=option]]:cursor-pointer">
             <SelectItem value="men's clothing">men&apos;s clothing</SelectItem>
             <SelectItem value="women's clothing">

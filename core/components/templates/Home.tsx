@@ -12,7 +12,7 @@ interface HomeProps {
   data: ProductDetailTypes[];
 }
 const Home = ({ data }: HomeProps) => {
-  const [range, setRange] = useState<number[]>([0, 1000]);
+  const [range, setRange] = useState<[number, number]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
 
   const filteredData = filterCards({ range, data, category });
