@@ -3,7 +3,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 interface SearchParams {
   price?: [number, number];
-  // category?: "men's clothing" | "jewelery" | "electronics" | "women's clothing";
   category?: string;
 }
 export const useSearchParamsMinMax = () => {

@@ -7,6 +7,7 @@ import { Slider } from "@/ui/slider";
 
 interface PriceProps {
   setRange: Dispatch<SetStateAction<[number, number]>>;
+  
 }
 const PriceSlider = ({ setRange }: PriceProps) => {
   const [price, setPrice] = useState([0, 1000]);
