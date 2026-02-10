@@ -5,24 +5,17 @@ const revalidate = 1 * 60 * 60 * 24 * 30;
 
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {
-      next: { revalidate: 60 * 60 * 24 * 30 },
+    const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
+      next: { revalidate },
       headers: {
         Accept: "application/json",
       },
-    });
+    }).then((res) => res.json());
 
-    // 🔥 VERY IMPORTANT CHECK
-    const contentType = res.headers.get("content-type");
-
-    if (!res.ok || !contentType?.includes("application/json")) {
-      console.error("Invalid API response");
-      return [];
-    }
-
-    return await res.json();
+    return res;
   } catch (error) {
-    console.error("Fetch crashed:", error);
+    const e = error as Error;
+    console.log(e);
     return [];
   }
 };
