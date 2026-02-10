@@ -26,8 +26,8 @@ const Home = ({ data }: HomeProps) => {
         setCategory={setCategory}
         data={data}
       />
-      <div className="flex w-full justify-center flex-wrap gap-4">
-        {!!filteredData.length ? (
+      <div className={styles.cards}>
+        {filteredData.length ? (
           filteredData.map((item, index) => (
             <CardPage key={index} data={item} />
           ))

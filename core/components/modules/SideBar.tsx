@@ -32,7 +32,7 @@ const SideBar = ({
     setCategory("");
     setRange([0, 1000]);
     filterCards({ range, data, category });
-    SetParam({ category: "", price: [0, 1000] });
+    SetParam({ reset: true });
   };
 
   useFilterSearchParams({ setCategory, setRange });
