@@ -5,7 +5,7 @@ const revalidate = 1 * 60 * 60 * 24 * 30;
 
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/products`, {
+    const res = await fetch("https://fakestoreapi.com/products", {
       next: { revalidate: 60 * 60 * 24 * 30 },
       headers: {
         Accept: "application/json",
