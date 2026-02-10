@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { FaBasketShopping } from "react-icons/fa6";
 import { TbShoppingCartX } from "react-icons/tb";
-import { toast } from "sonner";
 
+import { payHandler } from "@/helper/payHandler";
 import CartItems from "@/modules/CartItems";
 import { useShopStore } from "@/store/store";
 import styles from "@/templates/styles/productCart/route.module.css";
@@ -41,13 +41,6 @@ const ProductCart = () => {
 
   if (!store.length) return <CartNotFound />;
 
-  const payHandler = async () => {
-    toast.success("Payment successful", { position: "top-center" });
-    resetStore();
-    await new Promise((resolver) => setTimeout(resolver, 2000));
-    router.push("/");
-  };
-
   return (
     <section className={styles.container}>
       <aside className={styles.container__aside}>
@@ -66,7 +59,7 @@ const ProductCart = () => {
             <Button
               className="w-full cursor-pointer"
               variant={"default"}
-              onClick={payHandler}
+              onClick={() => payHandler({ resetStore, router })}
             >
               Pay
             </Button>
