@@ -41,9 +41,10 @@ const ProductCart = () => {
 
   if (!store.length) return <CartNotFound />;
 
-  const payHandler = () => {
-    toast.success("Payment successful");
+  const payHandler = async () => {
+    toast.success("Payment successful", { position: "top-center" });
     resetStore();
+    await new Promise((resolver) => setTimeout(resolver, 2000));
     router.push("/");
   };
 
