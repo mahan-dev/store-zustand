@@ -5,11 +5,14 @@ const revalidate = 1 * 60 * 60 * 24 * 30;
 
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/products`, {
+    const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
       next: { revalidate },
-    });
+      headers: {
+        Accept: "application/json",
+      },
+    }).then((res) => res.json());
 
-    return (await res.json()) as ProductDetailTypes[];
+    return res;
   } catch (error) {
     const e = error as Error;
     console.log(e);
