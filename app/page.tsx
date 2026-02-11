@@ -3,6 +3,8 @@ import React, { Suspense } from "react";
 import { dataFetcher } from "@/helper/ProductFetcher";
 import Home from "@/templates/Home";
 
+export const dynamic = "force-dynamic";
+
 const page = async () => {
   const data = await dataFetcher();
 
