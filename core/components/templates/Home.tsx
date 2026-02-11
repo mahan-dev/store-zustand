@@ -17,7 +17,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("https://fakestoreapi/products").then((res) =>
+      const res = await fetch("https://fakestoreapi.com/products").then((res) =>
         res.json(),
       );
       setData(res);
