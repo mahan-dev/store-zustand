@@ -1,5 +1,3 @@
-import React, { Suspense } from "react";
-
 import { dataFetcher } from "@/helper/ProductFetcher";
 import Home from "@/templates/Home";
 

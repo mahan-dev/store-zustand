@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 import { filterCards } from "@/helper/filterCards";
 import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
@@ -12,7 +12,7 @@ import { Button } from "@/ui/button";
 import { Card, CardHeader } from "@/ui/card";
 
 interface SidebarProps {
-  range: number[];
+  range: [number, number];
   setRange: Dispatch<SetStateAction<[number, number]>>;
   category: string;
   setCategory: Dispatch<SetStateAction<string>>;
@@ -43,7 +43,7 @@ const SideBar = ({
     <aside className="flex flex-col shrink-0 w-50">
       <Card>
         <CardHeader className="border-b ">Filter</CardHeader>
-        <PriceSlider setRange={setRange} />
+        <PriceSlider range={range} setRange={setRange} />
         <SelectCategory
           data={data}
           category={category}
