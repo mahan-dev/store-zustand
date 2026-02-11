@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { filterCards } from "@/helper/filterCards";
 import CardPage from "@/modules/Card";
@@ -14,8 +14,14 @@ interface HomeProps {
 const Home = ({ data }: HomeProps) => {
   const [range, setRange] = useState<[number, number]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
+  const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
 
-  const filteredData = filterCards({ range, data, category });
+  // const filteredData = filterCards({ range, data, category });
+  useEffect(() => {
+    setFilteredData(filterCards({range,data, category}))
+
+  },
+   [category, range, data])
 
   return (
     <div className={styles.container}>

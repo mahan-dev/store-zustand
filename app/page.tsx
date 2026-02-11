@@ -10,11 +10,7 @@ const page = async () => {
 
   if (!data.length)
     return <h2 className="text-center mt-10">No data has found</h2>;
-  return (
-    // <Suspense fallback={<h2 className="text-center mt-10">Loading...</h2>}>
-    <Home data={data} />
-    // </Suspense>
-  );
+  return <Home data={data} />;
 };
 
 export default page;
