@@ -1,22 +1,53 @@
 // import { BASE_URL } from "@/api/api";
 // import { ProductDetailTypes } from "@/types/products/types";
 
+// const revalidate = 1 * 60 * 60 * 24;
+// export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
+//   try {
+//     const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
+//       next: { revalidate: revalidate },
+//       headers: {
+//         Accept: "application/json",
+//       },
+//     }).then((res) => res.json());
+
+//     return res;
+//   } catch (error) {
+//     const e = error as Error;
+//     console.log(e);
+//     return [];
+//   }
+// };
+
 import { BASE_URL } from "@/api/api";
 import { ProductDetailTypes } from "@/types/products/types";
 
+const revalidate = 60 * 60 * 24;
+
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res: ProductDetailTypes[] = await fetch(`${BASE_URL}/products`, {
-      cache: "no-store",
+    const res = await fetch(`${BASE_URL}/products`, {
+      next: { revalidate },
       headers: {
         Accept: "application/json",
       },
-    }).then((res) => res.json());
+    });
 
-    return res;
+    if (!res.ok) {
+      console.error("Fetch failed:", res.status);
+      return [];
+    }
+
+    const contentType = res.headers.get("content-type");
+
+    if (!contentType?.includes("application/json")) {
+      console.error("API returned non JSON");
+      return [];
+    }
+
+    return await res.json();
   } catch (error) {
-    const e = error as Error;
-    console.log(e);
+    console.error("Fetcher error:", error);
     return [];
   }
 };
