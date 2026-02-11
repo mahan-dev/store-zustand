@@ -16,12 +16,9 @@ const Home = ({ data }: HomeProps) => {
   const [category, setCategory] = useState<string>("");
   const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
 
-  // const filteredData = filterCards({ range, data, category });
   useEffect(() => {
-    setFilteredData(filterCards({range,data, category}))
-
-  },
-   [category, range, data])
+    setFilteredData(filterCards({ range, data, category }));
+  }, [category, range, data]);
 
   return (
     <div className={styles.container}>

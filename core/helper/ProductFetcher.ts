@@ -21,16 +21,18 @@ import { ProductDetailTypes } from "@/types/products/types";
 //   }
 // };
 
+// helper/ProductFetcher.ts
+
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
     const res = await fetch(`${BASE_URL}/products`, {
-      cache: "no-store",
+      next: { revalidate: 10 }, // revalidate every 10s
       headers: { Accept: "application/json" },
     });
 
-    const contentType = res.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      console.error("Invalid API response:", await res.text());
+    const contentType = res.headers.get("content-type") || "";
+    if (!contentType.includes("application/json")) {
+      console.error("API returned non-JSON response:", await res.text());
       return [];
     }
 
