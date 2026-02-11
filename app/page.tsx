@@ -3,7 +3,7 @@ import { ProductDetailTypes } from "@/core/types/products/types";
 import { dataFetcher } from "@/helper/ProductFetcher";
 import Home from "@/templates/Home";
 
-export const dynamic = "force-dynamic";
+
 
 const Page = async () => {
   let data: ProductDetailTypes[] = [];
