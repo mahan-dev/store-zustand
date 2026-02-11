@@ -8,16 +8,25 @@ import SideBar from "@/modules/SideBar";
 import styles from "@/templates/styles/home/route.module.css";
 import { ProductDetailTypes } from "@/types/products/types";
 
-interface HomeProps {
-  data: ProductDetailTypes[];
-}
-const Home = ({ data }: HomeProps) => {
+const Home = () => {
   const [range, setRange] = useState<[number, number]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
+  // const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
+
+  const [data, setData] = useState<ProductDetailTypes[]>([]);
 
   useEffect(() => {
-    setFilteredData(filterCards({ range, data, category }));
+    const fetchData = async () => {
+      const res = await fetch("https://fakestoreapi/products").then((res) =>
+        res.json(),
+      );
+      setData(res);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setData(filterCards({ range, data, category }));
   }, [category, range, data]);
 
   return (
@@ -30,8 +39,8 @@ const Home = ({ data }: HomeProps) => {
         data={data}
       />
       <div className={styles.cards}>
-        {filteredData.length ? (
-          filteredData.map((item, index) => (
+        {data.length ? (
+          data.map((item, index) => (
             <CardPage key={index} data={item} />
           ))
         ) : (
