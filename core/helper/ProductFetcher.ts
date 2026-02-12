@@ -59,7 +59,8 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     console.log("[dataFetcher] Fetching:", url);
 
     const res = await fetch(url, {
-      next: { revalidate },
+      // next: { revalidate },
+      cache: "no-store",
       headers: { Accept: "application/json" },
     });
 
