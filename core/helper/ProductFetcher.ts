@@ -58,9 +58,13 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     const url = `${BASE_URL}/products`;
     console.log("[dataFetcher] Fetching:", url);
 
-    const res = await fetch(url, {
+    const res = await fetch(`${BASE_URL}/products`, {
       next: { revalidate },
-      headers: { Accept: "application/json" },
+      headers: {
+        Accept: "application/json",
+        "User-Agent":
+          "Mozilla/5.0 (compatible; ZustandStore/1.0; https://store-zustand.vercel.app/)",
+      },
     });
 
     console.log("[dataFetcher] Response status:", res.status);
