@@ -58,7 +58,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     const url = `${BASE_URL}/products`;
     console.log("[dataFetcher] Fetching:", url);
 
-    const res = await fetch("https://your-app.vercel.app", {
+    const res = await fetch("store-zustand.vercel.app", {
       next: { revalidate },
       headers: { Accept: "application/json" },
     });
