@@ -12,7 +12,9 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Button variant={"secondary"}>Sign in</Button>
+      <Button variant={"secondary"} asChild>
+        <Link href={"/signin"}>Sign in</Link>
+      </Button>
 
       <div className="relative">
         <Link href={"/cart"}>
