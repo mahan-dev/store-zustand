@@ -47,7 +47,6 @@
 //   }
 // };
 
-
 import { ProductDetailTypes } from "@/types/products/types";
 
 const revalidate = 60 * 60 * 24;
@@ -85,7 +84,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
 
     const json = await res.json();
     console.log("[dataFetcher] Received items count:", json.length);
-    return json;
+    return json.data;
   } catch (error) {
     console.error("[dataFetcher] Exception:", {
       message: error instanceof Error ? error.message : String(error),
