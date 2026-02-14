@@ -54,14 +54,20 @@ const revalidate = 60 * 60 * 24;
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   console.log("[dataFetcher] BASE_URL =", BASE_URL); // <-- add this
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort, 8000);
+
   try {
-    const url = `${BASE_URL}products`;
+    const url = `${BASE_URL}/products`;
     console.log("[dataFetcher] Fetching:", url);
 
     const res = await fetch(url, {
       // next: { revalidate },
+      signal: controller.signal,
       cache: "no-store",
     });
+
+    clearTimeout(timeout);
 
     console.log("[dataFetcher] Response status:", res.status);
     console.log("[dataFetcher] Content-Type:", res.headers.get("content-type"));
