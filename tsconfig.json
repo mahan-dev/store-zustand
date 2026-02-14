@@ -22,6 +22,7 @@
       "@/*": ["./*"],
       "@/components/*": ["./core/components/*"],
       "@/modules/*": ["./core/components/modules/*"],
+      "@/models/*": ["./core/models/*"],
       "@/elements/*": ["./core/components/elements/*"],
       "@/templates/*": ["./core/components/templates/*"],
       "@/layout/*": ["./core/components/layout/*"],
@@ -35,6 +36,6 @@
       "@/api/*": ["./core/api/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "core/api/mockedData.ts"],
   "exclude": ["node_modules"]
 }
