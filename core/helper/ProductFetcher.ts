@@ -47,7 +47,7 @@
 //   }
 // };
 
-import { BASE_URL } from "@/api/api";
+
 import { ProductDetailTypes } from "@/types/products/types";
 
 const revalidate = 60 * 60 * 24;
@@ -58,7 +58,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   const timeout = setTimeout(() => controller.abort, 8000);
 
   try {
-    const url = `${BASE_URL}/products`;
+    const url = `https://fakestoreapi.com/products`;
     console.log("[dataFetcher] Fetching:", url);
 
     const res = await fetch(url, {
