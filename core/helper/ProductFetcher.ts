@@ -52,7 +52,7 @@ import { ProductDetailTypes } from "@/types/products/types";
 
 const revalidate = 60 * 60 * 24;
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
-  console.log("[dataFetcher] BASE_URL =", BASE_URL); // <-- add this
+  // console.log("[dataFetcher] BASE_URL =", BASE_URL); // <-- add this
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort, 8000);
@@ -90,7 +90,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     console.error("[dataFetcher] Exception:", {
       message: error instanceof Error ? error.message : String(error),
       stack: error instanceof Error ? error.stack : undefined,
-      url: `${BASE_URL}/products`,
+      url: `https://fakestoreapi.com/products`,
     });
     return [];
   }
