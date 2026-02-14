@@ -55,13 +55,12 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   console.log("[dataFetcher] BASE_URL =", BASE_URL); // <-- add this
 
   try {
-    const url = `${BASE_URL}/products`;
+    const url = `${BASE_URL}products`;
     console.log("[dataFetcher] Fetching:", url);
 
     const res = await fetch(url, {
       // next: { revalidate },
       cache: "no-store",
-      headers: { Accept: "application/json" },
     });
 
     console.log("[dataFetcher] Response status:", res.status);
