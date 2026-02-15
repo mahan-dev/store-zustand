@@ -10,7 +10,7 @@ import { ProductDetailTypes } from "@/types/products/types";
 interface HomeProps {
   data: ProductDetailTypes[];
 }
-const Home = ({ data }: HomeProps) => {
+const Products = ({ data }: HomeProps) => {
   const [range, setRange] = useState<[number, number]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
   const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
@@ -41,4 +41,4 @@ const Home = ({ data }: HomeProps) => {
   );
 };
 
-export default Home;
+export default Products;

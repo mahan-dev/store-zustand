@@ -42,7 +42,7 @@ const SideBar = ({
   return (
     <aside className="flex flex-col shrink-0 w-50">
       <Card>
-        <CardHeader className="border-b ">Filter</CardHeader>
+        <CardHeader className="border-b  py-1!">Filter</CardHeader>
         <PriceSlider range={range} setRange={setRange} />
         <SelectCategory
           data={data}

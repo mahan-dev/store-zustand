@@ -1,0 +1,6 @@
+
+@reference "tailwindcss";
+
+.swiper-slide {
+    @apply h-auto my-2 mx-2 bg-[#9d44b5] rounded-lg;
+}
