@@ -47,8 +47,8 @@
 :root {
 
   /*? Swiper */
-  --swiper-pagination-color: #ffffff;
-  --swiper-navigation-color: #ffffff; /* arrow color */
+  --swiper-pagination-color: #9D44B5;
+  --swiper-navigation-color: #9D44B5; /* arrow color */
   --swiper-pagination-bullet-inactive-color: #a9a9a9;
 
   --swiper-pagination-bullet-inactive-opacity: 1;
