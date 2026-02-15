@@ -36,10 +36,14 @@ const SwiperSlider = () => {
         autoplay={{
           delay: 1500,
           disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
       >
         {data.map((item) => (
-          <SwiperSlide key={item.id} className={styles["swiper-slide"]}>
+          <SwiperSlide
+            key={item.id}
+            className={`${styles["swiper-slide"]} py-2`}
+          >
             <div className=" relative w-40 mx-auto h-40">
               <Link href={`/product/${item.id}`}>
                 <Image

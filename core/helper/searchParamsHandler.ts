@@ -22,7 +22,7 @@ export const useSearchParamsMinMax = () => {
       params.forEach((_, key) => {
         params.delete(key);
       });
-      router.replace("/");
+      router.replace("/products");
       return;
     }
 
@@ -31,7 +31,7 @@ export const useSearchParamsMinMax = () => {
     } else if (category && category !== "") {
       params.set("category", category);
     }
-    router.push(`/?${params.toString()}`);
+    router.push(`/products?${params.toString()}`);
   };
   return { SetParam };
 };
