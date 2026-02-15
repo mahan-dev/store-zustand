@@ -1,10 +1,9 @@
-import connectDb from "@/helper/mongoDb";
-import SwiperSlider from "@/templates/Swiper";
+import Home from "@/templates/Home";
+
 
 const Page = async () => {
-  // await connectDb();
 
-  return <SwiperSlider />;
+  return <Home />;
 };
 
 export default Page;

@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import styles from "@/templates/styles/swiper/route.module.css";
-import { Button } from "@/ui/button";
 
 const SwiperSlider = () => {
   return (

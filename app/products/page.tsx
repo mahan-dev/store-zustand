@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { mockedData } from "@/api/mockedData";
 import Products from "@/templates/Products";
 import { ProductDetailTypes } from "@/types/products/types";
@@ -9,7 +11,11 @@ const page = () => {
     return <h2 className="text-center mt-10">No data has found</h2>;
   }
 
-  return <Products data={data} />;
+  return (
+    <Suspense>
+      <Products data={data} />
+    </Suspense>
+  );
 };
 
 export default page;
