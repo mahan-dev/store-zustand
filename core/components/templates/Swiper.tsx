@@ -18,7 +18,7 @@ const SwiperSlider = () => {
   const data = mockedData.slice(0, 6) as ProductDetailTypes[];
 
   return (
-    <div className="relative">
+    <div className={styles.container}>
       <BsArrowLeftSquare className={styles["swiper__arrow-left"]} />
       <BsArrowRightSquare className={styles["swiper__arrow-right"]} />
 

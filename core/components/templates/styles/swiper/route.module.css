@@ -1,6 +1,19 @@
 
 @reference "tailwindcss";
 
+
+.container {
+    @apply relative;
+    
+}
+
+.container :global(.swiper) {
+    @apply pb-2
+}
+.container :global(.swiper-pagination ) {
+    @apply bottom-[-6px];
+}
+
 .swiper-slide {
     @apply h-auto my-2 mx-2 bg-[#ededed] rounded-lg border border-[#fffff];
 }
@@ -11,4 +24,8 @@
 }
 .swiper__arrow-right {
     @apply text-2xl mx-4 text-[#9d44B5] cursor-pointer  p-0 absolute right-2 top-1/2 -translate-y-1/2 z-10;
+}
+
+.swiper-pagination {
+    @apply bottom-[-6px]
 }
