@@ -1,8 +1,9 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
 
+import { useSidebarClickHandler } from "@/core/hooks/useSidebar";
 import { filterCards } from "@/helper/filterCards";
 import { useSearchParamsMinMax } from "@/helper/searchParamsHandler";
 import { useFilterSearchParams } from "@/hooks/useFilterSearchParams";
@@ -34,6 +35,8 @@ const SideBar = ({
 }: SidebarProps) => {
   const { SetParam } = useSearchParamsMinMax();
 
+  const asideRef = useRef<HTMLDivElement>(null);
+
   const resetHandler = () => {
     setCategory("");
     setRange([0, 1000]);
@@ -46,19 +49,21 @@ const SideBar = ({
     document.body.style.overflow = "auto";
   };
 
+  useSidebarClickHandler({ isOpen, setIsOpen, asideRef });
+
   useFilterSearchParams({ setCategory, setRange });
 
   const isDisabled = category === "" && range[0] === 0 && range[1] === 1000;
 
   return (
     <aside className={isOpen ? styles["sidebar-active"] : styles.sidebar}>
-      <Card>
+      <Card ref={asideRef}>
         <CardHeader className="border-b relative py-1!">
           Filter
           {isOpen && (
             <IoClose
-              onClick={closeHandler}
               className="text-red-500 text-2xl absolute -top-9 right-0 "
+              onClick={closeHandler}
             />
           )}
         </CardHeader>
