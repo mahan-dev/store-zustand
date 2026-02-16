@@ -9,9 +9,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { mockedData } from "@/core/api/mockedData";
-import { ProductDetailTypes } from "@/core/types/products/types";
+import { mockedData } from "@/api/mockedData";
 import styles from "@/templates/styles/swiper/route.module.css";
+import { ProductDetailTypes } from "@/types/products/types";
 
 const SwiperSlider = () => {
   const data = mockedData.slice(0, 6) as ProductDetailTypes[];
@@ -43,18 +43,17 @@ const SwiperSlider = () => {
             key={item.id}
             className={`${styles["swiper-slide"]} py-2`}
           >
-            <div className=" relative w-40 mx-auto h-40">
-              <Link href={`/product/${item.id}`}>
+            <Link href={`/product/${item.id}`}>
+              <div className=" relative w-40 mx-auto h-40">
                 <Image
-                  className=""
                   src={item.image}
                   alt={"cardImage"}
                   fill
                   sizes="90vw"
                   priority
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

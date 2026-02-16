@@ -1,0 +1,27 @@
+@reference "tailwindcss";
+
+.container {
+  @apply w-full mx-auto min-h-screen flex gap-4 my-14 px-4;
+}
+
+.cards {
+  @apply flex w-full h-fit justify-center flex-wrap gap-4;
+}
+
+
+
+
+@media only screen and (min-width:577px) {
+  .sidebar__filter {
+
+    @apply hidden
+  }
+}
+@media only screen and (max-width:576px) {
+  .sidebar__filter {
+
+    @apply block fixed bottom-6 left-8 z-12 p-3 text-[#9d44b5] bg-[#ffffff] rounded-lg;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+  }
+}

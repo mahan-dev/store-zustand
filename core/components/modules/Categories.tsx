@@ -17,8 +17,8 @@ const Categories = ({ title }: CategoriesProps) => {
   const MotionButton = motion.create(Button);
 
   return (
-    <div className="flex flex-col items-center mt-12">
-      <h2 className="text-[#9d44b5] mb-8">{title}</h2>
+    <div className="flex flex-col items-center mt-16">
+      <h2 className="text-[#9d44b5] mb-8 text-xl font-bold">{title}</h2>
       <ul className="flex justify-center gap-2.5">
         {uniqueCategories.map((category, index) => (
           <li className="" key={index}>
