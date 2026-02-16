@@ -18,7 +18,7 @@ const Categories = ({ title }: CategoriesProps) => {
 
   return (
     <div className="flex flex-col items-center mt-16">
-      <h2 className="text-[#9d44b5] mb-8 text-xl font-bold">{title}</h2>
+      <h2 className="text-[#9d44b5] mb-8 text-xl font-bold border-b-2 border-black border-dashed pb-2">{title}</h2>
       <ul className="flex justify-center gap-2.5">
         {uniqueCategories.map((category, index) => (
           <li className="" key={index}>
@@ -27,7 +27,7 @@ const Categories = ({ title }: CategoriesProps) => {
               className="cursor-pointer "
               variant={"outline"}
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.2 }}
+              whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.2 }}
             >
               <Link

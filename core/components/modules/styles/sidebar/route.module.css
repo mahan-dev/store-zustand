@@ -9,6 +9,11 @@
     @apply fixed flex flex-col items-center justify-center  z-20 top-0 right-0 left-0 h-screen backdrop-blur-2xl;
 }
 
+
+.sidebar__close-icon{
+    @apply text-red-500 text-2xl absolute -top-9 right-0;
+}
+
 @media only screen and (max-width:576px) {
    
     .sidebar {

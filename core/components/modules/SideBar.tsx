@@ -61,10 +61,7 @@ const SideBar = ({
         <CardHeader className="border-b relative py-1!">
           Filter
           {isOpen && (
-            <IoClose
-              className="text-red-500 text-2xl absolute -top-9 right-0 "
-              onClick={closeHandler}
-            />
+            <IoClose className={styles["sidebar__close-icon"]} onClick={closeHandler} />
           )}
         </CardHeader>
         <PriceSlider range={range} setRange={setRange} />

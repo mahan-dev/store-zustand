@@ -1,0 +1,27 @@
+@reference "tailwindcss";
+
+.container {
+    @apply flex flex-col items-center mt-24;
+
+    & h2 {
+        @apply text-xl text-[#9d44b5] font-bold border-b-2 border-dashed border-black;
+    }
+}
+
+.slider {
+    @apply overflow-hidden w-200 mx-auto mt-6;
+}
+
+.animate-scroll {
+    animation: scroll 20s linear infinite;
+    @apply flex w-max  gap-8;
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
