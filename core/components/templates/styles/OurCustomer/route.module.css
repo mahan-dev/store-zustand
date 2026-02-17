@@ -4,7 +4,7 @@
     @apply flex flex-col items-center mt-24;
 
     & h2 {
-        @apply text-xl text-[#9d44b5] font-bold border-b-2 border-dashed border-black;
+        @apply text-xl text-[#9d44b5] font-bold border-b-2 border-dashed border-black pb-2;
     }
 }
 

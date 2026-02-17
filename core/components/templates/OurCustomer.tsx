@@ -4,23 +4,7 @@ import Image from "next/image";
 
 import styles from "@/templates/styles/OurCustomer/route.module.css";
 
-const customers = [
-  "/images/addidas.svg",
-  "/images/gucci.svg",
-  "/images/levis.svg",
-  "/images/nike.svg",
-  "/images/prada.svg",
-  "/images/puma.svg",
-  "/images/under-armour.svg",
-
-  "/images/addidas.svg",
-  "/images/gucci.svg",
-  "/images/levis.svg",
-  "/images/nike.svg",
-  "/images/prada.svg",
-  "/images/puma.svg",
-  "/images/under-armour.svg",
-];
+import { customers } from "@/constants/customers";
 
 const OurCustomer = () => {
   return (
