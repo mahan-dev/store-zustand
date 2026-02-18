@@ -1,6 +1,7 @@
 import { productFetcher } from "@/core/helper/productPage";
 import ProductDetail from "@/templates/ProductDetail";
 
+export const dynamic = "force-dynamic";
 interface ProductProps {
   params: Promise<{ productId: string }>;
 }
