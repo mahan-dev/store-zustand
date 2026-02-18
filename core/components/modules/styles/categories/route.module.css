@@ -1,0 +1,15 @@
+@reference "tailwindcss";
+
+
+
+.container {
+    @apply flex flex-col items-center mt-16;
+}
+
+.container__title {
+    @apply text-[#9d44b5] mb-8 text-xl font-bold border-b-2 border-black border-dashed pb-2;
+}
+
+.container__list {
+    @apply flex flex-wrap justify-center gap-2.5;
+}

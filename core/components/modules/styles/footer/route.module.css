@@ -1,0 +1,4 @@
+@reference "tailwindcss";
+.footer {
+    @apply flex justify-center py-3 gap-6 bg-[#9d44b5] text-white mt-auto max-sm:text-[0.9rem]
+}

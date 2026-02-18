@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 
-import styles from "@/templates/styles/OurCustomer/route.module.css";
-
 import { customers } from "@/constants/customers";
+import styles from "@/templates/styles/OurCustomer/route.module.css";
 
 const OurCustomer = () => {
   return (
@@ -13,13 +12,9 @@ const OurCustomer = () => {
       <div className={styles.slider}>
         <div className={styles["animate-scroll"]}>
           {customers.map((logo, index) => (
-            <Image
-              key={`original-${index}`}
-              src={logo}
-              alt=""
-              width={100}
-              height={70}
-            />
+            <span key={index}>
+              <Image src={logo} alt="" width={100} height={70} />
+            </span>
           ))}
         </div>
       </div>

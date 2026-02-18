@@ -3,7 +3,7 @@
 .container {
     @apply flex flex-col items-center mt-24;
 
-    & h2 {
+    >h2 {
         @apply text-xl text-[#9d44b5] font-bold border-b-2 border-dashed border-black pb-2;
     }
 }
@@ -14,13 +14,31 @@
 
 .animate-scroll {
     animation: scroll 20s linear infinite;
-    @apply flex w-max  gap-8;
+    @apply w-max flex items-center gap-8;
+}
+
+@media only screen and (max-width: 992px) {
+    
+
+    .animate-scroll {
+        
+        @apply flex flex-wrap justify-center mb-20 mx-4 animate-none;
+        :nth-child(n+8) {
+            @apply hidden;
+        }
+    }
+
+    .slider {
+        @apply w-full flex gap-2.5;
+    }
+
 }
 
 @keyframes scroll {
     from {
         transform: translateX(0%);
     }
+
     to {
         transform: translateX(-50%);
     }

@@ -28,15 +28,16 @@ const SwiperSlider = () => {
           prevEl: `.${styles["swiper__arrow-left"]}`,
         }}
         pagination={{ clickable: true }}
-        spaceBetween={10}
-        slidesPerView={4}
+        spaceBetween={0}
+        slidesPerView={1}
         className="h-50"
         loop={true}
-        autoplay={{
-          delay: 1500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
+        centeredSlides={true}
+        // autoplay={{
+        //   delay: 1500,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // }}
       >
         {data.map((item) => (
           <SwiperSlide

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { mockedData } from "@/api/mockedData";
+import styles from "@/modules/styles/categories/route.module.css";
 import { ProductDetailTypes } from "@/types/products/types";
 import { Button } from "@/ui/button";
 
@@ -17,9 +18,11 @@ const Categories = ({ title }: CategoriesProps) => {
   const MotionButton = motion.create(Button);
 
   return (
-    <div className="flex flex-col items-center mt-16">
-      <h2 className="text-[#9d44b5] mb-8 text-xl font-bold border-b-2 border-black border-dashed pb-2">{title}</h2>
-      <ul className="flex justify-center gap-2.5">
+    <div className={styles.container}>
+      <h2 className={styles.container__title}>
+        {title}
+      </h2>
+      <ul className={styles.container__list}>
         {uniqueCategories.map((category, index) => (
           <li className="" key={index}>
             <MotionButton
