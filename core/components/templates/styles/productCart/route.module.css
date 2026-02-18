@@ -15,13 +15,13 @@
 
 
 .container__aside {
-    @apply  w-62.5 shrink-0;
+    @apply  w-62.5 shrink-0 max-sm:w-auto max-sm:fixed max-sm:bottom-0 max-sm:right-0 max-sm:left-0 max-sm:mx-2 max-sm:mb-2;
 }
 
 .aside__header {
-    @apply flex justify-between border-b pb-4;
+    @apply flex justify-between border-b pb-4 pt-2;
 }
 
 .aside__footer {
-    @apply flex flex-col items-start gap-4;
+    @apply flex flex-col items-start gap-4 pb-2;
 }
