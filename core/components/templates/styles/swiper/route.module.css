@@ -9,11 +9,11 @@
 
 
 
-:global(.swiper-slide) {
+/* :global(.swiper-slide) {
 
     margin-inline: 0 !important;
 
-}
+} */
 
 .container :global(.swiper) {
     @apply pb-2
@@ -38,4 +38,14 @@
 
 .swiper-pagination {
     @apply bottom-[-6px]
+}
+
+
+@media only screen and (max-width:576px) {
+    :global(.swiper-slide) {
+
+        margin-inline: 0 !important;
+
+    }
+
 }

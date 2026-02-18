@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { mockedData } from "@/api/mockedData";
+import { breakpoints } from "@/constants/swiperBreakpoints";
 import styles from "@/templates/styles/swiper/route.module.css";
 import { ProductDetailTypes } from "@/types/products/types";
 
@@ -28,16 +29,16 @@ const SwiperSlider = () => {
           prevEl: `.${styles["swiper__arrow-left"]}`,
         }}
         pagination={{ clickable: true }}
-        spaceBetween={0}
-        slidesPerView={1}
+        spaceBetween={10}
+        slidesPerView={4}
         className="h-50"
+        breakpoints={breakpoints}
         loop={true}
-        centeredSlides={true}
-        // autoplay={{
-        //   delay: 1500,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
       >
         {data.map((item) => (
           <SwiperSlide
