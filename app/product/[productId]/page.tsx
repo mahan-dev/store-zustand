@@ -1,7 +1,6 @@
-import { productFetcher } from "@/core/helper/productPage";
+import { mockedData } from "@/api/mockedData";
 import ProductDetail from "@/templates/ProductDetail";
 
-export const dynamic = "force-dynamic";
 interface ProductProps {
   params: Promise<{ productId: string }>;
 }
@@ -9,10 +8,13 @@ interface ProductProps {
 const ProductPage = async ({ params }: ProductProps) => {
   const { productId } = await params;
 
-  const fetchedProduct = await productFetcher(productId);
-  if (!fetchedProduct) return;
+  if (isNaN(+productId)) return;
+  const data = mockedData[+productId - 1];
+  console.log(data);
 
-  return <ProductDetail data={fetchedProduct} />;
+  if (!data) return;
+
+  return <ProductDetail data={data} />;
 };
 
 export default ProductPage;

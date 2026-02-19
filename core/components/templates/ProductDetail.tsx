@@ -10,11 +10,13 @@ import styles from "@/templates/styles/productDetail/route.module.css";
 import { Button } from "@/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/ui/card";
 
-interface ProductPros {
-  data: ProductDetailTypes;
+interface ProductProps {
+  data: Omit<ProductDetailTypes, "quantity"> & {
+    quantity?: number;
+  };
 }
 
-const ProductDetailPage = ({ data }: ProductPros) => {
+const ProductDetailPage = ({ data }: ProductProps) => {
   const { title, description, category, image } = data;
 
   const router = useRouter();

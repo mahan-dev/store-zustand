@@ -10,7 +10,6 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Header />
-
       <main className="min-h-screen">{children}</main>
       <Toaster />
       <Footer />
