@@ -10,7 +10,7 @@ const ProductPage = async ({ params }: ProductProps) => {
 
   if (isNaN(+productId)) return;
   const data = mockedData[+productId - 1];
-  console.log(data);
+
 
   if (!data) return;
 

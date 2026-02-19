@@ -20,9 +20,10 @@ const ProductDetailPage = ({ data }: ProductProps) => {
   const { title, description, category, image } = data;
 
   const router = useRouter();
+
   return (
     <div className={styles.card__wrapper}>
-      <div className={styles.card__arrowBack} onClick={() => router.push("/")}>
+      <div className={styles.card__arrowBack} onClick={() => router.back()}>
         <Button className="shadow-sm" variant={"outline"} size={"sm"}>
           <FaArrowLeftLong className="text-2xl" />
         </Button>
