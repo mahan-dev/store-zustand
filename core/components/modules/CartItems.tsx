@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaMinus, FaPlus, FaTrashCan } from "react-icons/fa6";
 
-import { useShopStore } from "@/core/store/store";
+import { titleFormatter } from "@/helper/titleFormatter";
 import styles from "@/modules/styles/cartItems/route.module.css";
+import { useShopStore } from "@/store/store";
 import { Button } from "@/ui/button";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 
@@ -13,7 +15,7 @@ const CartItems = () => {
 
   return (
     <Card className="gap-0">
-      <CardHeader className="border-b">Product lists</CardHeader>
+      <CardHeader className="border-b py-2">Product lists</CardHeader>
       <CardContent>
         <ul className={styles.list}>
           {store.map((item) => {
@@ -22,9 +24,11 @@ const CartItems = () => {
             return (
               <li className={styles.list__items} key={id}>
                 <div className={styles.image__wrapper}>
-                  <Image src={image} fill sizes="90vw" alt="product-image" />
+                  <Link href={`product/${id}`}>
+                    <Image src={image} fill sizes="90vw" alt="product-image" />
+                  </Link>
                 </div>
-                {quantity} x {title}
+                {quantity} x {titleFormatter(title)}
                 <div className={styles.items__action}>
                   {quantity === 1 && (
                     <Button onClick={() => remove(item)}>

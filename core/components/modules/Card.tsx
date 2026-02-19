@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 import {
@@ -50,7 +51,9 @@ const CardPage = ({ data }: CardProps) => {
       </Button>
       <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
-          <Image src={image} alt={"cardImage"} fill sizes="90vw" priority />
+          <Link href={`product/${id}`}>
+            <Image src={image} alt={"cardImage"} fill sizes="90vw" priority />
+          </Link>
         </div>
 
         <CardTitle className="mt-3 text-[0.9rem]">

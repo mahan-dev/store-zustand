@@ -15,7 +15,7 @@
 
 
 .container__aside {
-    @apply  w-62.5 shrink-0 max-sm:w-auto max-sm:fixed max-sm:bottom-0 max-sm:right-0 max-sm:left-0 max-sm:mx-2 max-sm:mb-2;
+    @apply  w-62.5 shrink-0  max-md:w-[300px] max-md:mx-auto max-md:fixed max-md:bottom-0 max-md:right-0 max-md:left-0  max-md:mb-2 max-[576px]:w-full max-[576px]:mx-2;
 }
 
 .aside__header {
@@ -24,4 +24,10 @@
 
 .aside__footer {
     @apply flex flex-col items-start gap-4 pb-2;
+}
+
+@media only screen and (max-width:576px) {
+    .container__aside {
+        @apply w-[96%] left-0 right-0 ;
+    }
 }

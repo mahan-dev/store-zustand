@@ -3,7 +3,7 @@
 
 
 .list__items {
-    @apply flex items-center py-4 gap-4 border-b last-of-type:border-b-0;
+    @apply flex items-center py-4 gap-4 border-b last-of-type:border-b-0 break-all;
 }
 
 .image__wrapper {

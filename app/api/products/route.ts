@@ -4,7 +4,7 @@ export const GET = async () => {
   try {
     await connectDb();
   } catch (error) {
-    console.log(error);
+    (error);
   }
 
 
