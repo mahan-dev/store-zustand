@@ -43,6 +43,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "core/api/mockedData.ts"
-  ],
+, "next.config.mjs"  ],
   "exclude": ["node_modules"]
 }

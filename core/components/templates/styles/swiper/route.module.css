@@ -42,7 +42,7 @@
 
 
 @media only screen and (max-width:576px) {
-    :global(.swiper-slide) {
+    .container :global(.swiper-slide) {
 
         margin-inline: 0 !important;
 

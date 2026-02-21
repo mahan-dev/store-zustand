@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 import { customers } from "@/constants/customers";
@@ -13,7 +11,7 @@ const OurCustomer = () => {
         <div className={styles["animate-scroll"]}>
           {customers.map((logo, index) => (
             <span key={index}>
-              <Image src={logo} alt="" width={100} height={70} />
+              <Image src={logo} alt="brand-image" width={100} height={70} />
             </span>
           ))}
         </div>

@@ -51,7 +51,7 @@ const CardPage = ({ data }: CardProps) => {
       </Button>
       <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
-          <Link href={`product/${id}`}>
+          <Link href={`product/${id}`} className="relative block w-full h-full">
             <Image src={image} alt={"cardImage"} fill sizes="90vw" priority />
           </Link>
         </div>

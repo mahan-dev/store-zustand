@@ -12,6 +12,7 @@ const googleSans = Google_Sans_Code({
 export const metadata: Metadata = {
   title: "Zustand Store",
   description: "Builded by ❤️",
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({
