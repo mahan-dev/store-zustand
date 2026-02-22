@@ -1,14 +1,11 @@
-import connectDb from "@/helper/mongoDb";
+import connectDb from "@/core/utils/mongoDb";
 
 export const GET = async () => {
   try {
     await connectDb();
   } catch (error) {
-    (error);
+    error;
   }
 
-
-//   const res = await fetch('')
-
-
+  //   const res = await fetch('')
 };

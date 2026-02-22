@@ -8,9 +8,9 @@ interface ProductProps {
 const ProductPage = async ({ params }: ProductProps) => {
   const { productId } = await params;
 
-  if (isNaN(+productId)) return;
+  if (isNaN(+productId))
+    return <h2 className="text-center mt-12">nothing has found</h2>;
   const data = mockedData[+productId - 1];
-
 
   if (!data) return;
 

@@ -1,3 +1,4 @@
+
 import Home from "@/templates/Home";
 
 const Page = async () => {

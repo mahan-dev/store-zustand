@@ -9,7 +9,7 @@ const connectDb = async (): Promise<void> => {
   try {
     await connect(BASE_URL);
     console.log("connection succeed 👌");
-  } catch (error: unknown) {
+  } catch (error) {
     console.log(error);
     console.log("error while connect to db");
   }

@@ -29,6 +29,7 @@
       "@/ui/*": ["./core/components/ui/*"],
       "@/helper/*": ["./core/helper/*"],
       "@/lib/*": ["./core/lib/*"],
+      "@/utils/*": ["./core/utils/*"],
       "@/types/*": ["./core/types/*"],
       "@/hooks/*": ["./core/hooks/*"],
       "@/styles/*": ["./core/styles/*"],
@@ -42,7 +43,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "core/api/mockedData.ts"
-, "next.config.mjs"  ],
+    "core/api/mockedData.ts",
+    "next.config.mjs"
+  ],
   "exclude": ["node_modules"]
 }
