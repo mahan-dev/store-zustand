@@ -16,6 +16,7 @@ const pwaConfig = withPWA({
   register: true,
   skipWaiting: true,
   disable: false, 
+  runtimeCaching: [],
 });
 
 export default pwaConfig(nextConfig);
