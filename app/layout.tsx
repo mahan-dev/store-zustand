@@ -7,6 +7,7 @@ import Layout from "@/layout/Layout";
 const googleSans = Google_Sans_Code({
   variable: "--font-google-sans-code",
   subsets: ["latin"],
+  fallback: ["monospace"],
 });
 
 export const metadata: Metadata = {
