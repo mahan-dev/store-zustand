@@ -21,13 +21,15 @@ export const POST = async (req: Request) => {
         { status: 422 },
       );
     }
-
+    console.log("one");
     const hashPassword = await hashedPassword(password);
-
+    console.log("two");
+    console.log("three");
     const newUser = await UserModel.create({
       email: email,
       password: hashPassword,
     });
+    console.log("three1");
 
     return NextResponse.json(
       { status: "Success", message: "succeed", data: newUser },

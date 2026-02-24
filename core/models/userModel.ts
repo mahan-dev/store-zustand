@@ -3,7 +3,7 @@ import { model, Model, models, Schema } from "mongoose";
 interface ModelSchemaTypes {
   email: string;
   password: string;
-  rePassword: string;
+  rePassword?: string;
 }
 
 const UserModelSchema = new Schema<ModelSchemaTypes>({
@@ -17,8 +17,8 @@ const UserModelSchema = new Schema<ModelSchemaTypes>({
     type: String,
   },
   rePassword: {
-    required: true,
     type: String,
+    required: false,
   },
 });
 

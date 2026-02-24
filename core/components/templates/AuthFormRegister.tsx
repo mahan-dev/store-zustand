@@ -15,13 +15,19 @@ interface AuthFormRegisterProps {
   rePassword: boolean;
 }
 
-const AuthFormRegister = ({ title, rePassword: rePass }: AuthFormRegisterProps) => {
+const AuthFormRegister = ({
+  title,
+  rePassword: rePass,
+}: AuthFormRegisterProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [rePassword, setRePassword] = useState<string>("");
 
   const signupHandler = async () => {
-    await axios.post("/api/signup", {});
+    await axios.post("/api/signup", {
+      email: "email@gamil.com",
+      password: "123456",
+    });
   };
 
   return (
