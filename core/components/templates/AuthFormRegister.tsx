@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Label } from "@/ui/label";
 import { Input } from "@/ui/input";
@@ -9,6 +9,8 @@ import Link from "next/link";
 import axios from "axios";
 
 import styles from "@/templates/styles/signin-signup/route.module.css";
+import { toast } from "sonner";
+import { formHandler } from "@/core/helper/AuthFormRegister/signupHandler";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -19,15 +21,24 @@ const AuthFormRegister = ({
   title,
   rePassword: rePass,
 }: AuthFormRegisterProps) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [rePassword, setRePassword] = useState<string>("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+    rePassword: "",
+  });
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
   const signupHandler = async () => {
-    await axios.post("/api/signup", {
-      email: "email@gamil.com",
-      password: "123456",
-    });
+    const { email, password, rePassword } = form;
+
+    await formHandler({ email, password, rePassword });
   };
 
   return (
@@ -37,13 +48,13 @@ const AuthFormRegister = ({
       </CardHeader>
 
       <Label htmlFor="email">email</Label>
-      <Input id="email" />
+      <Input name="email" id="email" onChange={changeHandler} />
       <Label htmlFor="password">password</Label>
-      <Input id="password" />
+      <Input name="password" id="password" onChange={changeHandler} />
       {rePass && (
         <>
           <Label htmlFor="rePassword">re password</Label>
-          <Input id="rePassword" />
+          <Input name="rePassword" id="rePassword" onChange={changeHandler} />
         </>
       )}
 
