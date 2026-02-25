@@ -4,6 +4,7 @@ interface ModelSchemaTypes {
   email: string;
   password: string;
   rePassword?: string;
+  role: string;
 }
 
 const UserModelSchema = new Schema<ModelSchemaTypes>({
@@ -19,6 +20,10 @@ const UserModelSchema = new Schema<ModelSchemaTypes>({
   rePassword: {
     type: String,
     required: false,
+  },
+
+  role: {
+    type: String,
   },
 });
 

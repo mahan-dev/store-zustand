@@ -1,5 +1,5 @@
 "use client";
-import  { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Label } from "@/ui/label";
 import { Input } from "@/ui/input";
@@ -11,6 +11,7 @@ import styles from "@/templates/styles/signin-signup/route.module.css";
 import { formHandler } from "@/helper/AuthFormRegister/signupHandler";
 
 import { signinFormHandler } from "@/helper/AuthFormRegister/signinHandler";
+import { useRouter } from "next/navigation";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -41,9 +42,11 @@ const AuthFormRegister = ({
     await formHandler({ email, password, rePassword });
   };
 
+  const router = useRouter();
+
   const signinHandler = async () => {
     const { email, password } = form;
-    await signinFormHandler({ email, password });
+    await signinFormHandler({ email, password, router });
   };
 
   return (
