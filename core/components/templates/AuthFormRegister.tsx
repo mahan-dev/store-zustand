@@ -6,11 +6,11 @@ import { Input } from "@/ui/input";
 import { Button } from "@/ui/button";
 import Link from "next/link";
 
-import axios from "axios";
-
 import styles from "@/templates/styles/signin-signup/route.module.css";
-import { toast } from "sonner";
+
 import { formHandler } from "@/core/helper/AuthFormRegister/signupHandler";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -41,6 +41,22 @@ const AuthFormRegister = ({
     await formHandler({ email, password, rePassword });
   };
 
+  const signinHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const { email, password } = form;
+
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (res?.error) {
+      toast.error(res.error, { position: "top-center" });
+      return;
+    }
+  };
+
   return (
     <Card className={styles.card}>
       <CardHeader className="px-0">
@@ -65,9 +81,9 @@ const AuthFormRegister = ({
               have an account ?<Button className="w-full">Signin</Button>
             </Link>
           ) : (
-            <Link href={"/signin"} className="w-full ">
-              <Button className="w-full">Signin</Button>
-            </Link>
+            <Button className="w-full" onClick={signinHandler}>
+              Signin
+            </Button>
           )}
 
           {title === "Sign In" ? (
