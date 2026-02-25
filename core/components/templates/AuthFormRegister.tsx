@@ -1,5 +1,5 @@
 "use client";
-import React, { ChangeEvent, useState } from "react";
+import  { ChangeEvent, useState } from "react";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Label } from "@/ui/label";
 import { Input } from "@/ui/input";
@@ -8,9 +8,9 @@ import Link from "next/link";
 
 import styles from "@/templates/styles/signin-signup/route.module.css";
 
-import { formHandler } from "@/core/helper/AuthFormRegister/signupHandler";
-import { signIn } from "next-auth/react";
-import { toast } from "sonner";
+import { formHandler } from "@/helper/AuthFormRegister/signupHandler";
+
+import { signinFormHandler } from "@/helper/AuthFormRegister/signinHandler";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -41,20 +41,9 @@ const AuthFormRegister = ({
     await formHandler({ email, password, rePassword });
   };
 
-  const signinHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const signinHandler = async () => {
     const { email, password } = form;
-
-    const res = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-
-    if (res?.error) {
-      toast.error(res.error, { position: "top-center" });
-      return;
-    }
+    await signinFormHandler({ email, password });
   };
 
   return (
