@@ -1,20 +1,37 @@
 "use client";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 import { toast } from "sonner";
+
+import axios from "axios";
+
+import { ProductDetailTypes } from "@/types/products/types";
 
 interface PayHandlerProps {
   resetStore: () => void;
-  router: AppRouterInstance;
+  store: ProductDetailTypes[];
 }
 
-export const payHandler = async ({ resetStore, router }: PayHandlerProps) => {
+let todoPosition = {
+  position: "top-center" as const,
+};
+
+export const payHandler = async ({ resetStore, store }: PayHandlerProps) => {
   if (!navigator.onLine) {
-    toast.error("your'e offline ", { position: "top-center" });
+    toast.error("your'e offline ", todoPosition);
     return;
   }
 
-  toast.success("Payment successful", { position: "top-center" });
-  resetStore();
-  await new Promise((resolver) => setTimeout(resolver, 2000));
-  router.push("/");
+  try {
+    const res = await axios.patch("/api/transactions", {
+      data: store,
+    });
+
+    const status = res.status;
+    if (status === 200) {
+      toast.success("Payment successful", todoPosition);
+      resetStore();
+    }
+  } catch (error) {
+    toast.error("something went wrong");
+  }
 };

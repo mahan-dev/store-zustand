@@ -1,6 +1,6 @@
 import { model, Model, models, Schema } from "mongoose";
 
-interface DataSchemaTypes extends Document {
+export interface DataSchemaTypes extends Document {
   id: number;
   title: string;
   price: number;

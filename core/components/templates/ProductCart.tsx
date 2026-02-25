@@ -37,7 +37,6 @@ export const CartNotFound = () => {
 
 const ProductCart = () => {
   const { store, total, items, resetStore } = useShopStore();
-  const router = useRouter();
 
   if (!store.length) return <CartNotFound />;
 
@@ -59,7 +58,7 @@ const ProductCart = () => {
             <Button
               className="w-full cursor-pointer"
               variant={"default"}
-              onClick={() => payHandler({ resetStore, router })}
+              onClick={() => payHandler({ resetStore, store })}
             >
               Pay
             </Button>
