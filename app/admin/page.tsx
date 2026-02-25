@@ -1,17 +1,21 @@
-import UserModel from "@/core/models/userModel";
+import AdminPage from "@/templates/AdminPage";
+import UserModel from "@/models/userModel";
 import { authOptions } from "@/helper/authOptions";
 import connectDb from "@/utils/mongoDb";
 import { getServerSession } from "next-auth";
-import React from "react";
+import { redirect } from "next/navigation";
 
-const page = async () => {
+const Admin = async () => {
   await connectDb();
 
   const session = await getServerSession(authOptions);
 
   const user = await UserModel.findOne({ email: session.user.email });
+  const role = user.role as "USER" | "ADMIN";
 
-  if (user.role === "admin") return <div>hello admin</div>;
+  if (role === "USER") redirect("/signup");
+
+  return <AdminPage role={role} />;
 };
 
-export default page;
+export default Admin;

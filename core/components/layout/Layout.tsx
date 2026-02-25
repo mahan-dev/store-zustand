@@ -1,18 +1,21 @@
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 
-import { Toaster } from "@/components/ui/sonner";
 import Footer from "@/modules/Footer";
 import Header from "@/modules/Header";
+import Provider from "@/core/providers/Provider";
 
 type LayoutProps = PropsWithChildren;
 
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Header />
-      <main className="min-h-screen">{children}</main>
-      <Toaster />
-      <Footer />
+      <Provider>
+        <Header />
+
+        <main className="min-h-screen">{children}</main>
+
+        <Footer />
+      </Provider>
     </>
   );
 };

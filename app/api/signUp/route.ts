@@ -28,6 +28,7 @@ export const POST = async (req: Request) => {
     const newUser = await UserModel.create({
       email: email,
       password: hashPassword,
+      role: "USER",
     });
     console.log("three1");
 
