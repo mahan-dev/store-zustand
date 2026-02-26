@@ -9,7 +9,7 @@ const Admin = async () => {
   await connectDb();
 
   const session = await getServerSession(authOptions);
-
+  if(!session) redirect("/signup")
   const user = await UserModel.findOne({ email: session.user.email });
   const role = user.role as "USER" | "ADMIN";
 

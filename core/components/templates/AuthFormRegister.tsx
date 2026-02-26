@@ -39,7 +39,7 @@ const AuthFormRegister = ({
   const signupHandler = async () => {
     const { email, password, rePassword } = form;
 
-    await formHandler({ email, password, rePassword });
+    await formHandler({ email, password, rePassword, setForm });
   };
 
   const router = useRouter();
@@ -58,11 +58,21 @@ const AuthFormRegister = ({
       <Label htmlFor="email">email</Label>
       <Input name="email" id="email" onChange={changeHandler} />
       <Label htmlFor="password">password</Label>
-      <Input name="password" id="password" onChange={changeHandler} />
+      <Input
+        type="password"
+        name="password"
+        id="password"
+        onChange={changeHandler}
+      />
       {rePass && (
         <>
           <Label htmlFor="rePassword">re password</Label>
-          <Input name="rePassword" id="rePassword" onChange={changeHandler} />
+          <Input
+            type="password"
+            name="rePassword"
+            id="rePassword"
+            onChange={changeHandler}
+          />
         </>
       )}
 

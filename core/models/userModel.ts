@@ -1,12 +1,13 @@
-import { model, Model, models, Schema } from "mongoose";
+import { model, Model, models, ObjectId, Schema } from "mongoose";
 import { DataSchemaTypes } from "@/models/dataModel";
 
-interface ModelSchemaTypes {
+export interface ModelSchemaTypes {
   email: string;
   password: string;
   rePassword?: string;
   role: string;
-  transactions: [DataSchemaTypes];
+  transactions: [DataSchemaTypes] | [ModelSchemaTypes];
+  _id: ObjectId;
 }
 
 const UserModelSchema = new Schema<ModelSchemaTypes>({

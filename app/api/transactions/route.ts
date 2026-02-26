@@ -1,5 +1,6 @@
 import { authOptions } from "@/core/helper/authOptions";
 import UserModel from "@/core/models/userModel";
+import { ProductDetailTypes } from "@/core/types/products/types";
 import connectDb from "@/core/utils/mongoDb";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -7,7 +8,8 @@ import { NextResponse } from "next/server";
 export const PATCH = async (req: Request) => {
   try {
     await connectDb();
-    const { data } = await req.json();
+    const data: ProductDetailTypes = await req.json();
+
 
     const session = await getServerSession(authOptions);
     const user = await UserModel.findOne({ email: session.user.email });
@@ -23,7 +25,13 @@ export const PATCH = async (req: Request) => {
 
     const posts = await UserModel.updateOne(
       { email: session.user.email },
-      { $push: { transactions: data } },
+      {
+        $push: {
+          transactions: {
+            $each: data,
+          },
+        },
+      },
     );
 
     return NextResponse.json(

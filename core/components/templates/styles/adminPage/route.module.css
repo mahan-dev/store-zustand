@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .aside {
-    @apply sticky top-18 w-65 m-5;
+    @apply sticky top-18 w-60 m-5 shrink-0;
 }
 
 .aside__header-content {
