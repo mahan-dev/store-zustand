@@ -34,5 +34,5 @@ export const payHandler = async ({ resetStore, store }: PayHandlerProps) => {
   } catch (error) {
     toast.error("something went wrong");
   }
-  // test
+
 };
