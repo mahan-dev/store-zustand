@@ -35,7 +35,8 @@
       "@/styles/*": ["./core/styles/*"],
       "@/store/*": ["./core/store/*"],
       "@/api/*": ["./core/api/*"],
-      "@/constants/*": ["./core/constants/*"]
+      "@/constants/*": ["./core/constants/*"],
+      "@/provider/*": ["./core/provider/*"]
     }
   },
   "include": [

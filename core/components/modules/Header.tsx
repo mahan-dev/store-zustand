@@ -6,16 +6,26 @@ import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
 import { useShopStore } from "@/core/store/store";
 import styles from "@/modules/styles/header/route.module.css";
 import { Button } from "@/ui/button";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
   const { total } = useShopStore();
 
+  const session = useSession();
+
+  const status = session.status === "authenticated";
+
   return (
     <header className={styles.header}>
       <div className="flex gap-2">
-        <Button variant={"secondary"} asChild>
-          <Link href={"/signin"}>Sign in</Link>
-        </Button>
+        {status ? (
+          <Button className="border hover:opacity-70">Account</Button>
+        ) : (
+          <Button variant={"secondary"} asChild>
+            <Link href={"/signin"}>Sign in</Link>
+          </Button>
+        )}
+
         <Button variant={"outline"} asChild>
           <Link href={"/products"}>
             <FaShoppingBag className="text-[#9d44b5]" />

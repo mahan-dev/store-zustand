@@ -21,18 +21,21 @@ export const payHandler = async ({ resetStore, store }: PayHandlerProps) => {
     return;
   }
 
-  try {
-    const res = await axios.patch("/api/transactions", {
-      data: store,
-    });
+  const res = await axios.patch("/api/transactions", {
+    data: store,
+  });
 
-    const status = res.status;
-    if (status === 200) {
-      toast.success("Payment successful", todoPosition);
-      resetStore();
-    }
-  } catch (error) {
-    toast.error("something went wrong");
+  const status = res.status;
+  if (status === 200) {
+    toast.success("Payment successful", todoPosition);
+    resetStore()
   }
 
+  else if (status === 403) {
+    console.log("hello");
+    toast.error(res.data.error);
+  
+  } else {
+    toast.error("something wen't wrong");
+  }
 };

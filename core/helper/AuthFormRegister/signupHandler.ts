@@ -10,7 +10,7 @@ interface SignupProps {
   rePassword: string;
   setForm: Dispatch<SetStateAction<object>>;
 }
-export const formHandler = async ({
+export const signUpHandler = async ({
   email,
   password,
   rePassword,
@@ -44,7 +44,7 @@ export const formHandler = async ({
       });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     toast.error(error, { position: "top-center" });
   }
 };

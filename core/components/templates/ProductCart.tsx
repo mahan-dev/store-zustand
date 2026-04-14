@@ -27,7 +27,7 @@ export const CartNotFound = () => {
       <Button
         className="mt-4 cursor-pointer"
         variant={"outline"}
-        onClick={() => router.push("/")}
+        onClick={() => router.push("/products")}
       >
         Back shopping
       </Button>

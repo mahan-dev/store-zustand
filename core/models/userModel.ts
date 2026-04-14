@@ -1,13 +1,14 @@
-import { model, Model, models, ObjectId, Schema } from "mongoose";
-import { DataSchemaTypes } from "@/models/dataModel";
+import { model, Model, models, ObjectId, Schema, Types } from "mongoose";
+import { ProductDetailTypes } from "@/types/products/types";
 
 export interface ModelSchemaTypes {
   email: string;
   password: string;
   rePassword?: string;
   role: string;
-  transactions: [DataSchemaTypes] | [ModelSchemaTypes];
+  transactions: [ProductDetailTypes];
   _id: ObjectId;
+  userId: object;
 }
 
 const UserModelSchema = new Schema<ModelSchemaTypes>({
@@ -30,6 +31,10 @@ const UserModelSchema = new Schema<ModelSchemaTypes>({
 
   role: {
     type: String,
+  },
+  userId: {
+    type: Types.ObjectId,
+    ref: "transactions",
   },
 });
 

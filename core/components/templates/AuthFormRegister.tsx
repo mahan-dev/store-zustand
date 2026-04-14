@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Label } from "@/ui/label";
 import { Input } from "@/ui/input";
@@ -8,10 +8,8 @@ import Link from "next/link";
 
 import styles from "@/templates/styles/signin-signup/route.module.css";
 
-import { formHandler } from "@/helper/AuthFormRegister/signupHandler";
-
-import { signinFormHandler } from "@/helper/AuthFormRegister/signinHandler";
 import { useRouter } from "next/navigation";
+import { formSubmitHandler } from "@/helper/AuthFormRegister/formSubmitHandler";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -36,73 +34,70 @@ const AuthFormRegister = ({
     });
   };
 
-  const signupHandler = async () => {
-    const { email, password, rePassword } = form;
-
-    await formHandler({ email, password, rePassword, setForm });
-  };
-
   const router = useRouter();
 
-  const signinHandler = async () => {
-    const { email, password } = form;
-    await signinFormHandler({ email, password, router });
-  };
+  
 
   return (
-    <Card className={styles.card}>
-      <CardHeader className="px-0">
-        <CardTitle className={styles.card__title}>{title}</CardTitle>
-      </CardHeader>
+    <form
+      onSubmit={async (e: FormEvent) =>
+        await formSubmitHandler({ e, form, router, title, setForm })
+      }
+    >
+      <Card className={styles.card}>
+        <CardHeader className="px-0">
+          <CardTitle className={styles.card__title}>{title}</CardTitle>
+        </CardHeader>
 
-      <Label htmlFor="email">email</Label>
-      <Input name="email" id="email" onChange={changeHandler} />
-      <Label htmlFor="password">password</Label>
-      <Input
-        type="password"
-        name="password"
-        id="password"
-        onChange={changeHandler}
-      />
-      {rePass && (
-        <>
-          <Label htmlFor="rePassword">re password</Label>
-          <Input
-            type="password"
-            name="rePassword"
-            id="rePassword"
-            onChange={changeHandler}
-          />
-        </>
-      )}
+        <Label htmlFor="email">email</Label>
+        <Input name="email" id="email" onChange={changeHandler} />
+        <Label htmlFor="password">password</Label>
+        <Input
+          type="password"
+          name="password"
+          id="password"
+          onChange={changeHandler}
+        />
+        {rePass && (
+          <>
+            <Label htmlFor="rePassword">re password</Label>
+            <Input
+              type="password"
+              name="rePassword"
+              id="rePassword"
+              onChange={changeHandler}
+            />
+          </>
+        )}
 
-      <CardFooter>
-        <div className={styles["card__footer-container"]}>
-          {title === "Sign Up" ? (
-            <Link href={"/signin"} className="w-full ">
-              have an account ?<Button className="w-full">Signin</Button>
-            </Link>
-          ) : (
-            <Button className="w-full" onClick={signinHandler}>
-              Signin
-            </Button>
-          )}
-
-          {title === "Sign In" ? (
-            <Link href={"/signup"} className="w-full">
-              don&apos;t have an account
-              <Button className="w-full">Signup</Button>
-            </Link>
-          ) : (
-            <Link href={"/signup"} className="w-full">
-              <Button className="w-full" onClick={signupHandler}>
-                Signup
-              </Button>
-            </Link>
-          )}
-        </div>
-      </CardFooter>
-    </Card>
+        <CardFooter>
+          <div className={styles["card__footer-container"]}>
+            {title === "Sign Up" && (
+              <div>
+                <Button className="w-full cursor-pointer">Sign Up</Button>
+                <Link
+                  href={"/signin"}
+                  className="w-full mt-2 block text-[0.9rem] "
+                >
+                  have an account ? Signin
+                </Link>
+              </div>
+            )}
+            {title === "Sign In" && (
+              <div>
+                <Button className="w-full cursor-pointer">Sign In</Button>
+                <Link
+                  href={"/signup"}
+                  className="w-full block mt-2 text-[0.9rem]"
+                >
+                  don&apos;t have an account Signup
+                </Link>
+              </div>
+            )}
+          </div>
+        </CardFooter>
+      </Card>
+    </form>
   );
 };
 

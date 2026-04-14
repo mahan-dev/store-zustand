@@ -2,7 +2,7 @@ import { PropsWithChildren } from "react";
 
 import Footer from "@/modules/Footer";
 import Header from "@/modules/Header";
-import Provider from "@/core/providers/Provider";
+import Provider from "@/provider/Provider";
 
 type LayoutProps = PropsWithChildren;
 

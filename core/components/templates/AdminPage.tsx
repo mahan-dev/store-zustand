@@ -42,7 +42,7 @@ const AdminPage = ({ role, children }: AdminProps) => {
                 </li>
               )}
               <li>
-                <Link href={"/admin/users"}>
+                <Link href={"/dashboard/transactions"}>
                   Users <CgUserList />
                 </Link>
               </li>

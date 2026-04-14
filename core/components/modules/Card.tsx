@@ -26,6 +26,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/card";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 interface CardProps {
   data: ProductDetailTypes;
@@ -33,11 +35,18 @@ interface CardProps {
 const CardPage = ({ data }: CardProps) => {
   const { title, category, image, id, price } = data;
 
+  const { status } = useSession();
   const { addItem, increment, decrement, remove, store } = useShopStore();
 
   const quantity = quantityHandler(store, id);
 
   const router = useRouter();
+
+  const addHandler = () => {
+    if (status === "unauthenticated")
+      toast.error("login first", { position: "top-center" });
+    else if (status === "authenticated") addItem(data);
+  };
 
   return (
     <Card className="w-50 relative h-fit  py-3">
@@ -70,10 +79,7 @@ const CardPage = ({ data }: CardProps) => {
       </CardContent>
 
       {!isInCart(store, id) && (
-        <Button
-          className="mx-3 cursor-pointer rounded-lg"
-          onClick={() => addItem(data)}
-        >
+        <Button className="mx-3 cursor-pointer rounded-lg" onClick={addHandler}>
           Add to Cart
         </Button>
       )}

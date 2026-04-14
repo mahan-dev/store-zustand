@@ -14,7 +14,11 @@ let positionToast = {
   position: "top-center" as const,
 };
 
-export const signinFormHandler = async ({ email, password, router }: SigninProps) => {
+export const signinFormHandler = async ({
+  email,
+  password,
+  router,
+}: SigninProps) => {
   const res = await signIn("credentials", {
     email,
     password,
@@ -22,13 +26,20 @@ export const signinFormHandler = async ({ email, password, router }: SigninProps
   });
 
   if (res?.error) {
-    toast.error(res.error, positionToast);
+    const errorConnection = res.error.includes(
+      "buffering timed out after 10000ms",
+    );
+    toast.error(
+      errorConnection ? "something wen't wrong" : res.error,
+      positionToast,
+    );
+
     return;
   }
 
   if (res?.status === 200) {
     toast.success("successfully loggedIn", positionToast);
     await new Promise((resolver) => setTimeout(resolver, 1500));
-    router.replace("/admin");
+    router.replace("/dashboard");
   }
 };

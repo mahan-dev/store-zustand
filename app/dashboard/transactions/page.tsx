@@ -10,6 +10,7 @@ const page = async () => {
   const users: ModelSchemaTypes[] = await UserModel.find();
   const { user } = await getServerSession(authOptions);
 
+  console.log(users, "user line");
   return <Transactions users={users} email={user.email} />;
 };
 

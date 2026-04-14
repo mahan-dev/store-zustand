@@ -11,9 +11,10 @@ export const PATCH = async (req: Request) => {
     const data: ProductDetailTypes = await req.json();
 
 
+
     const session = await getServerSession(authOptions);
     const user = await UserModel.findOne({ email: session.user.email });
-    if (!user || user.role === "USER") {
+    if (!user ) {
       return NextResponse.json(
         {
           status: "Failed",
@@ -28,7 +29,7 @@ export const PATCH = async (req: Request) => {
       {
         $push: {
           transactions: {
-            $each: data,
+            $each: data.data as ProductDetailTypes[],
           },
         },
       },
