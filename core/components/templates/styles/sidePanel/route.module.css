@@ -11,11 +11,12 @@
 .aside__list {
     @apply flex flex-col gap-2;
 
+
     li a {
-        @apply flex justify-between items-center p-1 cursor-pointer rounded-md transition-all;
+        @apply flex justify-between items-center pl-2 py-1 cursor-pointer rounded-md transition-all;
 
         svg {
-            @apply text-[1.1rem] transition-all;
+            @apply text-[1.1rem] transition-all duration-400 ;
         }
 
         &:hover {

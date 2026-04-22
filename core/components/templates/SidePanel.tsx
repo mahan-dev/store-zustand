@@ -6,7 +6,7 @@ import { MdAdminPanelSettings } from "react-icons/md";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 import { RiDashboard3Fill } from "react-icons/ri";
 
-import styles from "@/templates/styles/adminPage/route.module.css";
+import styles from "@/templates/styles/sidePanel/route.module.css";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -14,7 +14,9 @@ interface AdminProps {
   role?: "ADMIN" | "USER";
   children?: ReactNode;
 }
-const AdminPage = ({ role, children }: AdminProps) => {
+const SidePanel = ({ role, children }: AdminProps) => {
+
+
   return (
     <section className="flex justify-between">
       <aside className={styles.aside}>
@@ -26,7 +28,7 @@ const AdminPage = ({ role, children }: AdminProps) => {
             </div>
           </CardHeader>
 
-          <CardContent>
+          <CardContent className="px-4">
             <ul className={styles.aside__list}>
               {role === "ADMIN" ? (
                 <li>
@@ -60,4 +62,4 @@ const AdminPage = ({ role, children }: AdminProps) => {
   );
 };
 
-export default AdminPage;
+export default SidePanel;

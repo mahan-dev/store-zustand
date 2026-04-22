@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
 
 import { useShopStore } from "@/core/store/store";
 import styles from "@/modules/styles/header/route.module.css";
 import { Button } from "@/ui/button";
-import { useSession } from "next-auth/react";
+
+import { FaRegUser } from "react-icons/fa6";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const { total } = useShopStore();
@@ -15,11 +17,23 @@ const Header = () => {
 
   const status = session.status === "authenticated";
 
+
   return (
     <header className={styles.header}>
-      <div className="flex gap-2">
+      <div className={styles.header__left}>
         {status ? (
-          <Button className="border hover:opacity-70">Account</Button>
+          <div className={styles.left__container}>
+            <Button
+              className={styles["header__account-icon"]}
+            >
+              <FaRegUser />
+            </Button>
+         
+              <ul className={styles.left__dropdown}>
+                <li onClick={() => signOut()}>Exit</li>
+              </ul>
+          
+          </div>
         ) : (
           <Button variant={"secondary"} asChild>
             <Link href={"/signin"}>Sign in</Link>

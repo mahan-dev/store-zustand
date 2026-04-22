@@ -11,7 +11,7 @@ const isInCart: IsInCart = (state, id) => {
 const totalItems: TotalItems = (state) => {
   return state.reduce((acc, cur) => acc + cur.quantity, 0);
 };
-const itemsCounter: ItemsCounter = (state) => {
+const itemsCounter: ItemsCounter = (state: ProductDetailTypes[]) => {
   return +state
     .reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
     .toFixed(2);

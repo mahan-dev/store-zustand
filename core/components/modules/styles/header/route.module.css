@@ -8,3 +8,36 @@
   }
 
 }
+.header__left {
+  @apply flex gap-2;
+
+  
+}
+
+.left__container {
+
+  @apply relative
+}
+.left__container::before {
+
+  content:"";
+  position: absolute;
+  top:100%;
+  left: 0;
+  width: 100%;
+  height: 0.30rem;
+  background: transparent;
+}
+
+.left__dropdown {
+  @apply hidden text-white bg-[#9d44b5] absolute  pl-1 py-1 pr-12 top-[115%] border rounded-md;
+}
+
+.left__container:hover .left__dropdown {
+  @apply block;
+}
+
+.header__account-icon {
+  @apply relative border hover:opacity-70;
+
+}

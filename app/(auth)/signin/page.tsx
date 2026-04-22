@@ -11,6 +11,7 @@ const SignInPage = async () => {
   if (session) {
     user = await UserModel.findOne({ email: session.user.email });
   }
+
   if (session && user?.role === "ADMIN") redirect("/adminPanel");
   else if (session && user?.role === "USER") redirect("/userPanel");
 

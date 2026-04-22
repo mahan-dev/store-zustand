@@ -10,7 +10,8 @@ interface ProductDetailTypes {
   };
   title: string;
 
-  quantity: number ;
+  quantity: number;
+  count?: number;
 }
 
 export type { ProductDetailTypes };

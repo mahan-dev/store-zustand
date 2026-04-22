@@ -10,6 +10,7 @@ import styles from "@/templates/styles/signin-signup/route.module.css";
 
 import { useRouter } from "next/navigation";
 import { formSubmitHandler } from "@/helper/AuthFormRegister/formSubmitHandler";
+import Loader from "@/modules/Loader";
 
 interface AuthFormRegisterProps {
   title: "Sign In" | "Sign Up";
@@ -26,6 +27,8 @@ const AuthFormRegister = ({
     rePassword: "",
   });
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({
@@ -36,12 +39,17 @@ const AuthFormRegister = ({
 
   const router = useRouter();
 
-  
-
   return (
     <form
       onSubmit={async (e: FormEvent) =>
-        await formSubmitHandler({ e, form, router, title, setForm })
+        await formSubmitHandler({
+          e,
+          form,
+          router,
+          title,
+          setForm,
+          setLoading,
+        })
       }
     >
       <Card className={styles.card}>
@@ -50,12 +58,18 @@ const AuthFormRegister = ({
         </CardHeader>
 
         <Label htmlFor="email">email</Label>
-        <Input name="email" id="email" onChange={changeHandler} />
+        <Input
+          name="email"
+          id="email"
+          value={form.email}
+          onChange={changeHandler}
+        />
         <Label htmlFor="password">password</Label>
         <Input
           type="password"
           name="password"
           id="password"
+          value={form.password}
           onChange={changeHandler}
         />
         {rePass && (
@@ -65,6 +79,7 @@ const AuthFormRegister = ({
               type="password"
               name="rePassword"
               id="rePassword"
+              value={form.rePassword}
               onChange={changeHandler}
             />
           </>
@@ -74,7 +89,14 @@ const AuthFormRegister = ({
           <div className={styles["card__footer-container"]}>
             {title === "Sign Up" && (
               <div>
-                <Button className="w-full cursor-pointer">Sign Up</Button>
+                {!loading && (
+                  <Button className="w-full cursor-pointer">Sign Up</Button>
+                )}
+                {loading && (
+                  <div className="w-full flex justify-center">
+                    <Loader />
+                  </div>
+                )}
                 <Link
                   href={"/signin"}
                   className="w-full mt-2 block text-[0.9rem] "
@@ -85,12 +107,19 @@ const AuthFormRegister = ({
             )}
             {title === "Sign In" && (
               <div>
-                <Button className="w-full cursor-pointer">Sign In</Button>
+                {!loading && (
+                  <Button className="w-full cursor-pointer">Sign In</Button>
+                )}
+                {loading && (
+                  <div className="w-full flex justify-center mx-auto">
+                    <Loader />
+                  </div>
+                )}
                 <Link
                   href={"/signup"}
                   className="w-full block mt-2 text-[0.9rem]"
                 >
-                  don&apos;t have an account Signup
+                  don&apos;t have an account ? Signup
                 </Link>
               </div>
             )}
