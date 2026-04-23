@@ -4,6 +4,7 @@ import { ModelSchemaTypes } from "@/models/userModel";
 
 import styles from "@/templates/styles/transactions/route.module.css";
 import { transactionHandler } from "@/helper/transactions/transactionsHelper";
+import { emailFormatter } from "@/core/helper/emailFormatter";
 
 interface TransactionProps {
   users: ModelSchemaTypes[];
@@ -33,7 +34,7 @@ const Transactions = ({ users }: TransactionProps) => {
             return (
               <div className=" divide-y divide-gray-400" key={index}>
                 <div className="p-2 bg-[#9D44B5]/30 text-black">
-                  Customer name: {email.split("@")[0]}
+                  Customer name: {emailFormatter(email)}
                 </div>
 
                 {transactions.map((transaction, index) => (
