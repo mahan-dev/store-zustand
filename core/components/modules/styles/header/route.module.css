@@ -30,11 +30,17 @@
 }
 
 .left__dropdown {
-  @apply hidden text-white bg-[#9d44b5] absolute  pl-1 py-1 pr-12 top-[115%] border rounded-md;
+  @apply opacity-0 text-white bg-[#9d44b5] absolute  pl-1 py-1 pr-12 top-[115%] border rounded-md transition-all duration-200 translate-y-[-10px];
+  > li {
+    @apply cursor-pointer transition-all;
+    &:hover {
+      @apply text-black;
+    }
+  }
 }
 
 .left__container:hover .left__dropdown {
-  @apply block;
+  @apply opacity-100 translate-y-0 transition-all ;
 }
 
 .header__account-icon {
