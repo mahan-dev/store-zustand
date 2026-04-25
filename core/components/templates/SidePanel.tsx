@@ -15,7 +15,7 @@ interface AdminProps {
   children?: ReactNode;
 }
 const SidePanel = ({ role, children }: AdminProps) => {
-
+  const BASE_URL = "/dashboard/";
 
   return (
     <section className="flex justify-between">
@@ -32,19 +32,19 @@ const SidePanel = ({ role, children }: AdminProps) => {
             <ul className={styles.aside__list}>
               {role === "ADMIN" ? (
                 <li>
-                  <Link href={"/dashboard/transactions"}>
+                  <Link href={`${BASE_URL}transactions`}>
                     Transactions <FaListUl />
                   </Link>
                 </li>
               ) : (
                 <li>
-                  <Link href={"/admin/myTransaction"}>
+                  <Link href={`${BASE_URL}myTransactions`}>
                     My transaction <FaListUl />
                   </Link>
                 </li>
               )}
               <li>
-                <Link href={"/dashboard/transactions"}>
+                <Link href={`${BASE_URL}transactions`}>
                   Users <CgUserList />
                 </Link>
               </li>

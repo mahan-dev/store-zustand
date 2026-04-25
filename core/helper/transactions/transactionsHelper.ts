@@ -7,9 +7,9 @@ import {
 } from "@/helper/types/transactionsType";
 
 const transactionHandler = (users: ModelSchemaTypes[]) => {
+  console.log(users);
   const userTransaction: UserTransactions[] = users.flatMap((user) =>
     (user.transactions ?? []).map((item) => {
-      if (user.email !== item.email) console.log("hello");
       return {
         email: user.email,
         transactions: { ...item },

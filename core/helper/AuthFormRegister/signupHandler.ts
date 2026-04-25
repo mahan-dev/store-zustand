@@ -10,6 +10,11 @@ interface SignupProps {
   setForm: Dispatch<SetStateAction<object>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
+
+interface PositionToast {
+  position: "top-center";
+}
+
 export const signUpHandler = async ({
   email,
   password,
@@ -32,11 +37,13 @@ export const signUpHandler = async ({
   }
 
   setLoading(true);
+
   try {
     const res = await axios.post("/api/signup", {
       email,
       password,
     });
+
     if (res.status === 200) {
       toast.success("successfully signed up", { position: "top-center" });
       console.log("hello");
@@ -47,19 +54,14 @@ export const signUpHandler = async ({
       });
       setLoading(false);
     }
-    if (res.status === 422) {
-      console.log("hello");
-      console.log(res);
-      console.log(res.error);
-      toast.error(res.error, { position: "top-center" });
-      setLoading(false);
-    }
   } catch (error) {
-    console.log("error");
-    console.log(error.status as number);
+    const errorMessage = error.response.data.error;
+    if (error.status === 422) {
+      toast.error(errorMessage || "something went wrong", {
+        position: "top-center",
+      });
+    }
   } finally {
     setLoading(false);
   }
-
-
 };
