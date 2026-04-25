@@ -9,7 +9,6 @@ const page = async () => {
   const user: ModelSchemaTypes = await UserModel.findOne({
     email: session.user.email,
   });
-  console.log(user);
 
   return <Transactions users={[user]} email={session.user.email} />;
 };
