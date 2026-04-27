@@ -6,11 +6,11 @@ import UserModel, { ModelSchemaTypes } from "@/core/models/userModel";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  const user: ModelSchemaTypes = await UserModel.findOne({
+  const user: ModelSchemaTypes[] = await UserModel.findOne({
     email: session.user.email,
   });
 
-  return <Transactions users={[user]} email={session.user.email} />;
+  return <Transactions users={user} email={session.user.email} />;
 };
 
 export default page;

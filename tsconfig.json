@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,24 +23,60 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./core/components/*"],
-      "@/modules/*": ["./core/components/modules/*"],
-      "@/models/*": ["./core/models/*"],
-      "@/elements/*": ["./core/components/elements/*"],
-      "@/templates/*": ["./core/components/templates/*"],
-      "@/layout/*": ["./core/components/layout/*"],
-      "@/ui/*": ["./core/components/ui/*"],
-      "@/helper/*": ["./core/helper/*"],
-      "@/lib/*": ["./core/lib/*"],
-      "@/utils/*": ["./core/utils/*"],
-      "@/types/*": ["./core/types/*"],
-      "@/hooks/*": ["./core/hooks/*"],
-      "@/styles/*": ["./core/styles/*"],
-      "@/store/*": ["./core/store/*"],
-      "@/api/*": ["./core/api/*"],
-      "@/constants/*": ["./core/constants/*"],
-      "@/provider/*": ["./core/provider/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "./core/components/*"
+      ],
+      "@/modules/*": [
+        "./core/components/modules/*"
+      ],
+      "@/models/*": [
+        "./core/models/*"
+      ],
+      "@/elements/*": [
+        "./core/components/elements/*"
+      ],
+      "@/templates/*": [
+        "./core/components/templates/*"
+      ],
+      "@/layout/*": [
+        "./core/components/layout/*"
+      ],
+      "@/ui/*": [
+        "./core/components/ui/*"
+      ],
+      "@/helper/*": [
+        "./core/helper/*"
+      ],
+      "@/lib/*": [
+        "./core/lib/*"
+      ],
+      "@/utils/*": [
+        "./core/utils/*"
+      ],
+      "@/types/*": [
+        "./core/types/*"
+      ],
+      "@/hooks/*": [
+        "./core/hooks/*"
+      ],
+      "@/styles/*": [
+        "./core/styles/*"
+      ],
+      "@/store/*": [
+        "./core/store/*"
+      ],
+      "@/api/*": [
+        "./core/api/*"
+      ],
+      "@/constants/*": [
+        "./core/constants/*"
+      ],
+      "@/provider/*": [
+        "./core/provider/*"
+      ]
     }
   },
   "include": [
@@ -45,7 +85,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "core/api/mockedData.ts",
-    "next.config.mjs"
+    "next.config.mjs",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
