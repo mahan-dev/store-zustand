@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import {
   FaPlus,
   FaTrashCan,
@@ -37,6 +37,7 @@ const CardPage = ({ data }: CardProps) => {
 
   const { status } = useSession();
   const { addItem, increment, decrement, remove, store } = useShopStore();
+  const [apiStatus, setApiStatus] = useState<string>("online");
 
   const quantity = quantityHandler(store, id);
 
@@ -60,8 +61,22 @@ const CardPage = ({ data }: CardProps) => {
       </Button>
       <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
-          <Link href={`product/${id}`} className="relative block w-full h-full">
-            <Image src={image} alt={"cardImage"} fill sizes="90vw" priority />
+          <Link
+            href={`product/${id}`}
+            className={`${apiStatus === "online" ? styles["header__image-success"] : styles["header__image-error"]}`}
+          >
+            {apiStatus === "online" ? (
+              <Image
+                src={image}
+                alt={"cardImage"}
+                fill
+                sizes="90vw"
+                priority
+                onError={() => setApiStatus("offline")}
+              />
+            ) : (
+              <div className="">Failed to Load</div>
+            )}
           </Link>
         </div>
 

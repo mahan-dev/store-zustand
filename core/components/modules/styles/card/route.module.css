@@ -8,6 +8,13 @@
     @apply flex justify-between text-[#9d44b5]
 }
 
+.header__image-success{
+    @apply relative block w-full h-full ;
+}
+.header__image-error{
+    @apply  w-full h-[80%] flex flex-col justify-center items-center absolute bottom-0  border-[#9D44B5] border-2 rounded-md transition opacity-100;
+}
+
 .card__description {
     @apply flex gap-2 items-center justify-between  text-[0.8rem] text-[#9d44b5];
 }
