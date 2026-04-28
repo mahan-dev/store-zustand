@@ -32,12 +32,23 @@ import { toast } from "sonner";
 interface CardProps {
   data: ProductDetailTypes;
 }
+
+enum ApiStatus {
+  Online = "online",
+  Offline = "offline",
+}
+
+const statusStyles = {
+  [ApiStatus.Online]: styles["header__image-success"],
+  [ApiStatus.Offline]: styles["header__image-error"],
+} as const;
+
 const CardPage = ({ data }: CardProps) => {
   const { title, category, image, id, price } = data;
 
   const { status } = useSession();
   const { addItem, increment, decrement, remove, store } = useShopStore();
-  const [apiStatus, setApiStatus] = useState<string>("online");
+  const [apiStatus, setApiStatus] = useState<ApiStatus>(ApiStatus.Online);
 
   const quantity = quantityHandler(store, id);
 
@@ -61,21 +72,18 @@ const CardPage = ({ data }: CardProps) => {
       </Button>
       <CardHeader className="relative">
         <div className="relative w-39 h-50 ">
-          <Link
-            href={`product/${id}`}
-            className={`${apiStatus === "online" ? styles["header__image-success"] : styles["header__image-error"]}`}
-          >
-            {apiStatus === "online" ? (
+          <Link href={`product/${id}`} className={`${statusStyles[apiStatus]}`}>
+            {apiStatus === ApiStatus.Online ? (
               <Image
                 src={image}
                 alt={"cardImage"}
                 fill
                 sizes="90vw"
                 priority
-                onError={() => setApiStatus("offline")}
+                onError={() => setApiStatus(ApiStatus.Offline)}
               />
             ) : (
-              <div className="">Failed to Load</div>
+              <div>Failed to Load</div>
             )}
           </Link>
         </div>
