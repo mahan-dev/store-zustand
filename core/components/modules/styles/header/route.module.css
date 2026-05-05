@@ -30,13 +30,23 @@
 }
 
 .left__dropdown {
-  @apply opacity-0 text-white bg-[#9d44b5] absolute  pl-1 py-1 pr-12 top-[115%] border rounded-md transition-all duration-200 translate-y-[-10px];
+  @apply w-[120px] opacity-0 text-white bg-[#9d44b5] absolute  px-2 py-1  top-[115%] border rounded-md transition-all duration-200 translate-y-[-10px];
   > li {
     @apply cursor-pointer transition-all;
     &:hover {
       @apply text-black;
     }
   }
+}
+
+.left__dropdown a {
+  @apply w-full;
+}
+
+.left__dropdown  li:not(:last-child) {
+  @apply border-b border-white;
+  
+
 }
 
 .left__container:hover .left__dropdown {

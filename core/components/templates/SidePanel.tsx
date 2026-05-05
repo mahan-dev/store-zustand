@@ -18,7 +18,7 @@ const SidePanel = ({ role, children }: AdminProps) => {
   const BASE_URL = "/dashboard/";
 
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between mt-6">
       <aside className={styles.aside}>
         <Card className="pt-4 gap-3">
           <CardHeader className="border-b">
@@ -49,7 +49,7 @@ const SidePanel = ({ role, children }: AdminProps) => {
                 </Link>
               </li>
               <li>
-                <Link href={"/admin/settings"}>
+                <Link href={`${BASE_URL}settings`}>
                   Settings <MdAdminPanelSettings />
                 </Link>
               </li>

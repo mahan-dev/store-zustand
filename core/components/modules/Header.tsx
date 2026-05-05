@@ -8,6 +8,7 @@ import { Button } from "@/ui/button";
 
 import { FaRegUser } from "react-icons/fa6";
 import { signOut, useSession } from "next-auth/react";
+import { redirect, usePathname } from "next/navigation";
 
 const Header = () => {
   const { total } = useShopStore();
@@ -16,6 +17,10 @@ const Header = () => {
 
   const status = session.status === "authenticated";
 
+  const pageUrl = usePathname();
+
+  const accountButton =
+    session.status === "authenticated" && !pageUrl.includes("/dashboard");
   return (
     <header className={styles.header}>
       <div className={styles.header__left}>
@@ -26,6 +31,9 @@ const Header = () => {
             </Button>
 
             <ul className={styles.left__dropdown}>
+              {accountButton && (
+                <li onClick={() => redirect("/dashboard")}>Dashboard</li>
+              )}
               <li onClick={() => signOut()}>Exit</li>
             </ul>
           </div>
