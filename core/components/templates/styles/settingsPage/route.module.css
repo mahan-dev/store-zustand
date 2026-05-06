@@ -1,0 +1,13 @@
+@reference "tailwindcss";
+
+.container {
+    @apply w-full flex flex-col justify-center text-[1.4rem] text-[#9D44B5] font-bold;
+}
+
+.container__form{
+    @apply mx-12 min-w-48 max-w-3xs mb-4 last:mb-0;
+}
+
+.form__input__container{
+    @apply flex gap-1.5 border-2 rounded-lg pl-1 p-0.5;
+}

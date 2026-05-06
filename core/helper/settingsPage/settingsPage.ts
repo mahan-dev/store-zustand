@@ -1,8 +1,7 @@
 import { formInterface } from "@/templates/SettingsPage";
 import axios from "axios";
 import { toast } from "sonner";
-
-const position = "top-center";
+import { todoPosition } from "@/helper/payHandler";
 
 interface FetchResponse {
   data: {
@@ -15,7 +14,7 @@ interface FetchResponse {
 export const settingsHandler = async (form: formInterface) => {
   const { email, currentPassword, newPassword } = form;
   if (email === "" || currentPassword === "" || newPassword === "") {
-    toast.error("cannot be empty !", { position: position });
+    toast.error("cannot be empty !", todoPosition);
     return;
   }
   try {
@@ -25,14 +24,14 @@ export const settingsHandler = async (form: formInterface) => {
     );
 
     if (status === 200) {
-      toast.success(data.message, { position: position });
+      toast.success(data.message, todoPosition);
       return;
     }
   } catch (error) {
     if (error.status === 400) {
-      toast.error("enter a valid information", { position: position });
+      toast.error("enter a valid information", todoPosition);
       return;
     }
-    toast.error("something went wrong", { position: position });
+    toast.error("something went wrong", todoPosition);
   }
 };

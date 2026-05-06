@@ -11,7 +11,7 @@ interface PayHandlerProps {
   store: ProductDetailTypes[];
 }
 
-let todoPosition = {
+export let todoPosition = {
   position: "top-center" as const,
 };
 
@@ -28,13 +28,9 @@ export const payHandler = async ({ resetStore, store }: PayHandlerProps) => {
   const status = res.status;
   if (status === 200) {
     toast.success("Payment successful", todoPosition);
-    resetStore()
-  }
-
-  else if (status === 403) {
-    console.log("hello");
+    resetStore();
+  } else if (status === 403) {
     toast.error(res.data.error);
-  
   } else {
     toast.error("something wen't wrong");
   }

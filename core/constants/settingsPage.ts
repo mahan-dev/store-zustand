@@ -1,17 +1,19 @@
 export const formData = [
   {
     id: "email",
-    name: "email",
+    name: "Email",
     type: "text",
   },
   {
     id: "currentPassword",
     name: "Current Password",
-    type: "text",
+    type: "password",
+    visibility: false,
   },
   {
     id: "newPassword",
     name: "New Password",
-    type: "text",
+    type: "password",
+    visibility: false,
   },
 ];

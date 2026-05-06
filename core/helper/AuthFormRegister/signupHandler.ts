@@ -46,7 +46,7 @@ export const signUpHandler = async ({
 
     if (res.status === 200) {
       toast.success("successfully signed up", { position: "top-center" });
-      console.log("hello");
+
       setForm({
         email: "",
         password: "",
