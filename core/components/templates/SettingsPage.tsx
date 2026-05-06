@@ -3,11 +3,17 @@ import { formData } from "@/constants/settingsPage";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
-import axios from "axios";
-import { toast } from "sonner";
+
+import { settingsHandler } from "@/core/helper/settingsPage/settingsPage";
+
+export interface formInterface {
+  email: string;
+  currentPassword: string;
+  newPassword: string;
+}
 
 const SettingsPage = () => {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<formInterface>({
     email: "",
     currentPassword: "",
     newPassword: "",
@@ -23,17 +29,7 @@ const SettingsPage = () => {
   };
   const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-    const { email, currentPassword, newPassword } = form;
-    if (email === "" || currentPassword === "" || newPassword === "") {
-      toast.error("cannot be empty !", { position: "top-center" });
-      return;
-    }
-    try {
-      const res = await axios.patch("/api/password", form);
-      console.log("🛠️ ~ SettingsPage.tsx:26 -> res: ", res);
-    } catch (error) {
-      console.log(error);
-    }
+    await settingsHandler(form);
   };
 
   return (

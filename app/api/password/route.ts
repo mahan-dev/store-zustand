@@ -20,7 +20,7 @@ export const PATCH = async (req: Request, res: Response) => {
     const { email, currentPassword, newPassword } = res;
 
     const session = await getServerSession(authOptions);
-    console.log(session.user.email);
+
 
     if (!session)
       return NextResponse.json(
