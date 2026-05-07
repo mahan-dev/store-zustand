@@ -8,12 +8,10 @@ export const formData = [
     id: "currentPassword",
     name: "Current Password",
     type: "password",
-    visibility: false,
   },
   {
     id: "newPassword",
     name: "New Password",
     type: "password",
-    visibility: false,
   },
 ];

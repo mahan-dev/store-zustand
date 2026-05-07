@@ -1,7 +1,11 @@
 @reference "tailwindcss";
 
 .aside {
-    @apply sticky top-18 w-60 mx-5 shrink-0;
+    @apply w-60 mx-5 shrink-0 transition-all duration-700 translate-x-0 max-md:-translate-x-full max-md:mx-0 max-md:absolute ;
+}
+
+.aside-hidden {
+    @apply w-60 mx-5 transition-all duration-700 max-md:translate-x-4  max-md:fixed max-md:left-6 ;
 }
 
 .aside__header-content {

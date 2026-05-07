@@ -30,7 +30,7 @@
 }
 
 .left__dropdown {
-  @apply w-[120px] opacity-0 text-white bg-[#9d44b5] absolute  px-2 py-1  top-[90%] border rounded-md transition-all duration-200 translate-y-[-10px];
+  @apply w-[120px] opacity-0 text-white bg-[#9d44b5] absolute  px-2 py-1  top-full mt-1 border rounded-md transition-all duration-200 -translate-y-full;
   > li {
     @apply cursor-pointer transition-all;
     &:hover {

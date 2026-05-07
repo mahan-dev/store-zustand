@@ -8,7 +8,7 @@ import { RiDashboard3Fill } from "react-icons/ri";
 
 import styles from "@/templates/styles/sidePanel/route.module.css";
 import Link from "next/link";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 interface AdminProps {
   role?: "ADMIN" | "USER";
@@ -17,10 +17,18 @@ interface AdminProps {
 const SidePanel = ({ role, children }: AdminProps) => {
   const BASE_URL = "/dashboard/";
 
+  const [reveal, setReveal] = useState<boolean>(false);
+
   return (
-    <section className="flex justify-between mt-6">
-      <aside className={styles.aside}>
-        <Card className="pt-4 gap-3">
+    <section className="flex mt-6 relative">
+      <div
+        className="hidden max-md:block fixed z-20 left-4 top-[7%]"
+        onClick={() => setReveal(!reveal)}
+      >
+        {!reveal ? "open" : "close"}
+      </div>
+      <aside className={`${!reveal ? styles.aside : styles["aside-hidden"]} `}>
+        <Card className="pt-4 gap-3 sticky top-18">
           <CardHeader className="border-b">
             <div className={styles["aside__header-content"]}>
               Dashboard

@@ -45,7 +45,7 @@ const SettingsPage = () => {
     <section className={styles.container}>
       <h2 className="text-center">Settings</h2>
 
-      <form action="" onSubmit={submitHandler} className="flex flex-col">
+      <form action="" onSubmit={submitHandler} className="flex flex-col max-lg:mt-12">
         {formData.map((item) => {
           const { id, name, type } = item;
 
@@ -86,7 +86,7 @@ const SettingsPage = () => {
             </div>
           );
         })}
-        <Button className="mx-auto w-25 cursor-pointer" type="submit">
+        <Button className="mx-auto w-25 cursor-pointer max-lg:mt-12" type="submit">
           Submit
         </Button>
       </form>
@@ -94,4 +94,10 @@ const SettingsPage = () => {
   );
 };
 
+
+
 export default SettingsPage;
+
+const FormComponent = () => {
+  
+}
