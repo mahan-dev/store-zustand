@@ -10,6 +10,7 @@ import styles from "@/templates/styles/sidePanel/route.module.css";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
+import MenuIcon from "@/ui/StyledComponents/MenuIcon";
 
 interface AdminProps {
   role?: "ADMIN" | "USER";
@@ -21,13 +22,12 @@ const SidePanel = ({ role, children }: AdminProps) => {
   const [reveal, setReveal] = useState<boolean>(false);
   const router = useRouter();
 
+  
+
   return (
-    <section className="flex mt-6 relative">
-      <div
-        className="hidden max-md:block fixed z-20 left-4 top-[7%]"
-        onClick={() => setReveal(!reveal)}
-      >
-        {!reveal ? "open" : "close"}
+    <section className="flex z-10 mt-6 relative">
+      <div className={styles["menu-icon"]} onClick={() => setReveal(!reveal)}>
+        <MenuIcon />
       </div>
       <aside className={`${!reveal ? styles.aside : styles["aside-hidden"]} `}>
         <Card className="pt-4 gap-3 sticky top-18">

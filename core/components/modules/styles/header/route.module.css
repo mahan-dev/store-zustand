@@ -10,13 +10,12 @@
 }
 .header__left {
   @apply flex gap-2;
-
   
 }
 
 .left__container {
 
-  @apply relative
+  @apply relative;
 }
 .left__container::before {
 
@@ -30,9 +29,9 @@
 }
 
 .left__dropdown {
-  @apply w-[120px] opacity-0 text-white bg-[#9d44b5] absolute  px-2 py-1  top-full mt-1 border rounded-md transition-all duration-200 -translate-y-full;
+  @apply w-[40px] opacity-0 text-white bg-[#9d44b5] absolute z-20 px-2 py-1  top-full mt-1 border rounded-md transition-all duration-200 -translate-y-full;
   > li {
-    @apply cursor-pointer transition-all;
+    @apply w-fit cursor-pointer transition-all;
     &:hover {
       @apply text-black;
     }
@@ -50,7 +49,7 @@
 }
 
 .left__container:hover .left__dropdown {
-  @apply opacity-100 translate-y-0 transition-all ;
+  @apply w-24 opacity-100 translate-y-0 transition-all ;
 }
 
 .header__account-icon {

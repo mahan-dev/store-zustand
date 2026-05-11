@@ -4,6 +4,10 @@
     @apply w-60 mx-5 shrink-0 transition-all duration-700 translate-x-0 max-md:-translate-x-full max-md:mx-0 max-md:absolute ;
 }
 
+.menu-icon{
+    @apply hidden max-md:block fixed z-20 left-4 top-[7%];
+}
+
 .aside-hidden {
     @apply w-60 mx-5 transition-all duration-700 max-md:translate-x-4  max-md:fixed max-md:top-24 max-md:-left-2 ;
 }
