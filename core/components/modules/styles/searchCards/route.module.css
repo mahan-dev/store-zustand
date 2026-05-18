@@ -1,0 +1,7 @@
+@reference "tailwindcss";
+
+
+
+.image-offline {
+    @apply p-2 border-2 border-[#9D44B5] rounded-lg;
+}

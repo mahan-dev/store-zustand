@@ -14,4 +14,6 @@ interface ProductDetailTypes {
   count?: number;
 }
 
-export type { ProductDetailTypes };
+type ProductShape = ProductDetailTypes[];
+
+export type { ProductDetailTypes, ProductShape };
