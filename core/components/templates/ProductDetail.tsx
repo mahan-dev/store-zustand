@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { FaTags } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
-import { titleFormatter } from "@/core/helper/titleFormatter";
-import { ProductDetailTypes } from "@/core/types/products/types";
+import { titleFormatter } from "@/helper/titleFormatter";
+import { ProductDetailTypes } from "@/types/products/types";
 import styles from "@/templates/styles/productDetail/route.module.css";
 import { Button } from "@/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/ui/card";

@@ -7,7 +7,6 @@ export const searchQuery = async (debounceValue: string) => {
     );
     return getItem;
   } else {
-    console.log("something went wrong");
     return [];
   }
 };

@@ -13,6 +13,21 @@
   
 }
 
+.header__right {
+  @apply flex items-center relative;
+}
+
+.right__cart-counter {
+  @apply absolute top-5 left-0 w-full;
+}
+
+.right__searchButton {
+  anchor-name: --searchButton-anchor;
+  @apply cursor-pointer ml-3;
+}
+
+
+
 .left__container {
 
   @apply relative;

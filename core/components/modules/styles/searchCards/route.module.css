@@ -2,6 +2,36 @@
 
 
 
+
 .image-offline {
     @apply p-2 border-2 border-[#9D44B5] rounded-lg;
+}
+
+.container__input {
+
+    @apply w-full flex gap-2 items-center px-2 border-2 rounded-md;
+}
+
+.container__search-input {
+    position: absolute;
+    position-anchor: --searchButton-anchor;
+    position-area: top center;
+
+    @apply bg-[#9d44b5]  mt-11 -ml-[108%] w-[160px] h-fit p-2 rounded-b-lg;
+}
+
+.container__input {
+    @apply w-full;
+}
+
+
+
+.input__search {
+
+    @apply w-fit bg-[#9d44b555]  backdrop-blur-2xl text-black;
+}
+
+.card {
+    
+    @apply w-full mt-2 left-0  flex flex-col gap-2 p-2 ;
 }

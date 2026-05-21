@@ -1,19 +1,28 @@
 "use client";
-import { ProductShape } from "@/types/products/types";
+import { ProductDetailTypes, ProductShape } from "@/types/products/types";
 import Image from "next/image";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { useRouter } from "next/navigation";
 import { titleFormatter } from "@/helper/titleFormatter";
 
 import styles from "@/modules/styles/searchCards/route.module.css";
+import { useQuery } from "@tanstack/react-query";
+import { searchQuery } from "@/core/helper/header/searchQuery";
 
 interface CardsProps {
-  data: Omit<ProductShape, "quantity"> & {
-    quantity?: number;
-  };
-  setDebouncedValue: Dispatch<SetStateAction<string>>;
+  // data: (Omit<ProductDetailTypes, "quantity"> & {
+  //   quantity?: number;
+  // })[];
+  searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
+  setSearch: Dispatch<SetStateAction<boolean>>;
 }
 
 enum ApiStatus {
@@ -27,45 +36,96 @@ const imageStyles = {
 } as const;
 
 const SearchCards = ({
-  data: cardData,
+  searchValue,
   setSearchValue,
-  setDebouncedValue,
+  setSearch,
 }: CardsProps) => {
   const [imageStatus, setImageStatus] = useState<string>(ApiStatus.Online);
+  const [debounceValue, setDebounceValue] = useState<string>("");
+  const { data } = useQuery({
+    queryKey: ["searchProduct", debounceValue],
+    queryFn: () => searchQuery(debounceValue),
+  });
 
   const router = useRouter();
 
+  const clickHandler = (id: number) => {
+    if (imageStatus === "offline") return;
+    router.push(`/product/${id}`);
+    setDebounceValue("");
+    setSearchValue("");
+  };
+
+  const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setSearchValue(value);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounceValue(searchValue), 600);
+
+    return () => clearTimeout(timer);
+  }, [searchValue]);
+
   return (
-    <div className="w-full bg-[#9d44b555] flex flex-col gap-2 p-2 rounded-b-xl">
-      {cardData.slice(0, 2).map((item) => (
-        <div
-          key={item.id}
-          className="flex gap-1 cursor-pointer"
-          onClick={() => {
-            router.push(`/product/${item.id}`);
-            setDebouncedValue("");
-            setSearchValue("");
-          }}
-        >
-          {imageStatus == ApiStatus.Online ? (
-            <>
-              <Image
-                src={item.image}
-                alt={titleFormatter(item.title)}
-                width={60}
-                height={60}
-                onError={() => setImageStatus(ApiStatus.Offline)}
-              />
-              <span className="text-[0.8rem]">
-                {titleFormatter(item.title)}
-              </span>
-            </>
-          ) : (
-            <span className={imageStyles[imageStatus]}>Failed</span>
+    <section className={styles.container}>
+      
+      <div className={styles["container__search-input"]}>
+
+        <div className={styles.container__input}>
+          <input
+            className="w-full py-1 outline-none"
+            onChange={changeHandler}
+            value={searchValue}
+            />
+          {!!searchValue.length && (
+            <span
+            className="cursor-pointer"
+            onClick={() => {
+              setSearchValue("");
+              setDebounceValue("");
+              setSearch(false);
+            }}
+            >
+              close
+            </span>
           )}
         </div>
-      ))}
-    </div>
+        <div className={styles.input__search}>
+          {data?.length ? (
+            <div className={styles.card}>
+              {data.slice(0, 2).map((item) => (
+                <div
+                  key={item.id}
+                  className="flex gap-1 cursor-pointer"
+                  onClick={() => clickHandler(item.id)}
+                >
+                  {imageStatus == ApiStatus.Online ? (
+                    <>
+                      <Image
+                        src={item.image}
+                        alt={titleFormatter(item.title)}
+                        width={60}
+                        height={60}
+                        onError={() => setImageStatus(ApiStatus.Offline)}
+                        />
+                      <span className="text-[0.8rem]">
+                        {titleFormatter(item.title)}
+                      </span>
+                    </>
+                  ) : (
+                    <span className={imageStyles[imageStatus]}>Failed</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            !!searchValue.length && <span>nothing found</span>
+          )}
+        </div>
+     
+          </div>
+    </section>
   );
 };
 
