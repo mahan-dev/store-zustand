@@ -12,7 +12,7 @@ import { redirect, usePathname } from "next/navigation";
 
 import { useState } from "react";
 
-import SearchCards from "@/components/modules/SearchCards";
+import SearchCards from "@/modules/SearchCards";
 
 const Header = () => {
   const { total } = useShopStore();
@@ -69,7 +69,6 @@ const Header = () => {
           {total > 10 ? "10+" : total}
         </span>
 
-        
         <span
           className={styles.right__searchButton}
           onClick={() => setSearch(!search)}

@@ -1,5 +1,4 @@
 "use client";
-import { ProductDetailTypes, ProductShape } from "@/types/products/types";
 import Image from "next/image";
 
 import React, {
@@ -17,9 +16,6 @@ import { useQuery } from "@tanstack/react-query";
 import { searchQuery } from "@/core/helper/header/searchQuery";
 
 interface CardsProps {
-  // data: (Omit<ProductDetailTypes, "quantity"> & {
-  //   quantity?: number;
-  // })[];
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
   setSearch: Dispatch<SetStateAction<boolean>>;
@@ -69,23 +65,21 @@ const SearchCards = ({
 
   return (
     <section className={styles.container}>
-      
       <div className={styles["container__search-input"]}>
-
         <div className={styles.container__input}>
           <input
             className="w-full py-1 outline-none"
             onChange={changeHandler}
             value={searchValue}
-            />
+          />
           {!!searchValue.length && (
             <span
-            className="cursor-pointer"
-            onClick={() => {
-              setSearchValue("");
-              setDebounceValue("");
-              setSearch(false);
-            }}
+              className="cursor-pointer"
+              onClick={() => {
+                setSearchValue("");
+                setDebounceValue("");
+                setSearch(false);
+              }}
             >
               close
             </span>
@@ -108,7 +102,7 @@ const SearchCards = ({
                         width={60}
                         height={60}
                         onError={() => setImageStatus(ApiStatus.Offline)}
-                        />
+                      />
                       <span className="text-[0.8rem]">
                         {titleFormatter(item.title)}
                       </span>
@@ -123,8 +117,7 @@ const SearchCards = ({
             !!searchValue.length && <span>nothing found</span>
           )}
         </div>
-     
-          </div>
+      </div>
     </section>
   );
 };
