@@ -41,7 +41,7 @@ const AuthFormRegister = ({
 
   return (
     <form
-      onSubmit={async (e: FormEvent) =>
+      onSubmit={async (e: ChangeEvent<HTMLFormElement>) =>
         await formSubmitHandler({
           e,
           form,

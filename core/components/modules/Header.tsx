@@ -13,6 +13,7 @@ import { redirect, usePathname } from "next/navigation";
 import { useState } from "react";
 
 import SearchCards from "@/modules/SearchCards";
+import { toast } from "sonner";
 
 const Header = () => {
   const { total } = useShopStore();
@@ -26,6 +27,12 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const [search, setSearch] = useState<boolean>(false);
+
+  const exitHandler = async () => {
+    toast.success("successfully logged out", { position: "top-center" });
+    await new Promise((resolver) => setTimeout(resolver, 1000));
+    signOut();
+  };
 
   const accountButton =
     session.status === "authenticated" && !pageUrl.includes("/dashboard");
@@ -43,7 +50,7 @@ const Header = () => {
               {accountButton && (
                 <li onClick={() => redirect("/dashboard")}>Dashboard</li>
               )}
-              <li onClick={() => signOut()}>Exit</li>
+              <li onClick={exitHandler}>Exit</li>
             </ul>
           </div>
         ) : (
