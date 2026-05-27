@@ -17,7 +17,7 @@
     position-anchor: --searchButton-anchor;
     position-area: top center;
 
-    @apply bg-[#9d44b5]  mt-11 -ml-[108%] w-[160px] h-fit p-2 rounded-b-lg;
+    @apply bg-[#9d44b5]  mt-11 ml-[-108%] w-[160px] h-fit p-2 rounded-b-lg;
 }
 
 .container__input {
