@@ -5,16 +5,17 @@ import connectDb from "@/core/utils/mongoDb";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
+interface DataResponse {
+  data: ProductDetailTypes[];
+}
 export const PATCH = async (req: Request) => {
   try {
     await connectDb();
-    const data: ProductDetailTypes = await req.json();
-
-
+    const data: DataResponse = await req.json();
 
     const session = await getServerSession(authOptions);
     const user = await UserModel.findOne({ email: session.user.email });
-    if (!user ) {
+    if (!user) {
       return NextResponse.json(
         {
           status: "Failed",
@@ -29,7 +30,7 @@ export const PATCH = async (req: Request) => {
       {
         $push: {
           transactions: {
-            $each: data.data as ProductDetailTypes[],
+            $each: data.data,
           },
         },
       },
