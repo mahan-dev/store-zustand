@@ -6,6 +6,8 @@ import axios from "axios";
 
 import { ProductDetailTypes } from "@/types/products/types";
 
+import { v4 as uId } from "uuid";
+
 interface PayHandlerProps {
   resetStore: () => void;
   store: ProductDetailTypes[];
@@ -21,8 +23,10 @@ export const payHandler = async ({ resetStore, store }: PayHandlerProps) => {
     return;
   }
 
-  const res = await axios.patch("/api/transactions", {
+  const uniqueId = uId();
+  const res = await axios.post("/api/transactions", {
     data: store,
+    uId: uniqueId,
   });
 
   const status = res.status;

@@ -7,6 +7,7 @@ export interface ModelSchemaTypes {
   rePassword?: string;
   role: string;
   transactions: [ProductDetailTypes];
+  uId: string;
   _id: ObjectId;
   userId: object;
 }
@@ -30,6 +31,9 @@ const UserModelSchema = new Schema<ModelSchemaTypes>({
   },
 
   role: {
+    type: String,
+  },
+  uId: {
     type: String,
   },
   userId: {

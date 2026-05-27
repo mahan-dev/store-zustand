@@ -7,11 +7,12 @@ import { NextResponse } from "next/server";
 
 interface DataResponse {
   data: ProductDetailTypes[];
+  uId: string;
 }
-export const PATCH = async (req: Request) => {
+export const POST = async (req: Request) => {
   try {
     await connectDb();
-    const data: DataResponse = await req.json();
+    const { data, uId }: DataResponse = await req.json();
 
     const session = await getServerSession(authOptions);
     const user = await UserModel.findOne({ email: session.user.email });
@@ -25,12 +26,17 @@ export const PATCH = async (req: Request) => {
       );
     }
 
+    const transactionsData = data.map((item) => ({
+      ...item,
+      uId,
+    }));
+
     const posts = await UserModel.updateOne(
       { email: session.user.email },
       {
         $push: {
           transactions: {
-            $each: data.data,
+            $each: transactionsData,
           },
         },
       },
