@@ -9,7 +9,7 @@
 }
 
 .aside-hidden {
-    @apply w-60 mx-5 transition-all duration-700 max-md:translate-x-4  max-md:fixed max-md:top-24 max-md:-left-2 ;
+    @apply w-60 mx-5 transition-all duration-700 max-md:translate-x-4  max-md:fixed max-md:top-28 max-md:-left-2 ;
 }
 
 .aside__header-content {

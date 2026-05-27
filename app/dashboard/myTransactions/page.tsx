@@ -10,8 +10,6 @@ const page = async () => {
     email: session.user.email,
   });
 
-  console.log(user);
-
   return <Transactions users={[user]} email={session.user.email} />;
 };
 

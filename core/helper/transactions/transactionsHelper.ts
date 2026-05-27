@@ -7,8 +7,6 @@ import {
 } from "@/helper/types/transactionsType";
 
 const transactionHandler = (users: ModelSchemaTypes[] | null) => {
-  console.log(users);
-
   if (!users.length) return;
 
   const userTransaction: UserTransactions[] = users.flatMap((user) =>

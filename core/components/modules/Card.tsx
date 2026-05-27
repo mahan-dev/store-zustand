@@ -71,10 +71,11 @@ const CardPage = ({ data }: CardProps) => {
         <TbListDetails />
       </Button>
       <CardHeader className="relative">
-        <div className="relative w-39 h-50 ">
+        <div className={styles.card__image_container}>
           <Link href={`product/${id}`} className={`${statusStyles[apiStatus]}`}>
             {apiStatus === ApiStatus.Online ? (
               <Image
+              className={styles.card__image}
                 src={image}
                 alt={"cardImage"}
                 fill

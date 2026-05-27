@@ -30,7 +30,7 @@ const SidePanel = ({ role, children }: AdminProps) => {
         <MenuIcon />
       </div>
       <aside className={`${!reveal ? styles.aside : styles["aside-hidden"]} `}>
-        <Card className="pt-4 gap-3 sticky top-18">
+        <Card className="pt-4 gap-3  ">
           <CardHeader className="border-b">
             <div
               className={styles["aside__header-content"]}
