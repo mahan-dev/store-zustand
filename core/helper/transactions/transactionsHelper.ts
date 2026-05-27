@@ -6,8 +6,11 @@ import {
   UserTransactions,
 } from "@/helper/types/transactionsType";
 
-const transactionHandler = (users: ModelSchemaTypes[]) => {
+const transactionHandler = (users: ModelSchemaTypes[] | null) => {
   console.log(users);
+
+  if (!users.length) return;
+
   const userTransaction: UserTransactions[] = users.flatMap((user) =>
     (user.transactions ?? []).map((item) => {
       return {
@@ -69,51 +72,3 @@ const transactionHandler = (users: ModelSchemaTypes[]) => {
 };
 
 export { transactionHandler };
-// const groupTransactionEmail: Array<{
-//   email: string;
-//   transactions: ProductDetailTypes[];
-// }> = users
-//   .filter((user) => !!user.transactions.length)
-//   .map((user) => ({
-//     email: user.email,
-//     transactions: user.transactions,
-//     count: 3,
-//   }));
-// console.log(
-//   "🚄 ~ transactionsHelper.ts:34 -> groupTransactionEmail: ",
-//   groupTransactionEmail,
-// );
-
-// const finalUserTransactions = userTransaction.reduce(
-//   (
-//     acc: {
-//       email: string;
-//       transactions: ProductDetailTypes;
-//     }[],
-//     user,
-//   ) => {
-//     const product = user.transactions;
-//     const email = user.email;
-//     const existProduct = acc.findIndex(
-//       (item) => item.transactions.id === product.id,
-//     );
-
-//     if (existProduct !== -1) {
-//       const increaseItem = (acc[existProduct].transactions.count += 1);
-//       console.log('👍 ~ transactionsHelper.ts:58 -> email: ', email);
-
-//       acc.push({
-//         email,
-//         transactions: { ...product, count: increaseItem },
-//       });
-//     } else {
-//       console.log('👍 ~ transactionsHelper.ts:58 -> email: ', email);
-//       acc.push({
-//         email,
-//         transactions: { ...product, count: 1 },
-//       });
-//     }
-//     return acc
-//   },
-//   [],
-// );

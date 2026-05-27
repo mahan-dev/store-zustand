@@ -37,6 +37,7 @@
     "stylelint-config-tailwindcss": "^1.0.1",
     "swiper": "^12.1.1",
     "tailwind-merge": "^3.4.0",
+    "uuid": "^14.0.0",
     "zustand": "^5.0.9"
   },
   "devDependencies": {

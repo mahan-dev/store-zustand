@@ -1,7 +1,7 @@
 @reference "tailwindcss";
 
 .aside {
-    @apply w-60 mx-5 shrink-0 transition-all duration-700 translate-x-0 max-md:-translate-x-full max-md:mx-0 max-md:absolute ;
+    @apply w-60 mx-5 shrink-0 transition-all duration-700  max-md:-translate-x-full max-md:mx-0 max-md:absolute ;
 }
 
 .menu-icon{

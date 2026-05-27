@@ -7,7 +7,7 @@ import { transactionHandler } from "@/helper/transactions/transactionsHelper";
 import { emailFormatter } from "@/core/helper/emailFormatter";
 
 interface TransactionProps {
-  users: ModelSchemaTypes[];
+  users: ModelSchemaTypes[] | null;
   email: string;
 }
 

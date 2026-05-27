@@ -1,7 +1,6 @@
 "use client";
 
 import { FaListUl } from "react-icons/fa";
-import { CgUserList } from "react-icons/cg";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 import { RiDashboard3Fill } from "react-icons/ri";
@@ -12,17 +11,18 @@ import { ReactNode, useState } from "react";
 import { useRouter } from "next/navigation";
 import MenuIcon from "@/ui/StyledComponents/MenuIcon";
 
+
 interface AdminProps {
   role?: "ADMIN" | "USER";
   children?: ReactNode;
 }
+
 const SidePanel = ({ role, children }: AdminProps) => {
   const BASE_URL = "/dashboard/";
 
   const [reveal, setReveal] = useState<boolean>(false);
   const router = useRouter();
 
-  
 
   return (
     <section className="flex z-10 mt-6 relative">
@@ -56,11 +56,7 @@ const SidePanel = ({ role, children }: AdminProps) => {
                   </Link>
                 </li>
               )}
-              <li>
-                <Link href={`${BASE_URL}transactions`}>
-                  Users <CgUserList />
-                </Link>
-              </li>
+             
               <li>
                 <Link href={`${BASE_URL}settings`}>
                   Settings <MdAdminPanelSettings />
