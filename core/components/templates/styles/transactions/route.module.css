@@ -1,22 +1,17 @@
 @reference "tailwindcss";
 
+
 .container {
-    @apply min-w-[50%] mx-auto mt-5;
+    @apply w-full max-w-[60%] max-md:max-w-full max-md:m-4;
 }
 
-.container__header {
-    @apply  border border-gray-400 rounded-xl overflow-hidden;
+
+
+
+.transactions__content {
+    @apply flex flex-row flex-wrap mt-4 p-3;
 }
 
-.header__title {
-    @apply bg-[#9D44B5] text-white p-2 font-semibold;
+.card__notFound{
+    @apply text-red-500 bg-red-200 py-1 text-center  rounded-md;
 }
-
-.title__table{
-    @apply bg-[#9D44B5] text-white tracking-widest grid grid-cols-3 divide-x divide-gray-400 border-b border-gray-400;
-}
-
-.transactions__content{
-    @apply grid grid-cols-3 divide-x divide-gray-400;
-}
-
