@@ -11,7 +11,7 @@ interface RequestForm {
   newPassword: string;
 }
 
-export const PATCH = async (req: Request, res: Response) => {
+export const PATCH = async (req: Request) => {
   try {
     await connectDb();
 
