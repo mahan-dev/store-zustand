@@ -9,7 +9,7 @@ interface ProductDetailTypes {
     count: number;
   };
   title: string;
-  uId: string;
+  uId?: string;
   quantity: number;
   count?: number;
 }

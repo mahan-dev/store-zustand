@@ -22,6 +22,11 @@
 // export default pwaConfig(nextConfig);
 
 import withPWA from "next-pwa";
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: ".env.deployment",
+});
 
 const nextConfig = {
   images: {

@@ -57,8 +57,6 @@ const SearchCards = ({
     setSearchValue(value);
   };
 
-  //!test
-
   useEffect(() => {
     const timer = setTimeout(() => setDebounceValue(searchValue), 600);
 

@@ -15,9 +15,9 @@
 .container__search-input {
     position: absolute;
     position-anchor: --searchButton-anchor;
-    position-area: top center;
+    position-area: top left;
 
-    @apply bg-[#9d44b5]  mt-11 ml-[-108%] w-[160px] h-fit p-2 rounded-b-lg;
+    @apply bg-[#9d44b5]  mt-11 ml-[-162%] w-[160px] h-fit p-2 rounded-b-lg;
 }
 
 .container__input {

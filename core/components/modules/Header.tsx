@@ -5,7 +5,7 @@ import { FaShoppingCart, FaShoppingBag } from "react-icons/fa";
 import { useShopStore } from "@/core/store/store";
 import styles from "@/modules/styles/header/route.module.css";
 import { Button } from "@/ui/button";
-
+import { IoSearch } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa6";
 import { signOut, useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
@@ -80,7 +80,7 @@ const Header = () => {
           className={styles.right__searchButton}
           onClick={() => setSearch(!search)}
         >
-          search
+          <IoSearch className="text-xl" />
         </span>
 
         {search && (
