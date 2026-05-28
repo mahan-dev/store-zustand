@@ -75,7 +75,7 @@ const CardPage = ({ data }: CardProps) => {
           <Link href={`product/${id}`} className={`${statusStyles[apiStatus]}`}>
             {apiStatus === ApiStatus.Online ? (
               <Image
-              className={styles.card__image}
+                className={styles.card__image}
                 src={image}
                 alt={"cardImage"}
                 fill
