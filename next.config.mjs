@@ -27,7 +27,7 @@ import dotenv from "dotenv";
 dotenv.config({
   path: ".env.deployment",
 });
-
+ 
 const nextConfig = {
   images: {
     remotePatterns: [{ protocol: "https", hostname: "fakestoreapi.com" }],
