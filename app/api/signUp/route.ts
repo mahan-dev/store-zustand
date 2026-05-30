@@ -8,7 +8,6 @@ export const POST = async (req: Request) => {
     await connectDb();
 
     const { email, password } = await req.json();
-    console.log(email);
 
     const user = await UserModel.findOne({ email });
     if (user) {
