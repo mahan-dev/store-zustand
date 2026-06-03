@@ -55,7 +55,7 @@ export const signUpHandler = async ({
       setLoading(false);
     }
   } catch (error) {
-    const errorMessage = error.response.data.error;
+    const errorMessage = error.response?.data.error;
     if (error.status === 422) {
       toast.error(errorMessage || "something went wrong", PositionToast);
     }

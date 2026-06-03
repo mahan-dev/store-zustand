@@ -3,6 +3,10 @@ import { signUpHandler } from "@/helper/AuthFormRegister/signupHandler";
 import { toast } from "sonner";
 import axios from "axios";
 
+const positionToast = {
+  position: "top-center",
+} as const;
+
 jest.mock("axios");
 jest.mock("sonner", () => ({
   toast: {
@@ -13,6 +17,7 @@ jest.mock("sonner", () => ({
 
 const setLoading = jest.fn();
 const setForm = jest.fn();
+const toastError = toast.error;
 
 const testEmail = "something@gmail.com";
 const testPassword = "testPassword";
@@ -26,9 +31,9 @@ describe("signup Validation", () => {
       setLoading,
       setForm,
     });
-    expect(toast.error).toHaveBeenCalledWith(
+    expect(toastError).toHaveBeenCalledWith(
       "fields can not be empty !",
-      expect.any(Object),
+      expect.objectContaining(positionToast),
     );
 
     expect(setLoading).toHaveBeenCalled();
@@ -43,13 +48,13 @@ describe("signup Validation", () => {
       setLoading,
     });
 
-    expect(toast.error).toHaveBeenCalledWith(
+    expect(toastError).toHaveBeenCalledWith(
       "can't be less than 4",
-      expect.any(Object),
+      expect.objectContaining(positionToast),
     );
   });
 
-  it("return error when passwords are not match", async () => {
+  it("return error when passwords weren't match", async () => {
     await signUpHandler({
       email: testEmail,
       password: testPassword,
@@ -57,9 +62,59 @@ describe("signup Validation", () => {
       setForm,
       setLoading,
     });
-    expect(toast.error).toHaveBeenCalledWith(
+    expect(toastError).toHaveBeenCalledWith(
       "passwords are not match !",
-      expect.any(Object),
+      expect.objectContaining(positionToast),
+    );
+  });
+
+  it("should call axios", async () => {
+    (axios.post as jest.Mock).mockResolvedValue({ status: 200 });
+
+    await signUpHandler({
+      email: testEmail,
+      password: testPassword,
+      rePassword: testPassword,
+      setForm,
+      setLoading,
+    });
+
+    expect(axios.post).toHaveBeenCalledTimes(1);
+
+    expect(axios.post).toHaveBeenCalledWith("/api/signup", {
+      email: testEmail,
+      password: testPassword,
+    });
+  });
+
+  it("should return success when signup successfully", async () => {
+    (axios.post as jest.Mock).mockResolvedValue({ status: 200 });
+    await signUpHandler({
+      email: testEmail,
+      password: testPassword,
+      rePassword: testPassword,
+      setForm,
+      setLoading,
+    });
+    expect(setLoading).toHaveBeenCalledWith(false);
+  });
+
+  it("should return failed when error happened", async () => {
+    (axios.post as jest.Mock).mockRejectedValue({
+      status: 422,
+    });
+
+    await signUpHandler({
+      email: testEmail,
+      password: testPassword,
+      rePassword: testPassword,
+      setForm,
+      setLoading,
+    });
+
+    expect(toastError).toHaveBeenCalledWith(
+      "something went wrong",
+      expect.objectContaining(positionToast),
     );
   });
 });
