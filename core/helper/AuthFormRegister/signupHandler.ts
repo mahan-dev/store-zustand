@@ -11,9 +11,9 @@ interface SignupProps {
   setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
-interface PositionToast {
-  position: "top-center";
-}
+const PositionToast = {
+  position: "top-center",
+} as const;
 
 export const signUpHandler = async ({
   email,
@@ -22,30 +22,30 @@ export const signUpHandler = async ({
   setForm,
   setLoading,
 }: SignupProps) => {
-  if (email === "" || password === "" || rePassword === "") {
-    toast.error("fields can not be empty !", { position: "top-center" });
-    return;
-  }
-
-  if (email.length < 4) {
-    toast.error("can't be less than 4", { position: "top-center" });
-    return;
-  }
-  if (password !== rePassword) {
-    toast.error("passwords are not match !", { position: "top-center" });
-    return;
-  }
-
-  setLoading(true);
-
   try {
+    if (email === "" || password === "" || rePassword === "") {
+      toast.error("fields can not be empty !", PositionToast);
+      return;
+    }
+
+    if (email.length < 4 || password.length < 4) {
+      toast.error("can't be less than 4", PositionToast);
+      return;
+    }
+    if (password !== rePassword) {
+      toast.error("passwords are not match !", PositionToast);
+      return;
+    }
+
+    setLoading(true);
+
     const res = await axios.post("/api/signup", {
       email,
       password,
     });
 
     if (res.status === 200) {
-      toast.success("successfully signed up", { position: "top-center" });
+      toast.success("successfully signed up", PositionToast);
 
       setForm({
         email: "",
@@ -57,9 +57,7 @@ export const signUpHandler = async ({
   } catch (error) {
     const errorMessage = error.response.data.error;
     if (error.status === 422) {
-      toast.error(errorMessage || "something went wrong", {
-        position: "top-center",
-      });
+      toast.error(errorMessage || "something went wrong", PositionToast);
     }
   } finally {
     setLoading(false);
