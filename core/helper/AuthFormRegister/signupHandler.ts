@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { Dispatch, SetStateAction } from "react";
 import { toast } from "sonner";
 
@@ -9,6 +10,8 @@ interface SignupProps {
   rePassword: string;
   setForm: Dispatch<SetStateAction<object>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
+
+  router: AppRouterInstance;
 }
 
 const PositionToast = {
@@ -21,6 +24,7 @@ export const signUpHandler = async ({
   rePassword,
   setForm,
   setLoading,
+  router
 }: SignupProps) => {
   try {
     if (email === "" || password === "" || rePassword === "") {
@@ -46,6 +50,8 @@ export const signUpHandler = async ({
 
     if (res.status === 200) {
       toast.success("successfully signed up", PositionToast);
+      await new Promise((resolver) => setTimeout(resolver, 1500));
+      router.push("/signin");
 
       setForm({
         email: "",

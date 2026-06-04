@@ -5,27 +5,66 @@ import { toast } from "sonner";
 jest.mock("next-auth/react");
 jest.mock("sonner");
 
-it("should show error toast", async () => {
-  const setLoading = jest.fn();
-  const router = {
-    replace: jest.fn(),
-  };
+const toastPosition = {
+  position: "top-center",
+} as const;
 
-  (signIn as jest.Mock).mockResolvedValue({
-    error: "invalid credentials",
+const testEmail = "something@gmail.com";
+const testPassword = "testPassword";
+
+const setLoading = jest.fn();
+const router = {
+  replace: jest.fn(),
+};
+
+describe("signIn validation", () => {
+  it("should show error toast", async () => {
+    (signIn as jest.Mock).mockResolvedValue({
+      error: "invalid credentials",
+    });
+
+    await signinFormHandler({
+      email: "something@gmail.com",
+      password: "wrong",
+      setLoading,
+      router: router as any,
+    });
+
+    expect(toast.error).toHaveBeenCalledWith(
+      "invalid credentials",
+      expect.any(Object),
+    );
+
+    expect(router.replace).not.toHaveBeenCalled();
   });
 
-  await signinFormHandler({
-    email: "something@gmail.com",
-    password: "wrong",
-    setLoading,
-    router: router as any,
+  it("should show success toast", async () => {
+    (signIn as jest.Mock).mockResolvedValue({
+      status: 200,
+    });
+
+    await signinFormHandler({
+      email: testEmail,
+      password: testPassword,
+      router: router as any,
+      setLoading,
+    });
+
+    expect(toast.success).toHaveBeenCalledWith(
+      "successfully loggedIn",
+      toastPosition,
+    );
+
+    const promise = signinFormHandler({
+      email: testEmail,
+      password: testPassword,
+      router: router as any,
+      setLoading,
+    });
+
+    await jest.advanceTimersByTimeAsync(1500);
+    await promise;
+
+    expect(router.replace).toHaveBeenCalledWith("/dashboard");
   });
-
-  expect(toast.error).toHaveBeenCalledWith(
-    "invalid credentials",
-    expect.any(Object),
-  );
-
-  expect(router.replace).not.toHaveBeenCalled();
 });

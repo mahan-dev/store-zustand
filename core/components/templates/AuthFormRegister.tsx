@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/ui/card";
 import { Label } from "@/ui/label";
 import { Input } from "@/ui/input";

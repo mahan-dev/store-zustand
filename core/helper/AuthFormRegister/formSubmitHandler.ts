@@ -1,10 +1,10 @@
-import { Dispatch, FormEvent, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { signinFormHandler } from "@/helper/AuthFormRegister/signinHandler";
 import { signUpHandler } from "@/helper/AuthFormRegister/signupHandler";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface FormProps {
-  e: FormEvent;
+  e: ChangeEvent<HTMLFormElement>;
   form: { email: string; password: string; rePassword: string };
   router: AppRouterInstance;
   title: "Sign In" | "Sign Up";
@@ -26,5 +26,12 @@ export const formSubmitHandler = async ({
     await signinFormHandler({ email, password, router, setLoading });
   }
   if (title === "Sign Up")
-    await signUpHandler({ email, password, rePassword, setForm, setLoading });
+    await signUpHandler({
+      email,
+      password,
+      rePassword,
+      setForm,
+      setLoading,
+      router,
+    });
 };

@@ -3,7 +3,7 @@ import { signUpHandler } from "@/helper/AuthFormRegister/signupHandler";
 import { toast } from "sonner";
 import axios from "axios";
 
-const positionToast = {
+const toastPosition = {
   position: "top-center",
 } as const;
 
@@ -14,6 +14,10 @@ jest.mock("sonner", () => ({
     success: jest.fn(),
   },
 }));
+
+const router = {
+  push: jest.fn(),
+};
 
 const setLoading = jest.fn();
 const setForm = jest.fn();
@@ -30,10 +34,11 @@ describe("signup Validation", () => {
       rePassword: "",
       setLoading,
       setForm,
+      router: router as any,
     });
     expect(toastError).toHaveBeenCalledWith(
       "fields can not be empty !",
-      expect.objectContaining(positionToast),
+      expect.objectContaining(toastPosition),
     );
 
     expect(setLoading).toHaveBeenCalled();
@@ -46,11 +51,12 @@ describe("signup Validation", () => {
       rePassword: "123",
       setForm,
       setLoading,
+      router: router as any,
     });
 
     expect(toastError).toHaveBeenCalledWith(
       "can't be less than 4",
-      expect.objectContaining(positionToast),
+      expect.objectContaining(toastPosition),
     );
   });
 
@@ -61,10 +67,11 @@ describe("signup Validation", () => {
       rePassword: "differentPassword",
       setForm,
       setLoading,
+      router: router as any,
     });
     expect(toastError).toHaveBeenCalledWith(
       "passwords are not match !",
-      expect.objectContaining(positionToast),
+      expect.objectContaining(toastPosition),
     );
   });
 
@@ -77,6 +84,7 @@ describe("signup Validation", () => {
       rePassword: testPassword,
       setForm,
       setLoading,
+      router: router as any,
     });
 
     expect(axios.post).toHaveBeenCalledTimes(1);
@@ -95,6 +103,7 @@ describe("signup Validation", () => {
       rePassword: testPassword,
       setForm,
       setLoading,
+      router: router as any,
     });
     expect(setLoading).toHaveBeenCalledWith(false);
   });
@@ -110,11 +119,12 @@ describe("signup Validation", () => {
       rePassword: testPassword,
       setForm,
       setLoading,
+      router: router as any,
     });
 
     expect(toastError).toHaveBeenCalledWith(
       "something went wrong",
-      expect.objectContaining(positionToast),
+      expect.objectContaining(toastPosition),
     );
   });
 });

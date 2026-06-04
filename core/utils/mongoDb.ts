@@ -12,7 +12,6 @@ const connectDb = async (): Promise<void> => {
   } catch (error) {
     console.log(error);
     console.log("error while connect to db");
-    console.log(process.env.MONGO_URI);
   }
 };
 export default connectDb;
