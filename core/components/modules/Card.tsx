@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import {
   FaPlus,
   FaTrashCan,
@@ -43,7 +43,7 @@ const statusStyles = {
   [ApiStatus.Offline]: styles["header__image-error"],
 } as const;
 
-const CardPage = ({ data }: CardProps) => {
+const CardPage = memo(({ data }: CardProps) => {
   const { title, category, image, id, price } = data;
 
   const { status } = useSession();
@@ -127,6 +127,8 @@ const CardPage = ({ data }: CardProps) => {
       </div>
     </Card>
   );
-};
+});
+
+CardPage.displayName = "CardPage";
 
 export default CardPage;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { FaFilter } from "react-icons/fa6";
 
 import { filterCards } from "@/helper/filterCards";
@@ -26,6 +26,16 @@ const Products = ({ data }: HomeProps) => {
     setFilteredData(filterCards({ range, data, category }));
   }, [category, range, data]);
 
+  const renderedCards = useMemo(
+    () =>
+      filteredData.length ? (
+        filteredData.map((item, index) => <CardPage key={index} data={item} />)
+      ) : (
+        <h2>nothing has found</h2>
+      ),
+    [filteredData],
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.container__sidebar}>
@@ -42,15 +52,7 @@ const Products = ({ data }: HomeProps) => {
           data={data}
         />
       </div>
-      <div className={styles.cards}>
-        {filteredData.length ? (
-          filteredData.map((item, index) => (
-            <CardPage key={index} data={item} />
-          ))
-        ) : (
-          <h2>nothing has found</h2>
-        )}
-      </div>
+      <div className={styles.cards}>{renderedCards}</div>
     </div>
   );
 };

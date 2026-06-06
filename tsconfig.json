@@ -71,6 +71,9 @@
       "@/api/*": [
         "./core/api/*"
       ],
+      "@/services/*": [
+        "./core/services/*"
+      ],
       "@/constants/*": [
         "./core/constants/*"
       ],

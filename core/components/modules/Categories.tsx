@@ -2,16 +2,21 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { mockedData } from "@/api/mockedData";
+import { dataFetcher } from "@/core/helper/ProductFetcher";
 import styles from "@/modules/styles/categories/route.module.css";
-import { ProductDetailTypes } from "@/types/products/types";
+
 import { Button } from "@/ui/button";
+
+import { useQuery } from "@tanstack/react-query";
 
 interface CategoriesProps {
   title: string;
 }
 const Categories = ({ title }: CategoriesProps) => {
-  const data = mockedData as ProductDetailTypes[];
+  const { data } = useQuery({
+    queryKey: ["store fetching"],
+    queryFn: dataFetcher,
+  });
 
   const uniqueCategories = [...new Set(data.map((item) => item.category))];
 
@@ -19,9 +24,7 @@ const Categories = ({ title }: CategoriesProps) => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.container__title}>
-        {title}
-      </h2>
+      <h2 className={styles.container__title}>{title}</h2>
       <ul className={styles.container__list}>
         {uniqueCategories.map((category, index) => (
           <li className="" key={index}>

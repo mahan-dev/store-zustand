@@ -1,8 +1,11 @@
-import { mockedData } from "@/api/mockedData";
+import { dataFetcher } from "@/helper/ProductFetcher";
 
 export const searchQuery = async (debounceValue: string) => {
+
+  const receivedData = await dataFetcher();
+
   if (debounceValue.trim().length > 0) {
-    const getItem = mockedData.filter((item) =>
+    const getItem = receivedData.filter((item) =>
       item.title.toLowerCase().includes(debounceValue.toLowerCase()),
     );
     return getItem;

@@ -9,13 +9,21 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { mockedData } from "@/api/mockedData";
 import { breakpoints } from "@/constants/swiperBreakpoints";
 import styles from "@/templates/styles/swiper/route.module.css";
-import { ProductDetailTypes } from "@/types/products/types";
+
+import { dataFetcher } from "@/core/helper/ProductFetcher";
+
+import { useQuery } from "@tanstack/react-query";
 
 const SwiperSlider = () => {
-  const data = mockedData.slice(0, 6) as ProductDetailTypes[];
+  const { data, isLoading } = useQuery({
+    queryKey: ["store fetching"],
+    queryFn: dataFetcher,
+  });
+
+  if (isLoading) return;
+  const finalData = data.slice(0, 6);
 
   return (
     <div className={styles.container}>
@@ -40,24 +48,25 @@ const SwiperSlider = () => {
           pauseOnMouseEnter: true,
         }}
       >
-        {data.map((item) => (
-          <SwiperSlide
-            key={item.id}
-            className={`${styles["swiper-slide"]} py-2`}
-          >
-            <Link href={`/product/${item.id}`}>
-              <div className=" relative w-40 mx-auto h-40">
-                <Image
-                  src={item.image}
-                  alt={"cardImage"}
-                  fill
-                  sizes="90vw"
-                  priority
-                />
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
+        {finalData.length!! &&
+          finalData.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              className={`${styles["swiper-slide"]} py-2`}
+            >
+              <Link href={`/product/${item.id}`}>
+                <div className=" relative w-40 mx-auto h-40">
+                  <Image
+                    src={item.image}
+                    alt={"cardImage"}
+                    fill
+                    sizes="90vw"
+                    priority
+                  />
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );
