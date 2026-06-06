@@ -1,4 +1,5 @@
 import { signUpHandler } from "@/helper/AuthFormRegister/signupHandler";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 import { toast } from "sonner";
 import axios from "axios";
@@ -17,7 +18,7 @@ jest.mock("sonner", () => ({
 
 const router = {
   push: jest.fn(),
-};
+} as Partial<AppRouterInstance>;
 
 const setLoading = jest.fn();
 const setForm = jest.fn();
@@ -51,7 +52,7 @@ describe("signup Validation", () => {
       rePassword: "123",
       setForm,
       setLoading,
-      router: router as any,
+      router: router as AppRouterInstance,
     });
 
     expect(toastError).toHaveBeenCalledWith(
@@ -84,7 +85,7 @@ describe("signup Validation", () => {
       rePassword: testPassword,
       setForm,
       setLoading,
-      router: router as any,
+      router: router as AppRouterInstance,
     });
 
     expect(axios.post).toHaveBeenCalledTimes(1);
