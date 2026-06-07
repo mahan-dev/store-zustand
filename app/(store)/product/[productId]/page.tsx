@@ -14,7 +14,7 @@ const ProductPage = async ({ params }: ProductProps) => {
 
   const data = receivedData[+productId - 1];
 
-  if (!data) return;
+  if (!data) return <h2>Product Not found</h2>;
 
   return <ProductDetail data={data} />;
 };
