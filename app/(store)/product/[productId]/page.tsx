@@ -1,3 +1,4 @@
+"use client";
 import { dataFetcher } from "@/core/helper/ProductFetcher";
 import ProductDetail from "@/templates/ProductDetail";
 
