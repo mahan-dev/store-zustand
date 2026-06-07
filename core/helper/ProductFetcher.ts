@@ -14,6 +14,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
 
     return data;
   } catch (error) {
+    console.log("this is the error you looking for", error)
     return [];
   }
 };
