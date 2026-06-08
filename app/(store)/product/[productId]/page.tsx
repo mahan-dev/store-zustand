@@ -1,6 +1,6 @@
-import { dataFetcher } from "@/core/helper/ProductFetcher";
-import { UseProduct } from "@/core/hooks/useProduct";
-import { ProductDetailTypes } from "@/core/types/products/types";
+import { BASE_URL } from "@/core/helper/ProductFetcher";
+
+import { ProductDetailTypes } from "@/types/products/types";
 import ProductDetail from "@/templates/ProductDetail";
 
 interface ProductProps {
@@ -9,11 +9,10 @@ interface ProductProps {
 
 const ProductPage = async ({ params }: ProductProps) => {
   const { productId } = await params;
-  
 
   const fetchedData = async (): Promise<ProductDetailTypes[]> => {
     try {
-      const res = await fetch("https://fakestoreapi.com/products", {
+      const res = await fetch(`${BASE_URL}/products`, {
         cache: "no-store",
       });
       const data = await res.json();
