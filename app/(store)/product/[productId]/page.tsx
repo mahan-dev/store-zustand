@@ -12,7 +12,7 @@ const ProductPage = async ({ params }: ProductProps) => {
   const data = await dataFetcher();
   if (!data.length)
     return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
-  const receivedItem = data[+productId - 1];
+  const receivedItem = data[2];
 
   const res = await fetch(`${BASE_URL}products`, {
     cache: "no-store",
