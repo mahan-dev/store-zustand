@@ -17,7 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       {loading ? (
-        <h2 className="mx-auto"> loading...</h2>
+        <h2 className=" w-fit mx-auto"> loading...</h2>
       ) : (
         <Provider>
           <Header />

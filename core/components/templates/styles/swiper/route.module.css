@@ -2,18 +2,10 @@
 
 
 .container {
-    @apply relative;
+    @apply min-h-[300px] relative;
 
 }
 
-
-
-
-/* :global(.swiper-slide) {
-
-    margin-inline: 0 !important;
-
-} */
 
 .container :global(.swiper) {
     @apply pb-2

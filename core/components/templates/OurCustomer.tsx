@@ -10,9 +10,9 @@ const OurCustomer = () => {
       <div className={styles.slider}>
         <div className={styles["animate-scroll"]}>
           {customers.map((logo, index) => (
-            <span key={index}>
+            <div className="" key={index}>
               <Image src={logo} alt="brand-image" width={100} height={70} />
-            </span>
+            </div>
           ))}
         </div>
       </div>
