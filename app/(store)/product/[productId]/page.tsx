@@ -9,28 +9,29 @@ interface ProductProps {
 const ProductPage = async ({ params }: ProductProps) => {
   console.log("page start")
   const { productId } = await params;
-  console.log("param has arrived")
+  
 
-  const data = await dataFetcher2();
-  console.log("data has fetched")
-  if (!data.length)
-    return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
-  const receivedItem = data[2];
+  // const data = await dataFetcher2();
+  
+  // if (!data.length)
+  //   return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
+  // const receivedItem = data[2];
 
-  const res = await fetch(`${BASE_URL}products`, {
-    cache: "no-store",
-  });
+  // const res = await fetch(`${BASE_URL}products`, {
+  //   cache: "no-store",
+  // });
 
-  console.log("status:", res.status);
+  // console.log("status:", res.status);
 
-  if (!res.ok) {
-    throw new Error(`Fetch failed: ${res.status}`);
-  }
+  // if (!res.ok) {
+  //   throw new Error(`Fetch failed: ${res.status}`);
+  // }
 
-  if (isNaN(+productId))
-    return <h2 className="w-fit mx-auto mt-12">nothing has found</h2>;
+  // if (isNaN(+productId))
+  //   return <h2 className="w-fit mx-auto mt-12">nothing has found</h2>;
 
-  return <ProductDetail data={receivedItem} />;
+  // return <ProductDetail data={receivedItem} />;
+  return <h2>hi</h2>
 };
 
 export default ProductPage;
