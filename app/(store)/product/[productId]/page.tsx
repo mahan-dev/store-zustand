@@ -1,6 +1,5 @@
-import { BASE_URL } from "@/core/helper/ProductFetcher";
+import { dataFetcher } from "@/core/helper/ProductFetcher";
 
-import { ProductDetailTypes } from "@/types/products/types";
 import ProductDetail from "@/templates/ProductDetail";
 
 interface ProductProps {
@@ -10,25 +9,11 @@ interface ProductProps {
 const ProductPage = async ({ params }: ProductProps) => {
   const { productId } = await params;
 
-  const fetchedData = async (): Promise<ProductDetailTypes[]> => {
-    try {
-      const res = await fetch(`${BASE_URL}/products`, {
-        cache: "no-store",
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      console.log("error", error);
-    }
-  };
-
-  const data = await fetchedData();
+  const data = await dataFetcher();
   const receivedItem = data[+productId - 1];
 
   if (isNaN(+productId))
     return <h2 className="text-center mt-12">nothing has found</h2>;
-
-  // const data = UseProduct(JSON.parse(JSON.stringify(params)));
 
   if (!data) return <h2>Product Not found</h2>;
 
