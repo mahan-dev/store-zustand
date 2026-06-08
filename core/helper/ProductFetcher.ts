@@ -14,7 +14,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     const data = await res.json();
     console.log("hi 4");
 
-    return data;
+    return data as ProductDetailTypes[];
   } catch (error) {
     console.log("hi 5");
     console.log("this is the error you looking for", error);
