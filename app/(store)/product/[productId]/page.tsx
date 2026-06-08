@@ -7,9 +7,12 @@ interface ProductProps {
 }
 
 const ProductPage = async ({ params }: ProductProps) => {
+  console.log("page start")
   const { productId } = await params;
+  console.log("param has arrived")
 
   const data = await dataFetcher2();
+  console.log("data has fetched")
   if (!data.length)
     return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
   const receivedItem = data[2];
