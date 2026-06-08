@@ -12,6 +12,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     console.log("hi 3");
 
     const data = await res.json();
+    console.log(data)
     console.log("hi 4");
 
     return data as ProductDetailTypes[];
