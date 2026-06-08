@@ -1,4 +1,4 @@
-import { BASE_URL, dataFetcher } from "@/core/helper/ProductFetcher";
+import { BASE_URL, dataFetcher, dataFetcher2 } from "@/core/helper/ProductFetcher";
 
 import ProductDetail from "@/templates/ProductDetail";
 
@@ -9,7 +9,7 @@ interface ProductProps {
 const ProductPage = async ({ params }: ProductProps) => {
   const { productId } = await params;
 
-  const data = await dataFetcher();
+  const data = await dataFetcher2();
   if (!data.length)
     return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
   const receivedItem = data[2];
