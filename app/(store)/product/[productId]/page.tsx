@@ -1,5 +1,4 @@
 import { mockedData } from "@/core/api/mockedData";
-import { BASE_URL } from "@/core/helper/ProductFetcher";
 
 import ProductDetail from "@/templates/ProductDetail";
 
@@ -14,7 +13,7 @@ const ProductPage = async ({ params }: ProductProps) => {
 
   if (!data.length)
     return <h2 className="w-fit mx-auto mt-12">Product Not found</h2>;
-  const receivedItem = data[+params - 1];
+  const receivedItem = data.find((product) => product.id === Number(productId));
 
   if (isNaN(+productId))
     return <h2 className="w-fit mx-auto mt-12">nothing has found</h2>;
