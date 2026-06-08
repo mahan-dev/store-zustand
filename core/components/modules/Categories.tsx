@@ -13,7 +13,7 @@ interface CategoriesProps {
   title: string;
 }
 const Categories = ({ title }: CategoriesProps) => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isFetched } = useQuery({
     queryKey: ["store fetching"],
     queryFn: dataFetcher,
   });
@@ -30,30 +30,34 @@ const Categories = ({ title }: CategoriesProps) => {
         <h2> Loading...</h2>
       ) : (
         <>
-          <h2 className={styles.container__title}>{title}</h2>
-          <ul className={styles.container__list}>
-            {uniqueCategories.map((category, index) => (
-              <li key={index}>
-                <MotionButton
-                  asChild
-                  className="cursor-pointer "
-                  variant={"outline"}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Link
-                    href={{
-                      pathname: "/products",
-                      query: { category },
-                    }}
-                  >
-                    {category}
-                  </Link>
-                </MotionButton>
-              </li>
-            ))}
-          </ul>
+          {isFetched && (
+            <>
+              <h2 className={styles.container__title}>{title}</h2>
+              <ul className={styles.container__list}>
+                {uniqueCategories?.map((category, index) => (
+                  <li key={index}>
+                    <MotionButton
+                      asChild
+                      className="cursor-pointer "
+                      variant={"outline"}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Link
+                        href={{
+                          pathname: "/products",
+                          query: { category },
+                        }}
+                      >
+                        {category}
+                      </Link>
+                    </MotionButton>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </>
       )}
     </div>

@@ -2,7 +2,7 @@
 
 
 .container {
-    @apply min-h-[300px] relative;
+    @apply min-h-[200px] relative;
 
 }
 
