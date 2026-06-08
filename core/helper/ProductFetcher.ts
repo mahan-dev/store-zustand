@@ -4,9 +4,7 @@ export const BASE_URL = "https://fakestoreapi.com/";
 
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const url = `${BASE_URL}products`;
-
-    const res = await fetch(url, {
+    const res = await fetch(`${BASE_URL}products`, {
       cache: "no-store",
     });
 
@@ -14,7 +12,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
 
     return data;
   } catch (error) {
-    console.log("this is the error you looking for", error)
+    console.log("this is the error you looking for", error);
     return [];
   }
 };
