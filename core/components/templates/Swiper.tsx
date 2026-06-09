@@ -15,17 +15,24 @@ import styles from "@/templates/styles/swiper/route.module.css";
 import { dataFetcher } from "@/core/helper/ProductFetcher";
 
 import { useQuery } from "@tanstack/react-query";
+import Loader from "@/modules/Loader";
 
 const SwiperSlider = () => {
-  const { data, isError } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ["store fetching"],
     queryFn: dataFetcher,
+    staleTime: Infinity,
   });
 
   const finalData = data?.length && data.slice(0, 6);
 
   return (
     <div className={styles.container}>
+      {isLoading && (
+        <div className=" min-h-50 w-full flex  justify-center">
+          <Loader />
+        </div>
+      )}
       {finalData && (
         <>
           <BsArrowLeftSquare className={styles["swiper__arrow-left"]} />

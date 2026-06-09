@@ -8,6 +8,7 @@ import styles from "@/modules/styles/categories/route.module.css";
 import { Button } from "@/ui/button";
 
 import { useQuery } from "@tanstack/react-query";
+import Loader from "@/modules/Loader";
 
 interface CategoriesProps {
   title: string;
@@ -16,6 +17,7 @@ const Categories = ({ title }: CategoriesProps) => {
   const { data, isLoading, isFetched } = useQuery({
     queryKey: ["store fetching"],
     queryFn: dataFetcher,
+    staleTime: Infinity,
   });
 
   const uniqueCategories = !!data?.length && [
@@ -27,7 +29,7 @@ const Categories = ({ title }: CategoriesProps) => {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <h2> Loading...</h2>
+        <Loader />
       ) : (
         <>
           {isFetched && (

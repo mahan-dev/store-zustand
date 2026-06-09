@@ -3,7 +3,7 @@
 
 
 .container {
-    @apply flex flex-col items-center mt-16;
+    @apply min-h-25 flex flex-col items-center mt-16;
 }
 
 .container__title {

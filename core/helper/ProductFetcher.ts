@@ -7,7 +7,7 @@ export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
     const res = await fetch(`${BASE_URL}products`, {
       cache: "no-store",
     });
-
+    console.log("fetching");
     const data = await res.json();
 
     return data as ProductDetailTypes[];
