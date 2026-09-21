@@ -19,9 +19,9 @@ const Provider = ({ children }: ProviderProps) => {
       <SessionProvider>
 
         <QueryClientProvider client={queryClient}>
-        <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem>
+        {/* <ThemeProvider attribute={"class"} defaultTheme="system" enableSystem> */}
           {children}
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
         </QueryClientProvider>
       </SessionProvider>
       <Toaster />
