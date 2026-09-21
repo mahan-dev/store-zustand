@@ -2,7 +2,7 @@ import { ProductDetailTypes } from "@/types/products/types";
 
 export const dataFetcher = async (): Promise<ProductDetailTypes[]> => {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {
+    const res = await fetch("https://dummyjson.com/products", {
       cache: "no-store",
     });
     console.log("fetching");
