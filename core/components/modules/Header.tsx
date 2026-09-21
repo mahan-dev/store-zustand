@@ -38,14 +38,14 @@ const Header = () => {
   const accountButton =
     session.status === "authenticated" && !pageUrl.includes("/dashboard");
 
-  const [showTheme, setShowThem] = useState(false);
-  useEffect(() => {
-    setShowThem(true);
-  }, []);
+  // const [showTheme, setShowThem] = useState(false);
+  // useEffect(() => {
+  //   setShowThem(true);
+  // }, []);
 
   return (
     <header className={styles.header}>
-      {showTheme && <ThemeSwitch />}
+      {/* {showTheme && <ThemeSwitch />} */}
       <section className={styles.header__left}>
         {status ? (
           <div className={styles.left__container}>
