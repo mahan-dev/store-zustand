@@ -32,11 +32,11 @@ const Categories = ({ title }: CategoriesProps) => {
         <Loader />
       ) : (
         <>
-          {isFetched && (
+          {isFetched && data.length && (
             <>
               <h2 className={styles.container__title}>{title}</h2>
               <ul className={styles.container__list}>
-                {uniqueCategories?.map((category, index) => (
+                {uniqueCategories.map((category, index) => (
                   <li key={index}>
                     <MotionButton
                       asChild

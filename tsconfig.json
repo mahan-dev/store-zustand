@@ -90,7 +90,7 @@
     "core/api/mockedData.ts",
     "next.config.mjs",
     ".next/dev/types/**/*.ts"
-  ],
+, "core/utils/aiAgent.ts"  ],
   "exclude": [
     "node_modules"
   ]

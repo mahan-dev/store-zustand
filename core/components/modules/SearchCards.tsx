@@ -14,6 +14,7 @@ import { titleFormatter } from "@/helper/titleFormatter";
 import styles from "@/modules/styles/searchCards/route.module.css";
 import { useQuery } from "@tanstack/react-query";
 import { searchQuery } from "@/core/helper/header/searchQuery";
+import { aiHandler } from "@/core/utils/aiAgent";
 
 interface CardsProps {
   searchValue: string;
@@ -44,6 +45,14 @@ const SearchCards = ({
   });
 
   const router = useRouter();
+
+  const aiResult = async () => {
+    const res = await aiHandler(debounceValue);
+    return res;
+  };
+
+  aiResult();
+
 
   const clickHandler = (id: number) => {
     if (imageStatus === "offline") return;
@@ -114,7 +123,7 @@ const SearchCards = ({
               ))}
             </div>
           ) : (
-            !!searchValue.length && <span>nothing found</span>
+            !!searchValue.length && <span className="inline-block mt-2">nothing found</span>
           )}
         </div>
       </div>

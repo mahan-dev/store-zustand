@@ -10,10 +10,11 @@ import { FaRegUser } from "react-icons/fa6";
 import { signOut, useSession } from "next-auth/react";
 import { redirect, usePathname } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import SearchCards from "@/modules/SearchCards";
 import { toast } from "sonner";
+import ThemeSwitch from "@/modules/ThemSwitch";
 
 const Header = () => {
   const { total } = useShopStore();
@@ -37,8 +38,14 @@ const Header = () => {
   const accountButton =
     session.status === "authenticated" && !pageUrl.includes("/dashboard");
 
+  const [showTheme, setShowThem] = useState(false);
+  useEffect(() => {
+    setShowThem(true);
+  }, []);
+
   return (
     <header className={styles.header}>
+      {showTheme && <ThemeSwitch />}
       <section className={styles.header__left}>
         {status ? (
           <div className={styles.left__container}>
