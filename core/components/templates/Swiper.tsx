@@ -12,10 +12,7 @@ import "swiper/css/pagination";
 import { breakpoints } from "@/constants/swiperBreakpoints";
 import styles from "@/templates/styles/swiper/route.module.css";
 
-import { dataFetcher } from "@/core/helper/ProductFetcher";
 
-import { useQuery } from "@tanstack/react-query";
-import Loader from "@/modules/Loader";
 import { mockedData } from "@/core/api/mockedData";
 
 const SwiperSlider = () => {
@@ -26,7 +23,7 @@ const SwiperSlider = () => {
 
   // const finalData = data?.length && data.slice(0, 6);
   const data = mockedData;
-  const slicedData = data.slice(0, 4);
+  const slicedData = data.slice(0, 5);
 
   return (
     <div className={styles.container}>
