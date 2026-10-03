@@ -69,6 +69,7 @@ const SwiperSlider = () => {
                         fill
                         sizes="90vw"
                         priority
+                        unoptimized
                       />
                     </div>
                   </Link>
