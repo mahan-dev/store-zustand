@@ -32,7 +32,7 @@ const SwiperSlider = () => {
           <Loader />
         </div>
       )} */}
-      {data && (
+      {slicedData && (
         <>
           <BsArrowLeftSquare className={styles["swiper__arrow-left"]} />
           <BsArrowRightSquare className={styles["swiper__arrow-right"]} />
@@ -55,7 +55,7 @@ const SwiperSlider = () => {
               pauseOnMouseEnter: true,
             }}
           >
-            {data.length!! &&
+            {slicedData.length!! &&
               slicedData.map((item) => (
                 <SwiperSlide
                   key={item.id}
