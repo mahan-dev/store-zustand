@@ -49,7 +49,7 @@ const SideBar = ({
     document.body.style.overflow = "auto";
   };
 
-  useSidebarClickHandler({ isOpen, setIsOpen, asideRef });
+  // useSidebarClickHandler({ isOpen, setIsOpen, asideRef });
 
   useFilterSearchParams({ setCategory, setRange });
 
@@ -61,7 +61,10 @@ const SideBar = ({
         <CardHeader className="border-b relative py-1!">
           Filter
           {isOpen && (
-            <IoClose className={styles["sidebar__close-icon"]} onClick={closeHandler} />
+            <IoClose
+              className={styles["sidebar__close-icon"]}
+              onClick={closeHandler}
+            />
           )}
         </CardHeader>
         <PriceSlider range={range} setRange={setRange} />

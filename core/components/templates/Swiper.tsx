@@ -16,24 +16,26 @@ import { dataFetcher } from "@/core/helper/ProductFetcher";
 
 import { useQuery } from "@tanstack/react-query";
 import Loader from "@/modules/Loader";
+import { mockedData } from "@/core/api/mockedData";
 
 const SwiperSlider = () => {
-  const { data, isError, isLoading } = useQuery({
-    queryKey: ["store fetching"],
-    queryFn: dataFetcher,
-    staleTime: Infinity,
-  });
+  // const { data, isError, isLoading } = useQuery({
+  //   queryKey: ["store fetching"],
+  //   queryFn: dataFetcher,
+  // });
 
-  const finalData = data?.length && data.slice(0, 6);
+  // const finalData = data?.length && data.slice(0, 6);
+  const data = mockedData;
+  const slicedData = data.slice(0, 4);
 
   return (
     <div className={styles.container}>
-      {isLoading && (
+      {/* {isLoading && (
         <div className=" min-h-50 w-full flex  justify-center">
           <Loader />
         </div>
-      )}
-      {finalData && (
+      )} */}
+      {data && (
         <>
           <BsArrowLeftSquare className={styles["swiper__arrow-left"]} />
           <BsArrowRightSquare className={styles["swiper__arrow-right"]} />
@@ -56,8 +58,8 @@ const SwiperSlider = () => {
               pauseOnMouseEnter: true,
             }}
           >
-            {finalData.length!! &&
-              finalData.map((item) => (
+            {data.length!! &&
+              slicedData.map((item) => (
                 <SwiperSlide
                   key={item.id}
                   className={`${styles["swiper-slide"]} py-2`}
@@ -78,7 +80,7 @@ const SwiperSlider = () => {
           </Swiper>
         </>
       )}
-      {isError && <h2>something</h2>}
+      {/* {isError && <h2>something</h2>} */}
     </div>
   );
 };

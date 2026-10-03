@@ -84,7 +84,7 @@ const CardPage = memo(({ data }: CardProps) => {
                 onError={() => setApiStatus(ApiStatus.Offline)}
               />
             ) : (
-              <div>Failed to Load</div>
+              <div className="max-sm:w-full">Failed to Load</div>
             )}
           </Link>
         </div>

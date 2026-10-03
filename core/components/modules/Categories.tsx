@@ -2,37 +2,33 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { dataFetcher } from "@/core/helper/ProductFetcher";
 import styles from "@/modules/styles/categories/route.module.css";
 
 import { Button } from "@/ui/button";
 
-import { useQuery } from "@tanstack/react-query";
-import Loader from "@/modules/Loader";
+import { mockedData } from "@/core/api/mockedData";
 
 interface CategoriesProps {
   title: string;
 }
 const Categories = ({ title }: CategoriesProps) => {
-  const { data, isLoading, isFetched } = useQuery({
-    queryKey: ["store fetching"],
-    queryFn: dataFetcher,
-    staleTime: Infinity,
-  });
+  // const { data, isLoading, isFetched } = useQuery({
+  //   queryKey: ["store fetching"],
+  //   queryFn: dataFetcher,
+  //   staleTime: 1 * 60 * 60 * 24 * 30,
+  // });
 
-  const uniqueCategories = !!data?.length && [
-    ...new Set(data.map((item) => item.category)),
+  const uniqueCategories = mockedData && [
+    ...new Set(mockedData.map((item) => item.category)),
   ];
 
   const MotionButton = motion.create(Button);
 
   return (
     <div className={styles.container}>
-      {isLoading ? (
-        <Loader />
-      ) : (
+      {mockedData && (
         <>
-          {isFetched && data.length && (
+          {mockedData && (
             <>
               <h2 className={styles.container__title}>{title}</h2>
               <ul className={styles.container__list}>
