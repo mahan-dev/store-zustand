@@ -15,7 +15,7 @@ const Products = ({ data }: HomeProps) => {
   const [range, setRange] = useState<[number, number]>([0, 1000]);
   const [category, setCategory] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>(data);
+  const [filteredData, setFilteredData] = useState<ProductDetailTypes[]>([]);
 
   const clickHandler = () => {
     setIsOpen(true);

@@ -12,7 +12,6 @@ import "swiper/css/pagination";
 import { breakpoints } from "@/constants/swiperBreakpoints";
 import styles from "@/templates/styles/swiper/route.module.css";
 
-
 import { mockedData } from "@/core/api/mockedData";
 
 const SwiperSlider = () => {
@@ -68,6 +67,7 @@ const SwiperSlider = () => {
                         alt={"cardImage"}
                         fill
                         sizes="90vw"
+                        fetchPriority="high"
                         priority
                         unoptimized
                       />
